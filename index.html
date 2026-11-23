@@ -54,7 +54,7 @@ button,label[for]{cursor:pointer}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 .label{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
-html[lang="he"] .label{letter-spacing:0;text-transform:none;font-size:12.5px}
+html[lang="he"] .label,html[lang="ar"] .label{letter-spacing:0;text-transform:none;font-size:12.5px}
 .note{font-size:12.5px;color:var(--muted)}
 .linkbtn{border:0;background:none;color:var(--accent);padding:0;font-weight:600;font-size:13px}
 
@@ -80,8 +80,8 @@ html[lang="he"] .label{letter-spacing:0;text-transform:none;font-size:12.5px}
 .winp:focus{border-color:var(--accent);outline:none}
 .wmoney{position:relative}
 .wmoney span{position:absolute;inset-inline-start:16px;top:50%;transform:translateY(-50%);font-family:var(--f-mono);color:var(--muted);font-size:17px}
-.wmoney input{padding-inline-start:40px;font-family:var(--f-mono);direction:ltr}
-html[dir="rtl"] .wmoney input{text-align:right}
+.wmoney input,.wmoney input.winp{padding-inline-start:44px;font-family:var(--f-mono);direction:ltr}
+html[dir="rtl"] .wmoney input{text-align:right;padding-left:16px;padding-right:44px}
 .seg.big{height:52px;border-radius:14px;padding:4px}
 .seg.big button{font-size:15px;border-radius:10px}
 .wstart{height:56px;border:0;border-radius:16px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:17px;width:100%}
@@ -289,7 +289,7 @@ html[dir="rtl"] .tstrip svg{transform:scaleX(-1)}
 .donut circle{transition:stroke-dasharray .5s, stroke-dashoffset .5s}
 .center{position:absolute;inset:25%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none}
 .center .k{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
-html[lang="he"] .center .k{letter-spacing:0;font-size:12.5px}
+html[lang="he"] .center .k,html[lang="ar"] .center .k{letter-spacing:0;font-size:12.5px}
 .center .v{font-family:var(--f-display);font-weight:700;font-size:clamp(20px,6.4vw,27px);white-space:nowrap;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.15}
 .center .s{font-size:12px;color:var(--muted)}
 .catbtn{position:absolute;width:76px;transform:translate(-50%,-23px);display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;padding:0;border-radius:12px}
@@ -461,7 +461,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
     </div>
     <div class="field">
       <span class="label" data-t="language">Language</span>
-      <div class="seg big" role="group"><button type="button" id="wEn" lang="en">English</button><button type="button" id="wHe" lang="he">עברית</button></div>
+      <div class="lgrid" id="wLangs"></div>
     </div>
     <div class="field">
       <label class="label" for="wBudget" data-t="askBudget">Monthly budget (optional)</label>
@@ -479,7 +479,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
       <div style="min-width:0"><h1 id="greet">Spend Ledger</h1><div class="sub"><span id="todayLine"></span> · <span id="syncState"></span></div></div>
     </div>
     <div class="topbtns">
-      <button class="pill" id="langBtn" lang="he">עברית</button>
+      <button class="pill lbtn" id="langBtn" type="button"></button>
     </div>
   </header>
 
@@ -490,8 +490,8 @@ html[dir="rtl"] .amtfield input{text-align:right}
     <div class="srow">
       <div class="field"><label class="label" for="setName" data-t="yourName">Your name</label>
         <input id="setName" type="text" maxlength="30"></div>
-      <div class="field"><span class="label" data-t="language">Language</span>
-        <div class="seg" role="group"><button type="button" id="segEn" lang="en">English</button><button type="button" id="segHe" lang="he">עברית</button></div></div>
+      <div class="field wide"><span class="label" data-t="language">Language</span>
+        <div class="lgrid" id="setLangs"></div></div>
       <div class="field"><label class="label" for="setCur" data-t="currency">Currency</label>
         <select id="setCur">
           <option value="ILS">₪ ILS</option><option value="USD">$ USD</option>
@@ -827,7 +827,20 @@ html[dir="rtl"] .amtfield input{text-align:right}
 .inst span{font-size:12.5px;color:var(--muted);line-height:1.35}
 .inst .ib{flex:none;height:42px;padding:0 16px;border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);font:600 15px var(--f-body);cursor:pointer}
 .inst .ix{flex:none;width:32px;height:32px;border:0;background:none;color:var(--muted);font-size:20px;cursor:pointer;border-radius:50%}
-.auth .lang{align-self:flex-end;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;height:36px;padding:0 14px;font:500 13px var(--f-body);cursor:pointer}
+.lflag{display:inline-block;width:24px;height:17px;border-radius:3px;overflow:hidden;flex:none;box-shadow:0 0 0 1px rgba(0,0,0,.1)}
+.lflag svg{display:block;width:100%;height:100%}
+.lbtn{display:inline-flex;align-items:center;gap:8px}
+.lbtn .lcaret{font-size:11px;color:var(--muted)}
+.lmenu{position:fixed;z-index:90;min-width:200px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 32px rgba(10,20,40,.2);padding:6px;display:flex;flex-direction:column}
+.lmenu button{display:flex;align-items:center;gap:12px;height:44px;padding:0 12px;border:0;border-radius:10px;background:none;color:var(--ink);font:500 15px var(--f-body);cursor:pointer;text-align:start}
+.lmenu button:hover,.lmenu button:focus-visible{background:var(--sunk);outline:none}
+.lmenu button.on{background:var(--accent-soft, var(--sunk));color:var(--accent);font-weight:600}
+.lgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}
+.lgrid button{display:flex;align-items:center;gap:10px;height:46px;padding:0 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font:500 15px var(--f-body);cursor:pointer;text-align:start}
+.lgrid button[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);font-weight:600}
+.lgrid button[aria-pressed="true"]::after{content:"✓";margin-inline-start:auto;color:var(--accent);font-weight:700}
+.field.wide{grid-column:1/-1}
+.auth .lang{align-self:flex-end;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;height:36px;padding:0 14px;font:500 13px var(--f-body);cursor:pointer}
 </style>
 <div class="auth" id="authView" hidden>
   <form class="card" id="authForm" novalidate>
@@ -861,6 +874,72 @@ html[dir="rtl"] .amtfield input{text-align:right}
   const SUPABASE_KEY = "sb_publishable_T8rMH6-1CcydnPhoiaECpQ_syRV6BBw"; // publishable key: safe to be public, data is protected by row-level security
   const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: true, autoRefreshToken: true } });
 
+
+  // ---------- languages: list, flags and the picker (used by the sign-in screen and the app) ----------
+  const SL_FLAGS = {
+    il:'<rect width="28" height="20" fill="#fff"/><rect y="2.5" width="28" height="2.5" fill="#0038B8"/><rect y="15" width="28" height="2.5" fill="#0038B8"/><path d="M14 6.2l3.3 5.7H10.7zM14 13.8l-3.3-5.7h6.6z" fill="none" stroke="#0038B8" stroke-width="1"/>',
+    gb:'<rect width="28" height="20" fill="#012169"/><path d="M0 0L28 20M28 0L0 20" stroke="#fff" stroke-width="4"/><path d="M0 0L28 20M28 0L0 20" stroke="#C8102E" stroke-width="1.4"/><path d="M14 0v20M0 10h28" stroke="#fff" stroke-width="6"/><path d="M14 0v20M0 10h28" stroke="#C8102E" stroke-width="3.4"/>',
+    de:'<rect width="28" height="20" fill="#FFCE00"/><rect width="28" height="6.7" fill="#000"/><rect y="6.7" width="28" height="6.6" fill="#DD0000"/>',
+    fr:'<rect width="28" height="20" fill="#fff"/><rect width="9.3" height="20" fill="#002395"/><rect x="18.7" width="9.3" height="20" fill="#ED2939"/>',
+    ru:'<rect width="28" height="20" fill="#fff"/><rect y="6.7" width="28" height="6.7" fill="#0039A6"/><rect y="13.3" width="28" height="6.7" fill="#D52B1E"/>',
+    sa:'<rect width="28" height="20" fill="#006C35"/><path d="M7 8h14M8 10.5h12" stroke="#fff" stroke-width="1.2"/><path d="M8 14h12" stroke="#fff" stroke-width=".9"/>',
+    it:'<rect width="28" height="20" fill="#fff"/><rect width="9.3" height="20" fill="#009246"/><rect x="18.7" width="9.3" height="20" fill="#CE2B37"/>',
+    es:'<rect width="28" height="20" fill="#AA151B"/><rect y="5" width="28" height="10" fill="#F1BF00"/>'
+  };
+  const SL_LANGS = [
+    {code:"he", name:"עברית",    flag:"il", rtl:true,  locale:"he-IL"},
+    {code:"en", name:"English",  flag:"gb", rtl:false, locale:undefined},
+    {code:"de", name:"Deutsch",  flag:"de", rtl:false, locale:"de-DE"},
+    {code:"fr", name:"Français", flag:"fr", rtl:false, locale:"fr-FR"},
+    {code:"ru", name:"Русский",  flag:"ru", rtl:false, locale:"ru-RU"},
+    {code:"ar", name:"العربية",  flag:"sa", rtl:true,  locale:"ar-u-nu-latn"},
+    {code:"it", name:"Italiano", flag:"it", rtl:false, locale:"it-IT"},
+    {code:"es", name:"Español",  flag:"es", rtl:false, locale:"es-ES"}
+  ];
+  const slLang = code => SL_LANGS.find(l => l.code === code) || SL_LANGS[1];
+  const slFlag = code => `<span class="lflag" aria-hidden="true"><svg viewBox="0 0 28 20">${SL_FLAGS[slLang(code).flag]}</svg></span>`;
+  // a button that shows the current flag + name, and opens a list of all languages
+  function slLangButton(btn, current, onPick) {
+    const L = slLang(current);
+    btn.innerHTML = `${slFlag(L.code)}<span class="lname"></span><span class="lcaret" aria-hidden="true">▾</span>`;
+    btn.querySelector(".lname").textContent = L.name; btn.querySelector(".lname").lang = L.code;
+    btn.setAttribute("aria-haspopup", "listbox"); btn.setAttribute("aria-expanded", "false");
+    btn.onclick = ev => {
+      ev.stopPropagation();
+      const old = document.querySelector(".lmenu"); if (old) { old.remove(); btn.setAttribute("aria-expanded", "false"); if (old._for === btn) return; }
+      const m = document.createElement("div"); m.className = "lmenu"; m.setAttribute("role", "listbox"); m._for = btn;
+      SL_LANGS.forEach(l => {
+        const o = document.createElement("button"); o.type = "button"; o.setAttribute("role", "option"); o.lang = l.code; o.dir = l.rtl ? "rtl" : "ltr";
+        o.innerHTML = `${slFlag(l.code)}<span class="lname"></span>`; o.querySelector(".lname").textContent = l.name;
+        if (l.code === current) { o.className = "on"; o.setAttribute("aria-selected", "true"); }
+        o.onclick = () => { close(); onPick(l.code); };
+        m.appendChild(o);
+      });
+      document.body.appendChild(m);
+      const r = btn.getBoundingClientRect(), w = m.offsetWidth;
+      m.style.top = Math.min(r.bottom + 6, innerHeight - m.offsetHeight - 8) + "px";
+      m.style.left = Math.max(8, Math.min(r.right - w, innerWidth - w - 8)) + "px";
+      btn.setAttribute("aria-expanded", "true");
+      const close = () => { m.remove(); btn.setAttribute("aria-expanded", "false"); document.removeEventListener("click", outside, true); document.removeEventListener("keydown", esc); };
+      const outside = e => { if (!m.contains(e.target) && e.target !== btn && !btn.contains(e.target)) close(); };
+      const esc = e => { if (e.key === "Escape") { close(); btn.focus(); } };
+      setTimeout(() => { document.addEventListener("click", outside, true); document.addEventListener("keydown", esc); }, 0);
+      (m.querySelector(".on") || m.firstChild).focus();
+    };
+  }
+  // a grid of flag buttons (Settings and the first welcome screen)
+  function slLangGrid(box, current, onPick) {
+    box.innerHTML = ""; box.setAttribute("role", "group");
+    SL_LANGS.forEach(l => {
+      const b = document.createElement("button"); b.type = "button"; b.lang = l.code; b.dir = l.rtl ? "rtl" : "ltr";
+      b.innerHTML = `${slFlag(l.code)}<span class="lname"></span>`; b.querySelector(".lname").textContent = l.name;
+      b.setAttribute("aria-pressed", String(l.code === current));
+      b.onclick = () => onPick(l.code);
+      box.appendChild(b);
+    });
+  }
+  window.__slLangs = { SL_LANGS, slLang, slFlag, slLangButton, slLangGrid };
+
   // ---------- sign-in screen ----------
   const AT = {
     en: { signin: "Welcome back", signup: "Create your account", subIn: "Sign in to see your expenses.", subUp: "Your expenses stay private to your account.",
@@ -874,20 +953,61 @@ html[dir="rtl"] .amtfield input{text-align:right}
           toUp: "חדשים כאן? יצירת חשבון", toIn: "כבר יש לכם חשבון? התחברות", lang: "English",
           bad: "אימייל או סיסמה שגויים.", short: "הסיסמה צריכה לפחות 6 תווים.", mail: "הזינו כתובת אימייל תקינה.",
           exists: "לאימייל הזה כבר יש חשבון. התחברו במקום.", confirm: "בדקו את האימייל והקישו על הקישור לאישור, ואז התחברו.",
-          net: "אין חיבור. בדקו את האינטרנט ונסו שוב." }
+          net: "אין חיבור. בדקו את האינטרנט ונסו שוב." },
+    de: { signin: "Willkommen zurück", signup: "Konto erstellen", subIn: "Melde dich an, um deine Ausgaben zu sehen.", subUp: "Deine Ausgaben bleiben privat in deinem Konto.",
+          email: "E-Mail", pass: "Passwort (mindestens 6 Zeichen)", goIn: "Anmelden", goUp: "Konto erstellen",
+          toUp: "Neu hier? Konto erstellen", toIn: "Schon ein Konto? Anmelden",
+          bad: "Falsche E-Mail oder falsches Passwort.", short: "Das Passwort braucht mindestens 6 Zeichen.", mail: "Gib eine gültige E-Mail-Adresse ein.",
+          exists: "Für diese E-Mail gibt es schon ein Konto. Melde dich an.", confirm: "Prüfe deine E-Mails, tippe auf den Bestätigungslink und melde dich dann an.",
+          net: "Keine Verbindung. Prüfe dein Internet und versuche es erneut." },
+    fr: { signin: "Bon retour", signup: "Créer votre compte", subIn: "Connectez-vous pour voir vos dépenses.", subUp: "Vos dépenses restent privées dans votre compte.",
+          email: "E-mail", pass: "Mot de passe (6 caractères minimum)", goIn: "Se connecter", goUp: "Créer le compte",
+          toUp: "Nouveau ? Créer un compte", toIn: "Déjà un compte ? Se connecter",
+          bad: "E-mail ou mot de passe incorrect.", short: "Le mot de passe doit contenir au moins 6 caractères.", mail: "Saisissez une adresse e-mail valide.",
+          exists: "Cet e-mail a déjà un compte. Connectez-vous.", confirm: "Vérifiez vos e-mails, touchez le lien de confirmation, puis connectez-vous.",
+          net: "Pas de connexion. Vérifiez Internet et réessayez." },
+    ru: { signin: "С возвращением", signup: "Создание аккаунта", subIn: "Войдите, чтобы увидеть свои расходы.", subUp: "Ваши расходы видны только вам.",
+          email: "E-mail", pass: "Пароль (минимум 6 символов)", goIn: "Войти", goUp: "Создать аккаунт",
+          toUp: "Впервые здесь? Создать аккаунт", toIn: "Уже есть аккаунт? Войти",
+          bad: "Неверный e-mail или пароль.", short: "Пароль должен быть не короче 6 символов.", mail: "Введите правильный e-mail.",
+          exists: "Для этого e-mail уже есть аккаунт. Войдите.", confirm: "Проверьте почту, нажмите ссылку для подтверждения и затем войдите.",
+          net: "Нет подключения. Проверьте интернет и попробуйте снова." },
+    ar: { signin: "مرحبًا بعودتك", signup: "إنشاء حسابك", subIn: "سجّل الدخول لرؤية مصروفاتك.", subUp: "مصروفاتك تبقى خاصة بحسابك.",
+          email: "البريد الإلكتروني", pass: "كلمة المرور (6 أحرف على الأقل)", goIn: "تسجيل الدخول", goUp: "إنشاء الحساب",
+          toUp: "جديد هنا؟ أنشئ حسابًا", toIn: "لديك حساب؟ سجّل الدخول",
+          bad: "البريد أو كلمة المرور غير صحيحة.", short: "كلمة المرور تحتاج 6 أحرف على الأقل.", mail: "أدخل بريدًا إلكترونيًا صحيحًا.",
+          exists: "هذا البريد لديه حساب بالفعل. سجّل الدخول.", confirm: "تحقّق من بريدك واضغط رابط التأكيد، ثم سجّل الدخول.",
+          net: "لا يوجد اتصال. تحقّق من الإنترنت وحاول مجددًا." },
+    it: { signin: "Bentornato", signup: "Crea il tuo account", subIn: "Accedi per vedere le tue spese.", subUp: "Le tue spese restano private nel tuo account.",
+          email: "Email", pass: "Password (almeno 6 caratteri)", goIn: "Accedi", goUp: "Crea account",
+          toUp: "Nuovo qui? Crea un account", toIn: "Hai già un account? Accedi",
+          bad: "Email o password errate.", short: "La password deve avere almeno 6 caratteri.", mail: "Inserisci un indirizzo email valido.",
+          exists: "Questa email ha già un account. Accedi.", confirm: "Controlla la tua email, tocca il link di conferma e poi accedi.",
+          net: "Nessuna connessione. Controlla internet e riprova." },
+    es: { signin: "Hola de nuevo", signup: "Crea tu cuenta", subIn: "Inicia sesión para ver tus gastos.", subUp: "Tus gastos son privados en tu cuenta.",
+          email: "Correo electrónico", pass: "Contraseña (mínimo 6 caracteres)", goIn: "Iniciar sesión", goUp: "Crear cuenta",
+          toUp: "¿Eres nuevo? Crea una cuenta", toIn: "¿Ya tienes cuenta? Inicia sesión",
+          bad: "Correo o contraseña incorrectos.", short: "La contraseña necesita al menos 6 caracteres.", mail: "Introduce un correo válido.",
+          exists: "Este correo ya tiene una cuenta. Inicia sesión.", confirm: "Revisa tu correo, toca el enlace de confirmación y luego inicia sesión.",
+          net: "Sin conexión. Revisa internet e inténtalo de nuevo." }
   };
   let mode = "in";
-  const lang = () => { try { return localStorage.getItem("lang") === "he" ? "he" : (localStorage.getItem("lang") ? "en" : ((navigator.language||"").startsWith("he") ? "he" : "en")); } catch { return "en"; } };
+  const lang = () => {
+    let saved = null; try { saved = localStorage.getItem("lang"); } catch {}
+    if (saved && SL_LANGS.some(l => l.code === saved)) return saved;
+    const nav = (navigator.language || "en").slice(0, 2).toLowerCase();
+    return SL_LANGS.some(l => l.code === nav) ? nav : "en";
+  };
   const $ = id => document.getElementById(id);
   function paintAuth() {
-    const L = AT[lang()], he = lang() === "he";
-    document.documentElement.lang = lang(); document.documentElement.dir = he ? "rtl" : "ltr";
+    const L = AT[lang()] || AT.en, rtl = slLang(lang()).rtl;
+    document.documentElement.lang = lang(); document.documentElement.dir = rtl ? "rtl" : "ltr";
     $("authTitle").textContent = mode === "in" ? L.signin : L.signup;
     $("authSub").textContent = mode === "in" ? L.subIn : L.subUp;
     $("authEmailL").textContent = L.email; $("authPassL").textContent = L.pass;
     $("authGo").textContent = mode === "in" ? L.goIn : L.goUp;
     $("authSwitch").textContent = mode === "in" ? L.toUp : L.toIn;
-    $("authLang").textContent = L.lang;
+    slLangButton($("authLang"), lang(), code => { try { localStorage.setItem("lang", code); } catch {} paintAuth(); });
     $("authPass").autocomplete = mode === "in" ? "current-password" : "new-password";
   }
   function msg(text, ok) { const m = $("authMsg"); m.textContent = text || ""; m.className = "msg" + (ok ? " ok" : ""); }
@@ -902,10 +1022,9 @@ html[dir="rtl"] .amtfield input{text-align:right}
     // show the sign-in screen until someone signs in
     paintAuth(); $("authView").hidden = false;
     $("authSwitch").onclick = () => { mode = mode === "in" ? "up" : "in"; msg(""); paintAuth(); };
-    $("authLang").onclick = () => { try { localStorage.setItem("lang", lang() === "he" ? "en" : "he"); } catch {} paintAuth(); };
     $("authForm").addEventListener("submit", async ev => {
       ev.preventDefault();
-      const L = AT[lang()], email = $("authEmail").value.trim(), password = $("authPass").value;
+      const L = AT[lang()] || AT.en, email = $("authEmail").value.trim(), password = $("authPass").value;
       if (!/^\S+@\S+\.\S+$/.test(email)) return msg(L.mail);
       if (password.length < 6) return msg(L.short);
       $("authGo").disabled = true; msg("");
@@ -1061,17 +1180,29 @@ html[dir="rtl"] .amtfield input{text-align:right}
     const IT = { en: { t: "Install Spend Ledger", s: "Get it on your home screen, like a normal app.", go: "Install",
                        iosS: "Tap the Share button ⬆︎ below, then “Add to Home Screen”.", ok: "Got it" },
                  he: { t: "התקנת פנקס ההוצאות", s: "שימו את האפליקציה על מסך הבית, כמו כל אפליקציה.", go: "התקנה",
-                       iosS: "הקישו על כפתור השיתוף ⬆︎ למטה, ואז ״הוסף למסך הבית״.", ok: "הבנתי" } };
+                       iosS: "הקישו על כפתור השיתוף ⬆︎ למטה, ואז ״הוסף למסך הבית״.", ok: "הבנתי" },
+                 de: { t: "Spend Ledger installieren", s: "Auf den Startbildschirm, wie eine normale App.", go: "Installieren",
+                       iosS: "Tippe unten auf Teilen ⬆︎ und dann auf „Zum Home-Bildschirm“.", ok: "Verstanden" },
+                 fr: { t: "Installer Spend Ledger", s: "Sur votre écran d'accueil, comme une vraie app.", go: "Installer",
+                       iosS: "Touchez Partager ⬆︎ en bas, puis « Sur l'écran d'accueil ».", ok: "Compris" },
+                 ru: { t: "Установить Spend Ledger", s: "На главный экран, как обычное приложение.", go: "Установить",
+                       iosS: "Нажмите «Поделиться» ⬆︎ внизу, затем «На экран „Домой“».", ok: "Понятно" },
+                 ar: { t: "تثبيت Spend Ledger", s: "ضعه على الشاشة الرئيسية مثل أي تطبيق.", go: "تثبيت",
+                       iosS: "اضغط زر المشاركة ⬆︎ في الأسفل، ثم «إضافة إلى الشاشة الرئيسية».", ok: "حسنًا" },
+                 it: { t: "Installa Spend Ledger", s: "Mettila nella schermata Home, come una normale app.", go: "Installa",
+                       iosS: "Tocca Condividi ⬆︎ in basso, poi «Aggiungi alla schermata Home».", ok: "Ho capito" },
+                 es: { t: "Instalar Spend Ledger", s: "Tenla en tu pantalla de inicio, como una app normal.", go: "Instalar",
+                       iosS: "Toca Compartir ⬆︎ abajo y luego «Añadir a pantalla de inicio».", ok: "Entendido" } };
     let seen = false; try { seen = sessionStorage.getItem("instClosed") === "1"; } catch {}
     if (seen) return;
-    const L = () => IT[lang()];
+    const L = () => IT[lang()] || IT.en;
     const ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
     let prompt = null;
     function show(kind) {
       $("instT").textContent = L().t;
       $("instS").textContent = kind === "ios" ? L().iosS : L().s;
       $("instGo").textContent = kind === "ios" ? L().ok : L().go;
-      bar.dir = lang() === "he" ? "rtl" : "ltr";
+      bar.dir = slLang(lang()).rtl ? "rtl" : "ltr";
       bar.hidden = false;
     }
     function close() { bar.hidden = true; try { sessionStorage.setItem("instClosed", "1"); } catch {} }
@@ -1108,13 +1239,13 @@ html[dir="rtl"] .amtfield input{text-align:right}
     bed:   '<path d="M3 19V6"/><path d="M3 15h18v4"/><path d="M21 15v-2.5A3.5 3.5 0 0 0 17.5 9H11v6"/><circle cx="7" cy="11.5" r="1.8"/>'
   };
   const TRIPCATS = [
-    {id:"flight",    v:"--c-travel", ic:"travel", en:"Flights",     he:"טיסות"},
-    {id:"stay",      v:"--c-home",   ic:"bed",    en:"Stay",        he:"לינה"},
-    {id:"food",      v:"--c-eat",    ic:"eat",    en:"Food",        he:"אוכל"},
-    {id:"transport", v:"--c-trans",  ic:"trans",  en:"Transport",   he:"תחבורה"},
-    {id:"activity",  v:"--c-fun",    ic:"fun",    en:"Activities",  he:"אטרקציות"},
-    {id:"shopping",  v:"--c-shop",   ic:"shop",   en:"Shopping",    he:"קניות"},
-    {id:"other",     v:"--c-other",  ic:"other",  en:"Other",       he:"אחר"},
+    {id:"flight",    v:"--c-travel", ic:"travel", en:"Flights",     he:"טיסות", de:"Flüge", fr:"Vols", ru:"Перелёты", ar:"الطيران", it:"Voli", es:"Vuelos"},
+    {id:"stay",      v:"--c-home",   ic:"bed",    en:"Stay",        he:"לינה", de:"Unterkunft", fr:"Hébergement", ru:"Жильё", ar:"الإقامة", it:"Alloggio", es:"Alojamiento"},
+    {id:"food",      v:"--c-eat",    ic:"eat",    en:"Food",        he:"אוכל", de:"Essen", fr:"Repas", ru:"Еда", ar:"الطعام", it:"Cibo", es:"Comida"},
+    {id:"transport", v:"--c-trans",  ic:"trans",  en:"Transport",   he:"תחבורה", de:"Verkehr", fr:"Transports", ru:"Транспорт", ar:"المواصلات", it:"Trasporti", es:"Transporte"},
+    {id:"activity",  v:"--c-fun",    ic:"fun",    en:"Activities",  he:"אטרקציות", de:"Aktivitäten", fr:"Activités", ru:"Развлечения", ar:"الأنشطة", it:"Attività", es:"Actividades"},
+    {id:"shopping",  v:"--c-shop",   ic:"shop",   en:"Shopping",    he:"קניות", de:"Einkäufe", fr:"Shopping", ru:"Покупки", ar:"التسوق", it:"Shopping", es:"Compras"},
+    {id:"other",     v:"--c-other",  ic:"other",  en:"Other",       he:"אחר", de:"Sonstiges", fr:"Autre", ru:"Другое", ar:"أخرى", it:"Altro", es:"Otros"},
   ];
   const tcatOf = id => TRIPCATS.find(c => c.id === id) || TRIPCATS[TRIPCATS.length-1];
 
@@ -1126,9 +1257,9 @@ html[dir="rtl"] .amtfield input{text-align:right}
   const COMMON_CUR = ["ILS","USD","EUR","GBP","CHF","JPY","CAD","AUD","THB","TRY","CZK","HUF","PLN","CNY","INR","AED","JOD","GEL","EGP"];
   let ALL_CUR = COMMON_CUR;
   try { if (Intl.supportedValuesOf) ALL_CUR = [...COMMON_CUR, ...Intl.supportedValuesOf("currency").filter(c => !COMMON_CUR.includes(c))]; } catch {}
-  const curName = c => { try { return new Intl.DisplayNames([state.lang === "he" ? "he" : "en"], {type:"currency"}).of(c) || c; } catch { return c; } };
+  const curName = c => { try { return new Intl.DisplayNames([state.lang], {type:"currency"}).of(c) || c; } catch { return c; } };
   const curSym = c => { try { return new Intl.NumberFormat("en", {style:"currency", currency:c, currencyDisplay:"narrowSymbol"}).formatToParts(0).find(p=>p.type==="currency").value; } catch { return c; } };
-  const fmtCur = (n, c) => { try { return new Intl.NumberFormat(state.lang === "he" ? "he-IL" : undefined, {style:"currency", currency:c, maximumFractionDigits:2}).format(n); } catch { return `${n} ${c}`; } };
+  const fmtCur = (n, c) => { try { return new Intl.NumberFormat(locale(), {style:"currency", currency:c, maximumFractionDigits:2}).format(n); } catch { return `${n} ${c}`; } };
   // how many units of the main currency one unit of `c` is worth
   function rateOf(c) {
     const main = state.settings.currency || "ILS";
@@ -1178,22 +1309,22 @@ html[dir="rtl"] .amtfield input{text-align:right}
   try { new MutationObserver(() => applyTheme()).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]}); } catch {}
   const AVATAR_COINS = `<svg viewBox="0 0 120 120" width="72%" height="72%" aria-hidden="true"><g transform="translate(60 61) scale(1.15) translate(-53 -66)"><g stroke="#C98F00" stroke-width="2.5"><ellipse cx="50" cy="86" rx="24" ry="8" fill="#FFD25A"/><rect x="26" y="74" width="48" height="12" fill="#FFD25A" stroke="none"/><path d="M26 74v12M74 74v12" /><ellipse cx="50" cy="74" rx="24" ry="8" fill="#FFD25A"/><rect x="26" y="62" width="48" height="12" fill="#FFD25A" stroke="none"/><path d="M26 62v12M74 62v12"/><ellipse cx="50" cy="62" rx="24" ry="8" fill="#FFD25A"/></g><circle cx="80" cy="46" r="22" fill="#FFD25A" stroke="#C98F00" stroke-width="2.5"/><text x="80" y="55" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" font-size="26" fill="#9A6A00">$</text></g></svg>`;
   const CATS = [
-    {id:"food",   v:"--c-food",   en:"Groceries",    he:"סופר ומכולת"},
-    {id:"eat",    v:"--c-eat",    en:"Eating out",   he:"אוכל בחוץ"},
-    {id:"trans",  v:"--c-trans",  en:"Transport",    he:"תחבורה"},
-    {id:"home",   v:"--c-home",   en:"Home & bills", he:"בית וחשבונות"},
-    {id:"shop",   v:"--c-shop",   en:"Shopping",     he:"קניות"},
-    {id:"health", v:"--c-health", en:"Health",       he:"בריאות"},
-    {id:"fun",    v:"--c-fun",    en:"Fun",          he:"בילויים"},
-    {id:"travel", v:"--c-travel", en:"Travel",       he:"חופשות"},
-    {id:"other",  v:"--c-other",  en:"Other",        he:"אחר"},
+    {id:"food",   v:"--c-food",   en:"Groceries",    he:"סופר ומכולת", de:"Lebensmittel", fr:"Courses", ru:"Продукты", ar:"البقالة", it:"Spesa", es:"Supermercado"},
+    {id:"eat",    v:"--c-eat",    en:"Eating out",   he:"אוכל בחוץ", de:"Auswärts essen", fr:"Restaurants", ru:"Кафе и рестораны", ar:"الأكل بالخارج", it:"Mangiare fuori", es:"Comer fuera"},
+    {id:"trans",  v:"--c-trans",  en:"Transport",    he:"תחבורה", de:"Verkehr", fr:"Transports", ru:"Транспорт", ar:"المواصلات", it:"Trasporti", es:"Transporte"},
+    {id:"home",   v:"--c-home",   en:"Home & bills", he:"בית וחשבונות", de:"Wohnen & Rechnungen", fr:"Logement et factures", ru:"Дом и счета", ar:"البيت والفواتير", it:"Casa e bollette", es:"Casa y facturas"},
+    {id:"shop",   v:"--c-shop",   en:"Shopping",     he:"קניות", de:"Einkaufen", fr:"Shopping", ru:"Покупки", ar:"التسوق", it:"Shopping", es:"Compras"},
+    {id:"health", v:"--c-health", en:"Health",       he:"בריאות", de:"Gesundheit", fr:"Santé", ru:"Здоровье", ar:"الصحة", it:"Salute", es:"Salud"},
+    {id:"fun",    v:"--c-fun",    en:"Fun",          he:"בילויים", de:"Freizeit", fr:"Loisirs", ru:"Развлечения", ar:"الترفيه", it:"Svago", es:"Ocio"},
+    {id:"travel", v:"--c-travel", en:"Travel",       he:"חופשות", de:"Urlaub", fr:"Voyages", ru:"Путешествия", ar:"السفر", it:"Vacanze", es:"Viajes"},
+    {id:"other",  v:"--c-other",  en:"Other",        he:"אחר", de:"Sonstiges", fr:"Autre", ru:"Другое", ar:"أخرى", it:"Altro", es:"Otros"},
   ];
   const METHODS = [
-    {id:"Card", en:"Card", he:"כרטיס אשראי"},
-    {id:"Cash", en:"Cash", he:"מזומן"},
-    {id:"Bit / PayBox", en:"Bit / PayBox", he:"ביט / פייבוקס"},
-    {id:"Bank transfer", en:"Bank transfer", he:"העברה בנקאית"},
-    {id:"Other", en:"Other", he:"אחר"},
+    {id:"Card", en:"Card", he:"כרטיס אשראי", de:"Karte", fr:"Carte", ru:"Карта", ar:"بطاقة", it:"Carta", es:"Tarjeta"},
+    {id:"Cash", en:"Cash", he:"מזומן", de:"Bargeld", fr:"Espèces", ru:"Наличные", ar:"نقدًا", it:"Contanti", es:"Efectivo"},
+    {id:"Bit / PayBox", en:"Bit / PayBox", he:"ביט / פייבוקס", de:"Bit / PayBox", fr:"Bit / PayBox", ru:"Bit / PayBox", ar:"Bit / PayBox", it:"Bit / PayBox", es:"Bit / PayBox"},
+    {id:"Bank transfer", en:"Bank transfer", he:"העברה בנקאית", de:"Überweisung", fr:"Virement", ru:"Банковский перевод", ar:"تحويل بنكي", it:"Bonifico", es:"Transferencia"},
+    {id:"Other", en:"Other", he:"אחר", de:"Sonstiges", fr:"Autre", ru:"Другое", ar:"أخرى", it:"Altro", es:"Otro"},
   ];
   const ordEn = n => n + (n%10===1&&n!==11?"st":n%10===2&&n!==12?"nd":n%10===3&&n!==13?"rd":"th");
   const T = {
@@ -1400,6 +1531,546 @@ html[dir="rtl"] .amtfield input{text-align:right}
       headsUsed:(n,p,m,l,d,pd)=>`${n ? n + ", " : ""}נוצלו ${p}% מתקציב ${m}. נשארו ${l} ל-${d} ימים, בערך ${pd} ליום.`,
       headsOver:(n,x,m)=>`${n ? n + ", " : ""}עברת את תקציב ${m} ב-${x}.`,
       csvHead:["תאריך","סכום","מטבע","קטגוריה","הערה","אמצעי תשלום","חודשי","קבלה"], yes:"כן"
+    },
+    de: {
+      appName:"Spend Ledger", connecting:"Verbinde…", synced:"Synchronisiert", saving:"Speichere…", cantReach:"Synchronisierung gerade nicht erreichbar",
+      syncStopped:"Synchronisierung gestoppt", notSignedIn:"Keine Verbindung", offline:"Offline-Vorschau",
+      bannerSignin:"Deine Daten konnten nicht vom Server geladen werden. Lade die Seite neu; passiert das öfter, muss die Datenbank repariert werden.",
+      bannerLoadFail:"Deine Ausgaben konnten nicht geladen werden. Lade die Seite neu.",
+      settings:"Einstellungen", language:"Sprache", currency:"Währung", totalBudget:"Monatsbudget gesamt", catBudgets:"Budget pro Kategorie",
+      noLimitHint:"(leer lassen für kein Limit)", noLimit:"Kein Limit", saveSettings:"Einstellungen speichern", export:"Alles als CSV exportieren",
+      androidNote:"Öffne auf deinem Android-Handy die Adresse dieser App in Chrome und tippe auf „App installieren“. Melde dich auf jedem Gerät mit derselben E-Mail an, dann werden deine Einträge synchronisiert.",
+      importBtn:"Aus CSV importieren", importing:"Importiere…", imported:n=>n===1?"1 Ausgabe importiert":`${n} Ausgaben importiert`,
+      importNone:"In der Datei wurden keine Ausgaben gefunden.", importFail:"Die Datei konnte nicht gelesen werden. Nutze eine aus Spend Ledger exportierte CSV.", signOut:"Abmelden",
+      settingsSaved:"Einstellungen gespeichert", settingsFail:"Einstellungen konnten nicht gespeichert werden", signinSettings:"Melde dich an, um Einstellungen zu speichern",
+      prevMonth:"Vorheriger Monat", nextMonth:"Nächster Monat", spent:"Ausgegeben", ofBudget:b=>`von ${b}`, thisMonth:"diesen Monat",
+      tapHint:"Tippe auf eine Kategorie, um eine Ausgabe hinzuzufügen", scan:"Beleg scannen", upload:"Beleg hochladen", addManual:"Ausgabe hinzufügen",
+      noBudget:"Kein Monatsbudget festgelegt", setBudget:"Budget festlegen", change:"Ändern",
+      overBy:(x,b)=>`${x} über deinem Budget von ${b}`, leftOf:(x,b)=>`${x} von ${b} übrig`,
+      perDay:"Pro Tag", entries:"Einträge", biggest:"Größte", vsPrev:(p,m)=>`${p}% ggü. ${m}`, noPrev:"",
+      whereWent:"Wohin das Geld ging", tapFilter:"Tippen, um die Liste zu filtern", pctOfMonth:p=>`${p}% des Monats`,
+      catOver:(x,b)=>`${x} über dem Budget von ${b}`, catLeft:(x,b)=>`${x} von ${b} übrig`,
+      alertOver:(n,x)=>`${n}: ${x} drüber`, alertWarn:(n,p)=>`${n}: ${p}% verbraucht`, nothingMonth:"Diesen Monat noch nichts ausgegeben.",
+      expenses:"Ausgaben", search:"Suchen", emptyTitle:"Dein Ausgabenbuch ist leer",
+      emptyBody:"Tippe auf eine Kategorie im Ring oder scanne einen Beleg. Jeder Eintrag wird in deinem Konto gespeichert und erscheint auf Laptop und Handy.",
+      noMatch:"Keine passenden Ausgaben", noMatchBody:"Versuche eine andere Suche oder entferne den Filter.", nothingIn:m=>`Nichts eingetragen im ${m}.`,
+      today:"Heute", yesterday:"Gestern", tagMonthly:"Monatlich", tagReceipt:"Beleg",
+      everyMonth:"Jeden Monat", fixedTotal:x=>`${x} Fixkosten pro Monat`,
+      billsTitle:"Fixkosten", addBill:"Rechnung hinzufügen", editBill:"Rechnung bearbeiten", billName:"Name der Rechnung", billNamePh:"Miete, Netflix…",
+      howOften:"Wie oft", monthly:"Jeden Monat", every2:"Alle 2 Monate", billDay:"Tag im Monat", billCat:"Kategorie",
+      saveBill:"Rechnung speichern", stopBill:"Diese Rechnung beenden", billSaved:"Rechnung gespeichert", billAdded:n=>`${n} zu deinen Fixkosten hinzugefügt`,
+      billStopped:"Rechnung beendet. Frühere Zahlungen bleiben erhalten.", needBillName:"Gib der Rechnung einen Namen.", needDay:"Wähle einen Tag zwischen 1 und 31.",
+      comingUp:"Demnächst", paidThisMonth:"Diesen Monat bezahlt", notThisMonth:"Diesen Monat nicht fällig",
+      stPaid:"✓ Bezahlt", stToday:"Heute fällig", stInDays:d=> d===1 ? "Morgen" : `In ${d} Tagen`, stSkipped:"Übersprungen", stNext:m=>`Nächste im ${m}`,
+      billEvery:(d,ev)=> ev===2 ? `Alle 2 Monate · am ${d}.` : `Jeden Monat · am ${d}.`,
+      billsMonthTotal:"Fixkosten diesen Monat", billsPaid:x=>`${x} bezahlt`, billsToCome:x=>`${x} stehen noch aus`, billsAllPaid:"Für diesen Monat alles bezahlt",
+      billsEmpty:"Trage Miete, Handy und andere Fixkosten einmal ein. Jede wird automatisch erfasst, wenn sie fällig ist.",
+      billsCardLine:(x,y)=>`${x} diesen Monat · ${y} stehen aus`, billsCardAllPaid:x=>`${x} diesen Monat · alles bezahlt`,
+      billsCardEmpty:"Miete, Handy, Netflix… einmal eintragen und sie werden für dich erfasst", billsNext:(n,x,w)=>`Als Nächstes: ${n} ${x} · ${w}`,
+      quickPick:"Schnellauswahl",
+      pRent:"Miete", pArnona:"Grundsteuer", pElectric:"Strom", pWater:"Wasser", pGas:"Gas", pVaad:"Hausgeld",
+      pPhone:"Handy", pInternet:"Internet", pStream:"Streaming", pGym:"Fitnessstudio", pInsurance:"Versicherung",
+      edit:"Bearbeiten", amount:"Betrag", dayOfMonth:"Tag im Monat", save:"Speichern",
+      amountErr:"Gib einen Betrag größer als null ein.", addTitle:"Ausgabe hinzufügen", editTitle:"Ausgabe bearbeiten", editRecTitle:"Zahlung dieses Monats bearbeiten",
+      close:"Schließen", whatWasIt:"Was war es?", notePh:"Supermarkt, Tanken, Kaffee…", date:"Datum", paidWith:"Bezahlt mit",
+      repeats:"Wiederholt sich jeden Monat (Miete, Abos…)", saveExpense:"Ausgabe speichern", saveChanges:"Änderungen speichern", del:"Löschen", cancel:"Abbrechen",
+      finishingUpload:"Upload wird abgeschlossen…", savingBtn:"Speichere…", pickDate:"Wähle ein Datum.", savedChanges:"Änderungen gespeichert",
+      savedRec:d=>`Gespeichert. Wird jeden Monat am ${d}. hinzugefügt.`, savedAmt:x=>`${x} gespeichert`,
+      errQuota:"Speicher ist voll. Lösche alte Einträge und versuche es erneut.",
+      errSave:"Speichern gerade nicht möglich. Prüfe deine Verbindung und versuche es erneut.", deleted:"Ausgabe gelöscht", errDelete:"Löschen gerade nicht möglich. Versuche es erneut.",
+      addedRec:n=>n===1?"1 monatliche Zahlung hinzugefügt":`${n} monatliche Zahlungen hinzugefügt`,
+      uploading:"Beleg wird hochgeladen", pdfAttached:"PDF angehängt. Fülle die Details unten aus.", attached:"Beleg angehängt",
+      afOff:"Beleg angehängt. Fülle die Details aus.",
+      view:"Ansehen", remove:"Entfernen",
+      badFormat:"Dieses Fotoformat wird nicht unterstützt. Nutze JPG oder PNG.", tooLarge:"Die Datei ist zu groß (über 20 MB).",
+      storageFull:"Belegspeicher ist voll. Lösche zuerst alte Belege.", upFail:"Beleg konnte nicht hochgeladen werden. Prüfe deine Verbindung und versuche es erneut.",
+      nothingExport:"Noch nichts zu exportieren", exportNA:"Export ist hier nicht verfügbar", csvSaved:"CSV gespeichert", exportFail:"Datei konnte nicht exportiert werden",
+      category:"Kategorie",
+      welcomeTitle:"Willkommen bei Spend Ledger", welcomeSub:"Drei kurze Fragen und es kann losgehen.",
+      askName:"Wie sollen wir dich nennen?", nameHint:"Erscheint in deiner Begrüßung. Nur du siehst das.", askBudget:"Monatsbudget (optional)",
+      start:"Los geht's", changeLater:"Du kannst all das später in den Einstellungen ändern.", yourName:"Dein Name", loading:"Lädt…",
+      trips:"Reisen", newTrip:"Neue Reise", tripName:"Name der Reise", tripNamePh:"Paris, Wochenende am Meer…", from:"Von", to:"Bis",
+      tripBudget:"Reisebudget (optional)", createTrip:"Reise erstellen", editTrip:"Reise bearbeiten", tripTotal:"Reise gesamt", days:"Tage",
+      byType:"Nach Art", back:"Zurück", home:"Start", needTripName:"Gib der Reise einen Namen.", datesOrder:"Das Enddatum liegt vor dem Startdatum.",
+      tripCreated:n=>`Reise „${n}“ erstellt`, tripSaved:"Reise gespeichert", tripDeleted:"Reise gelöscht",
+      deleteTrip:n=>n ? `Reise und ${n===1?"ihre Ausgabe":`ihre ${n} Ausgaben`} löschen` : "Reise löschen",
+      delAria:n=>`${n} löschen`, deletedNamed:(n,x)=>`Gelöscht: ${n} · ${x}`, undo:"Rückgängig", restored:"Wiederhergestellt",
+      delTripAria:n=>`Reise ${n} löschen`, deleting:"Lösche…", tripDeletedN:n=>`„${n}“ gelöscht`,
+      delTripQ:(n,c)=> c ? `„${n}“ löschen? ${c===1?"Die Ausgabe und ihr Beleg werden":`Die ${c} Ausgaben und Belege werden`} ebenfalls gelöscht.` : `„${n}“ löschen?`,
+      deleteTripNote:"Beim Löschen einer Reise werden auch ihre Ausgaben und Belege gelöscht.",
+      noTrips:"Noch keine Reisen. Erstelle eine, um ihre Ausgaben an einem Ort zu haben.", tripEmpty:"Für diese Reise noch nichts eingetragen. Füge die erste Ausgabe hinzu oder scanne einen Beleg.",
+      onTrip:n=>`Auf Reise: ${n}`, tripOpen:"Öffnen", tripLeft:(x,b)=>`${x} von ${b} übrig`, tripOver:(x,b)=>`${x} über dem Reisebudget von ${b}`,
+      noTripBudget:"Kein Reisebudget festgelegt", addTo:n=>`Zu ${n} hinzufügen`, entriesN:n=>n===1?"1 Eintrag":`${n} Einträge`,
+      tripsAria:"Reisen öffnen",
+      chartPace:"Ausgaben im Verlauf des Monats", chartCats:"Nach Kategorie, verglichen mit dem Vormonat", asTable:"Als Tabelle anzeigen",
+      budgetL:"Budget", colCat:"Kategorie", colChange:"Änderung", dayN:d=>`Tag ${d}`,
+      vsPrevShort:(x,m)=>`${x} ggü. ${m}`, newCat:"neu", noDataChart:"Diesen Monat noch keine Ausgaben.",
+      receiptsTitle:"Belege", receiptsBtn:n=>`Belege (${n})`, rcptSearch:"Belege durchsuchen",
+      rcptEmpty:"Noch keine Belege. Wenn du zu einer Ausgabe einen Beleg scannst oder hochlädst, erscheint er hier.",
+      summaryTab:"Übersicht", sumTitle:m=>`Übersicht ${m}`,
+      colour:"Farbe", appearance:"Darstellung", mAuto:"Auto", mLight:"Hell", mDark:"Dunkel",
+      thOcean:"Ozean", thCoral:"Koralle", thForest:"Wald", thLavender:"Lavendel",
+      ratesTitle:"Wechselkurse", ratesNote:d=>`Die Startkurse sind Referenzkurse vom ${d}. Banken und Karten berechnen etwas mehr – passe einen Kurs jederzeit an, neue Ausgaben nutzen ihn dann.`,
+      rateLbl:c=>`1 ${c} =`, needRate:"Gib den Wechselkurs zum Umrechnen ein", rateErr:"Gib den Wechselkurs für diese Währung ein.",
+      tripCurrency:"Landeswährung", currencyAria:"Währung",
+      tapHintTrip:"Tippe auf eine Art, um eine Ausgabe hinzuzufügen", cLeft:"Übrig", cSpent:"Ausgegeben", overB:"Drüber", ofB:b=>`von ${b}`,
+      stripDay:(d,n)=>`Tag ${d} von ${n}`, stripSoon:d=> d<=1 ? "Beginnt morgen" : `Beginnt in ${d} Tagen`, stripEnded:"Reise beendet",
+      allowPre:"Du kannst ausgeben", allowance:d=> d===1 ? "heute, am letzten Tag" : `pro Tag in den nächsten ${d} Tagen`, allowOver:x=>`${x} über dem Reisebudget`,
+      gMorning:"Guten Morgen", gAfternoon:"Guten Tag", gEvening:"Guten Abend", gNight:"Gute Nacht",
+      greet:(g,n)=> n ? `${g}, ${n}` : g,
+      headsUsed:(n,p,m,l,d,pd)=>`${n ? n + ", du hast" : "Du hast"} ${p}% des Budgets für ${m} verbraucht. Noch ${l} für ${d} ${d===1?"Tag":"Tage"}, etwa ${pd} pro Tag.`,
+      headsOver:(n,x,m)=>`${n ? n + ", du bist" : "Du bist"} ${x} über dem Budget für ${m}.`,
+      csvHead:["Datum","Betrag","Währung","Kategorie","Notiz","Bezahlt mit","Monatlich","Beleg"], yes:"ja"
+    },
+    fr: {
+      appName:"Spend Ledger", connecting:"Connexion…", synced:"Synchronisé", saving:"Enregistrement…", cantReach:"Synchronisation injoignable pour l'instant",
+      syncStopped:"Synchronisation arrêtée", notSignedIn:"Non connecté", offline:"Aperçu hors ligne",
+      bannerSignin:"Impossible de charger vos données depuis le serveur. Actualisez la page ; si cela se répète, la base de données doit être réparée.",
+      bannerLoadFail:"Vos dépenses n'ont pas pu être chargées. Actualisez la page.",
+      settings:"Réglages", language:"Langue", currency:"Devise", totalBudget:"Budget mensuel total", catBudgets:"Budget par catégorie",
+      noLimitHint:"(laisser vide pour aucune limite)", noLimit:"Aucune limite", saveSettings:"Enregistrer les réglages", export:"Tout exporter en CSV",
+      androidNote:"Sur votre téléphone Android, ouvrez l'adresse de cette app dans Chrome et touchez « Installer l'application ». Connectez-vous avec le même e-mail sur chaque appareil pour synchroniser vos dépenses.",
+      importBtn:"Importer un CSV", importing:"Importation…", imported:n=>n===1?"1 dépense importée":`${n} dépenses importées`,
+      importNone:"Aucune dépense trouvée dans ce fichier.", importFail:"Impossible de lire ce fichier. Utilisez un CSV exporté depuis Spend Ledger.", signOut:"Se déconnecter",
+      settingsSaved:"Réglages enregistrés", settingsFail:"Impossible d'enregistrer les réglages", signinSettings:"Connectez-vous pour enregistrer les réglages",
+      prevMonth:"Mois précédent", nextMonth:"Mois suivant", spent:"Dépensé", ofBudget:b=>`sur ${b}`, thisMonth:"ce mois-ci",
+      tapHint:"Touchez une catégorie pour ajouter une dépense", scan:"Scanner un reçu", upload:"Importer un reçu", addManual:"Ajouter une dépense",
+      noBudget:"Aucun budget mensuel", setBudget:"Définir un budget", change:"Modifier",
+      overBy:(x,b)=>`${x} au-dessus de votre budget de ${b}`, leftOf:(x,b)=>`${x} restants sur ${b}`,
+      perDay:"Par jour", entries:"Entrées", biggest:"La plus grosse", vsPrev:(p,m)=>`${p}% vs ${m}`, noPrev:"",
+      whereWent:"Où est passé l'argent", tapFilter:"Touchez pour filtrer la liste", pctOfMonth:p=>`${p}% du mois`,
+      catOver:(x,b)=>`${x} au-dessus du budget de ${b}`, catLeft:(x,b)=>`${x} restants sur ${b}`,
+      alertOver:(n,x)=>`${n} : ${x} de trop`, alertWarn:(n,p)=>`${n} : ${p}% utilisés`, nothingMonth:"Rien dépensé ce mois-ci pour l'instant.",
+      expenses:"Dépenses", search:"Rechercher", emptyTitle:"Votre carnet est vide",
+      emptyBody:"Touchez une catégorie dans l'anneau ou scannez un reçu. Chaque dépense est enregistrée dans votre compte et apparaît sur votre ordinateur et votre téléphone.",
+      noMatch:"Aucune dépense correspondante", noMatchBody:"Essayez une autre recherche ou retirez le filtre.", nothingIn:m=>`Rien d'enregistré en ${m}.`,
+      today:"Aujourd'hui", yesterday:"Hier", tagMonthly:"Mensuel", tagReceipt:"Reçu",
+      everyMonth:"Chaque mois", fixedTotal:x=>`${x} de frais fixes par mois`,
+      billsTitle:"Factures fixes", addBill:"Ajouter une facture", editBill:"Modifier la facture", billName:"Nom de la facture", billNamePh:"Loyer, Netflix…",
+      howOften:"Fréquence", monthly:"Chaque mois", every2:"Tous les 2 mois", billDay:"Jour du mois", billCat:"Catégorie",
+      saveBill:"Enregistrer la facture", stopBill:"Arrêter cette facture", billSaved:"Facture enregistrée", billAdded:n=>`${n} ajouté à vos factures fixes`,
+      billStopped:"Facture arrêtée. Les paiements passés sont conservés.", needBillName:"Donnez un nom à la facture.", needDay:"Choisissez un jour entre 1 et 31.",
+      comingUp:"À venir", paidThisMonth:"Payé ce mois-ci", notThisMonth:"Pas dû ce mois-ci",
+      stPaid:"✓ Payé", stToday:"Dû aujourd'hui", stInDays:d=> d===1 ? "Demain" : `Dans ${d} jours`, stSkipped:"Ignoré", stNext:m=>`Prochain en ${m}`,
+      billEvery:(d,ev)=> ev===2 ? `Tous les 2 mois · le ${d===1?"1er":d}` : `Chaque mois · le ${d===1?"1er":d}`,
+      billsMonthTotal:"Factures fixes ce mois-ci", billsPaid:x=>`${x} payés`, billsToCome:x=>`${x} encore à venir`, billsAllPaid:"Tout est payé ce mois-ci",
+      billsEmpty:"Ajoutez une fois le loyer, le téléphone et vos autres factures fixes. Chacune est enregistrée automatiquement à son échéance.",
+      billsCardLine:(x,y)=>`${x} ce mois-ci · ${y} à venir`, billsCardAllPaid:x=>`${x} ce mois-ci · tout payé`,
+      billsCardEmpty:"Ajoutez loyer, téléphone, Netflix… une fois et ils sont enregistrés pour vous", billsNext:(n,x,w)=>`Prochain : ${n} ${x} · ${w}`,
+      quickPick:"Choix rapide",
+      pRent:"Loyer", pArnona:"Taxe foncière", pElectric:"Électricité", pWater:"Eau", pGas:"Gaz", pVaad:"Charges de copropriété",
+      pPhone:"Téléphone mobile", pInternet:"Internet", pStream:"Streaming", pGym:"Salle de sport", pInsurance:"Assurance",
+      edit:"Modifier", amount:"Montant", dayOfMonth:"Jour du mois", save:"Enregistrer",
+      amountErr:"Saisissez un montant supérieur à zéro.", addTitle:"Ajouter une dépense", editTitle:"Modifier la dépense", editRecTitle:"Modifier le paiement de ce mois",
+      close:"Fermer", whatWasIt:"C'était quoi ?", notePh:"Supermarché, essence, café…", date:"Date", paidWith:"Payé avec",
+      repeats:"Se répète chaque mois (loyer, abonnements…)", saveExpense:"Enregistrer", saveChanges:"Enregistrer les modifications", del:"Supprimer", cancel:"Annuler",
+      finishingUpload:"Fin de l'envoi…", savingBtn:"Enregistrement…", pickDate:"Choisissez une date.", savedChanges:"Modifications enregistrées",
+      savedRec:d=>`Enregistré. Sera ajouté chaque mois le ${d===1?"1er":d}.`, savedAmt:x=>`${x} enregistrés`,
+      errQuota:"Le stockage est plein. Supprimez d'anciennes dépenses et réessayez.",
+      errSave:"Impossible d'enregistrer pour l'instant. Vérifiez votre connexion et réessayez.", deleted:"Dépense supprimée", errDelete:"Impossible de supprimer pour l'instant. Réessayez.",
+      addedRec:n=>n===1?"1 paiement mensuel ajouté":`${n} paiements mensuels ajoutés`,
+      uploading:"Envoi du reçu", pdfAttached:"PDF joint. Complétez les détails ci-dessous.", attached:"Reçu joint",
+      afOff:"Reçu joint. Complétez les détails.",
+      view:"Voir", remove:"Retirer",
+      badFormat:"Ce format de photo n'est pas pris en charge. Utilisez JPG ou PNG.", tooLarge:"Ce fichier est trop gros (plus de 20 Mo).",
+      storageFull:"Le stockage des reçus est plein. Supprimez d'abord d'anciens reçus.", upFail:"Impossible d'envoyer le reçu. Vérifiez votre connexion et réessayez.",
+      nothingExport:"Rien à exporter pour l'instant", exportNA:"L'export n'est pas disponible ici", csvSaved:"CSV enregistré", exportFail:"Impossible d'exporter le fichier",
+      category:"Catégorie",
+      welcomeTitle:"Bienvenue dans Spend Ledger", welcomeSub:"Trois petites questions et c'est parti.",
+      askName:"Comment doit-on vous appeler ?", nameHint:"Affiché dans votre message d'accueil. Vous seul le voyez.", askBudget:"Budget mensuel (facultatif)",
+      start:"Commencer", changeLater:"Vous pourrez tout modifier plus tard dans les Réglages.", yourName:"Votre prénom", loading:"Chargement…",
+      trips:"Voyages", newTrip:"Nouveau voyage", tripName:"Nom du voyage", tripNamePh:"Paris, week-end à la mer…", from:"Du", to:"Au",
+      tripBudget:"Budget du voyage (facultatif)", createTrip:"Créer le voyage", editTrip:"Modifier le voyage", tripTotal:"Total du voyage", days:"Jours",
+      byType:"Par type", back:"Retour", home:"Accueil", needTripName:"Donnez un nom au voyage.", datesOrder:"La date de fin est avant la date de début.",
+      tripCreated:n=>`Voyage « ${n} » créé`, tripSaved:"Voyage enregistré", tripDeleted:"Voyage supprimé",
+      deleteTrip:n=>n ? `Supprimer le voyage et ${n===1?"sa dépense":`ses ${n} dépenses`}` : "Supprimer le voyage",
+      delAria:n=>`Supprimer ${n}`, deletedNamed:(n,x)=>`Supprimé : ${n} · ${x}`, undo:"Annuler", restored:"Restauré",
+      delTripAria:n=>`Supprimer le voyage ${n}`, deleting:"Suppression…", tripDeletedN:n=>`« ${n} » supprimé`,
+      delTripQ:(n,c)=> c ? `Supprimer « ${n} » ? ${c===1?"Sa dépense et son reçu seront":`Ses ${c} dépenses et reçus seront`} aussi supprimés.` : `Supprimer « ${n} » ?`,
+      deleteTripNote:"Supprimer un voyage supprime aussi ses dépenses et reçus.",
+      noTrips:"Aucun voyage pour l'instant. Créez-en un pour regrouper ses dépenses.", tripEmpty:"Rien d'enregistré pour ce voyage. Ajoutez la première dépense ou scannez un reçu.",
+      onTrip:n=>`En voyage : ${n}`, tripOpen:"Ouvrir", tripLeft:(x,b)=>`${x} restants sur ${b}`, tripOver:(x,b)=>`${x} au-dessus du budget voyage de ${b}`,
+      noTripBudget:"Aucun budget de voyage", addTo:n=>`Ajouter à ${n}`, entriesN:n=>n===1?"1 entrée":`${n} entrées`,
+      tripsAria:"Ouvrir les voyages",
+      chartPace:"Dépenses au fil du mois", chartCats:"Par catégorie, comparé au mois dernier", asTable:"Afficher en tableau",
+      budgetL:"Budget", colCat:"Catégorie", colChange:"Variation", dayN:d=>`Jour ${d}`,
+      vsPrevShort:(x,m)=>`${x} vs ${m}`, newCat:"nouveau", noDataChart:"Aucune dépense ce mois-ci pour l'instant.",
+      receiptsTitle:"Reçus", receiptsBtn:n=>`Reçus (${n})`, rcptSearch:"Rechercher des reçus",
+      rcptEmpty:"Aucun reçu pour l'instant. Quand vous scannez ou importez un reçu avec une dépense, il apparaît ici.",
+      summaryTab:"Résumé", sumTitle:m=>`Résumé de ${m}`,
+      colour:"Couleur", appearance:"Apparence", mAuto:"Auto", mLight:"Clair", mDark:"Sombre",
+      thOcean:"Océan", thCoral:"Corail", thForest:"Forêt", thLavender:"Lavande",
+      ratesTitle:"Taux de change", ratesNote:d=>`Les taux de départ sont des taux de référence du ${d}. Les banques et cartes prennent un peu plus : modifiez un taux à tout moment, les nouvelles dépenses l'utiliseront.`,
+      rateLbl:c=>`1 ${c} =`, needRate:"Saisissez le taux de change pour convertir", rateErr:"Saisissez le taux de change de cette devise.",
+      tripCurrency:"Devise locale", currencyAria:"Devise",
+      tapHintTrip:"Touchez un type pour ajouter une dépense", cLeft:"Restant", cSpent:"Dépensé", overB:"Dépassé", ofB:b=>`sur ${b}`,
+      stripDay:(d,n)=>`Jour ${d} sur ${n}`, stripSoon:d=> d<=1 ? "Commence demain" : `Commence dans ${d} jours`, stripEnded:"Voyage terminé",
+      allowPre:"Vous pouvez dépenser", allowance:d=> d===1 ? "aujourd'hui, le dernier jour" : `par jour pendant les ${d} prochains jours`, allowOver:x=>`${x} au-dessus du budget voyage`,
+      gMorning:"Bonjour", gAfternoon:"Bon après-midi", gEvening:"Bonsoir", gNight:"Bonne nuit",
+      greet:(g,n)=> n ? `${g}, ${n}` : g,
+      headsUsed:(n,p,m,l,d,pd)=>`${n ? n + ", vous avez" : "Vous avez"} utilisé ${p}% du budget de ${m}. Il reste ${l} pour ${d} ${d===1?"jour":"jours"}, environ ${pd} par jour.`,
+      headsOver:(n,x,m)=>`${n ? n + ", vous dépassez" : "Vous dépassez"} le budget de ${m} de ${x}.`,
+      csvHead:["Date","Montant","Devise","Catégorie","Note","Payé avec","Mensuel","Reçu"], yes:"oui"
+    },
+    ru: {
+      appName:"Spend Ledger", connecting:"Подключение…", synced:"Синхронизировано", saving:"Сохранение…", cantReach:"Синхронизация пока недоступна",
+      syncStopped:"Синхронизация остановлена", notSignedIn:"Нет подключения", offline:"Офлайн-просмотр",
+      bannerSignin:"Не удалось загрузить данные с сервера. Обновите страницу; если это повторяется, нужно исправить базу данных.",
+      bannerLoadFail:"Не удалось загрузить расходы. Обновите страницу.",
+      settings:"Настройки", language:"Язык", currency:"Валюта", totalBudget:"Общий бюджет на месяц", catBudgets:"Бюджет по категориям",
+      noLimitHint:"(оставьте пустым — без лимита)", noLimit:"Без лимита", saveSettings:"Сохранить настройки", export:"Экспорт всего в CSV",
+      androidNote:"На телефоне Android откройте адрес приложения в Chrome и нажмите «Установить приложение». Войдите с одним и тем же e-mail на всех устройствах — записи синхронизируются.",
+      importBtn:"Импорт из CSV", importing:"Импорт…", imported:n=>`Импортировано: ${n}`,
+      importNone:"В файле не найдено расходов.", importFail:"Не удалось прочитать файл. Используйте CSV, экспортированный из Spend Ledger.", signOut:"Выйти",
+      settingsSaved:"Настройки сохранены", settingsFail:"Не удалось сохранить настройки", signinSettings:"Войдите, чтобы сохранить настройки",
+      prevMonth:"Предыдущий месяц", nextMonth:"Следующий месяц", spent:"Потрачено", ofBudget:b=>`из ${b}`, thisMonth:"в этом месяце",
+      tapHint:"Нажмите на категорию, чтобы добавить расход", scan:"Сканировать чек", upload:"Загрузить чек", addManual:"Добавить расход",
+      noBudget:"Бюджет на месяц не задан", setBudget:"Задать бюджет", change:"Изменить",
+      overBy:(x,b)=>`На ${x} больше бюджета ${b}`, leftOf:(x,b)=>`Осталось ${x} из ${b}`,
+      perDay:"В день", entries:"Записи", biggest:"Самая большая", vsPrev:(p,m)=>`${p}% к ${m}`, noPrev:"",
+      whereWent:"Куда ушли деньги", tapFilter:"Нажмите, чтобы отфильтровать список", pctOfMonth:p=>`${p}% месяца`,
+      catOver:(x,b)=>`На ${x} больше бюджета ${b}`, catLeft:(x,b)=>`Осталось ${x} из ${b}`,
+      alertOver:(n,x)=>`${n}: превышение ${x}`, alertWarn:(n,p)=>`${n}: использовано ${p}%`, nothingMonth:"В этом месяце пока нет расходов.",
+      expenses:"Расходы", search:"Поиск", emptyTitle:"Ваш журнал пуст",
+      emptyBody:"Нажмите на категорию в кольце или отсканируйте чек. Каждая запись сохраняется в вашем аккаунте и видна на ноутбуке и телефоне.",
+      noMatch:"Ничего не найдено", noMatchBody:"Попробуйте другой запрос или сбросьте фильтр.", nothingIn:m=>`Нет записей: ${m}.`,
+      today:"Сегодня", yesterday:"Вчера", tagMonthly:"Ежемесячно", tagReceipt:"Чек",
+      everyMonth:"Каждый месяц", fixedTotal:x=>`${x} в месяц на постоянные расходы`,
+      billsTitle:"Постоянные счета", addBill:"Добавить счёт", editBill:"Изменить счёт", billName:"Название счёта", billNamePh:"Аренда, Netflix…",
+      howOften:"Как часто", monthly:"Каждый месяц", every2:"Раз в 2 месяца", billDay:"День месяца", billCat:"Категория",
+      saveBill:"Сохранить счёт", stopBill:"Остановить этот счёт", billSaved:"Счёт сохранён", billAdded:n=>`${n}: добавлено в постоянные счета`,
+      billStopped:"Счёт остановлен. Прошлые платежи сохранены.", needBillName:"Дайте счёту название.", needDay:"Выберите день от 1 до 31.",
+      comingUp:"Скоро", paidThisMonth:"Оплачено в этом месяце", notThisMonth:"В этом месяце не нужно платить",
+      stPaid:"✓ Оплачено", stToday:"Сегодня", stInDays:d=> d===1 ? "Завтра" : `Через ${d} дн.`, stSkipped:"Пропущено", stNext:m=>`Следующий: ${m}`,
+      billEvery:(d,ev)=> ev===2 ? `Раз в 2 месяца · ${d}-го числа` : `Каждый месяц · ${d}-го числа`,
+      billsMonthTotal:"Постоянные счета в этом месяце", billsPaid:x=>`Оплачено ${x}`, billsToCome:x=>`Ещё ${x} впереди`, billsAllPaid:"В этом месяце всё оплачено",
+      billsEmpty:"Добавьте аренду, телефон и другие постоянные счета один раз. Каждый будет записан автоматически в срок.",
+      billsCardLine:(x,y)=>`${x} в этом месяце · ${y} впереди`, billsCardAllPaid:x=>`${x} в этом месяце · всё оплачено`,
+      billsCardEmpty:"Добавьте аренду, телефон, Netflix… один раз — и они будут записываться сами", billsNext:(n,x,w)=>`Далее: ${n} ${x} · ${w}`,
+      quickPick:"Быстрый выбор",
+      pRent:"Аренда", pArnona:"Налог на жильё", pElectric:"Электричество", pWater:"Вода", pGas:"Газ", pVaad:"Плата за дом",
+      pPhone:"Мобильный телефон", pInternet:"Интернет", pStream:"Стриминг", pGym:"Спортзал", pInsurance:"Страховка",
+      edit:"Изменить", amount:"Сумма", dayOfMonth:"День месяца", save:"Сохранить",
+      amountErr:"Введите сумму больше нуля.", addTitle:"Добавить расход", editTitle:"Изменить расход", editRecTitle:"Изменить платёж этого месяца",
+      close:"Закрыть", whatWasIt:"На что?", notePh:"Супермаркет, бензин, кофе…", date:"Дата", paidWith:"Способ оплаты",
+      repeats:"Повторяется каждый месяц (аренда, подписки…)", saveExpense:"Сохранить расход", saveChanges:"Сохранить изменения", del:"Удалить", cancel:"Отмена",
+      finishingUpload:"Завершаем загрузку…", savingBtn:"Сохранение…", pickDate:"Выберите дату.", savedChanges:"Изменения сохранены",
+      savedRec:d=>`Сохранено. Будет добавляться каждый месяц ${d}-го числа.`, savedAmt:x=>`Сохранено: ${x}`,
+      errQuota:"Хранилище заполнено. Удалите старые записи и попробуйте снова.",
+      errSave:"Не удалось сохранить. Проверьте подключение и попробуйте снова.", deleted:"Расход удалён", errDelete:"Не удалось удалить. Попробуйте снова.",
+      addedRec:n=>`Добавлено ежемесячных платежей: ${n}`,
+      uploading:"Загрузка чека", pdfAttached:"PDF прикреплён. Заполните данные ниже.", attached:"Чек прикреплён",
+      afOff:"Чек прикреплён. Заполните данные.",
+      view:"Открыть", remove:"Убрать",
+      badFormat:"Этот формат фото не поддерживается. Используйте JPG или PNG.", tooLarge:"Файл слишком большой (больше 20 МБ).",
+      storageFull:"Хранилище чеков заполнено. Сначала удалите старые чеки.", upFail:"Не удалось загрузить чек. Проверьте подключение и попробуйте снова.",
+      nothingExport:"Пока нечего экспортировать", exportNA:"Экспорт здесь недоступен", csvSaved:"CSV сохранён", exportFail:"Не удалось экспортировать файл",
+      category:"Категория",
+      welcomeTitle:"Добро пожаловать в Spend Ledger", welcomeSub:"Три коротких вопроса — и можно начинать.",
+      askName:"Как к вам обращаться?", nameHint:"Показывается в приветствии. Видите только вы.", askBudget:"Бюджет на месяц (необязательно)",
+      start:"Начать", changeLater:"Всё это можно изменить позже в настройках.", yourName:"Ваше имя", loading:"Загрузка…",
+      trips:"Поездки", newTrip:"Новая поездка", tripName:"Название поездки", tripNamePh:"Париж, выходные на море…", from:"С", to:"По",
+      tripBudget:"Бюджет поездки (необязательно)", createTrip:"Создать поездку", editTrip:"Изменить поездку", tripTotal:"Всего за поездку", days:"Дни",
+      byType:"По типу", back:"Назад", home:"Главная", needTripName:"Дайте поездке название.", datesOrder:"Дата окончания раньше даты начала.",
+      tripCreated:n=>`Поездка «${n}» создана`, tripSaved:"Поездка сохранена", tripDeleted:"Поездка удалена",
+      deleteTrip:n=>n ? `Удалить поездку и расходы (${n})` : "Удалить поездку",
+      delAria:n=>`Удалить ${n}`, deletedNamed:(n,x)=>`Удалено: ${n} · ${x}`, undo:"Отменить", restored:"Восстановлено",
+      delTripAria:n=>`Удалить поездку ${n}`, deleting:"Удаление…", tripDeletedN:n=>`«${n}» удалена`,
+      delTripQ:(n,c)=> c ? `Удалить «${n}»? Расходы (${c}) и чеки тоже будут удалены.` : `Удалить «${n}»?`,
+      deleteTripNote:"При удалении поездки удаляются и её расходы и чеки.",
+      noTrips:"Поездок пока нет. Создайте поездку, чтобы собрать её расходы в одном месте.", tripEmpty:"Для этой поездки пока ничего нет. Добавьте первый расход или отсканируйте чек.",
+      onTrip:n=>`В поездке: ${n}`, tripOpen:"Открыть", tripLeft:(x,b)=>`Осталось ${x} из ${b}`, tripOver:(x,b)=>`На ${x} больше бюджета поездки ${b}`,
+      noTripBudget:"Бюджет поездки не задан", addTo:n=>`Добавить в ${n}`, entriesN:n=>`Записей: ${n}`,
+      tripsAria:"Открыть поездки",
+      chartPace:"Расходы в течение месяца", chartCats:"По категориям, в сравнении с прошлым месяцем", asTable:"Показать таблицей",
+      budgetL:"Бюджет", colCat:"Категория", colChange:"Изменение", dayN:d=>`День ${d}`,
+      vsPrevShort:(x,m)=>`${x} к ${m}`, newCat:"новое", noDataChart:"В этом месяце пока нет расходов.",
+      receiptsTitle:"Чеки", receiptsBtn:n=>`Чеки (${n})`, rcptSearch:"Поиск по чекам",
+      rcptEmpty:"Чеков пока нет. Когда вы сканируете или загружаете чек к расходу, он появится здесь.",
+      summaryTab:"Итоги", sumTitle:m=>`Итоги: ${m}`,
+      colour:"Цвет", appearance:"Оформление", mAuto:"Авто", mLight:"Светлое", mDark:"Тёмное",
+      thOcean:"Океан", thCoral:"Коралл", thForest:"Лес", thLavender:"Лаванда",
+      ratesTitle:"Курсы валют", ratesNote:d=>`Начальные курсы — справочные на ${d}. Банки и карты берут немного больше: измените курс в любой момент, и новые расходы будут считаться по нему.`,
+      rateLbl:c=>`1 ${c} =`, needRate:"Введите курс для пересчёта", rateErr:"Введите курс этой валюты.",
+      tripCurrency:"Местная валюта", currencyAria:"Валюта",
+      tapHintTrip:"Нажмите на тип, чтобы добавить расход", cLeft:"Осталось", cSpent:"Потрачено", overB:"Сверх", ofB:b=>`из ${b}`,
+      stripDay:(d,n)=>`День ${d} из ${n}`, stripSoon:d=> d<=1 ? "Начнётся завтра" : `Начнётся через ${d} дн.`, stripEnded:"Поездка завершена",
+      allowPre:"Можно тратить", allowance:d=> d===1 ? "сегодня, в последний день" : `в день в следующие ${d} дн.`, allowOver:x=>`На ${x} больше бюджета поездки`,
+      gMorning:"Доброе утро", gAfternoon:"Добрый день", gEvening:"Добрый вечер", gNight:"Доброй ночи",
+      greet:(g,n)=> n ? `${g}, ${n}` : g,
+      headsUsed:(n,p,m,l,d,pd)=>`${n ? n + ", использовано" : "Использовано"} ${p}% бюджета на ${m}. Осталось ${l} на ${d} дн., примерно ${pd} в день.`,
+      headsOver:(n,x,m)=>`${n ? n + ", бюджет" : "Бюджет"} на ${m} превышен на ${x}.`,
+      csvHead:["Дата","Сумма","Валюта","Категория","Заметка","Способ оплаты","Ежемесячно","Чек"], yes:"да"
+    },
+    ar: {
+      appName:"Spend Ledger", connecting:"جارٍ الاتصال…", synced:"تمت المزامنة", saving:"جارٍ الحفظ…", cantReach:"تعذّر الوصول إلى المزامنة الآن",
+      syncStopped:"توقفت المزامنة", notSignedIn:"غير متصل", offline:"معاينة دون اتصال",
+      bannerSignin:"تعذّر تحميل بياناتك من الخادم. حدّث الصفحة؛ وإذا تكرر ذلك فقاعدة البيانات تحتاج إلى إصلاح.",
+      bannerLoadFail:"تعذّر تحميل مصروفاتك. حدّث الصفحة.",
+      settings:"الإعدادات", language:"اللغة", currency:"العملة", totalBudget:"الميزانية الشهرية الإجمالية", catBudgets:"الميزانية لكل فئة",
+      noLimitHint:"(اتركه فارغًا لعدم وجود حد)", noLimit:"بلا حد", saveSettings:"حفظ الإعدادات", export:"تصدير الكل إلى CSV",
+      androidNote:"على هاتف أندرويد، افتح عنوان التطبيق في Chrome واضغط «تثبيت التطبيق». سجّل الدخول بالبريد نفسه على كل جهاز لتتزامن بياناتك.",
+      importBtn:"استيراد من CSV", importing:"جارٍ الاستيراد…", imported:n=>`تم استيراد ${n} من المصروفات`,
+      importNone:"لم يتم العثور على مصروفات في الملف.", importFail:"تعذّرت قراءة الملف. استخدم ملف CSV مُصدَّرًا من Spend Ledger.", signOut:"تسجيل الخروج",
+      settingsSaved:"تم حفظ الإعدادات", settingsFail:"تعذّر حفظ الإعدادات", signinSettings:"سجّل الدخول لحفظ الإعدادات",
+      prevMonth:"الشهر السابق", nextMonth:"الشهر التالي", spent:"المصروف", ofBudget:b=>`من ${b}`, thisMonth:"هذا الشهر",
+      tapHint:"اضغط على فئة لإضافة مصروف", scan:"مسح إيصال", upload:"رفع إيصال", addManual:"إضافة مصروف",
+      noBudget:"لم تُحدَّد ميزانية شهرية", setBudget:"تحديد الميزانية", change:"تغيير",
+      overBy:(x,b)=>`تجاوزت ميزانيتك ${b} بمقدار ${x}`, leftOf:(x,b)=>`تبقّى ${x} من ${b}`,
+      perDay:"في اليوم", entries:"القيود", biggest:"الأكبر", vsPrev:(p,m)=>`${p}% مقارنة بـ ${m}`, noPrev:"",
+      whereWent:"أين ذهب المال", tapFilter:"اضغط لتصفية القائمة", pctOfMonth:p=>`${p}% من الشهر`,
+      catOver:(x,b)=>`تجاوز ميزانية ${b} بمقدار ${x}`, catLeft:(x,b)=>`تبقّى ${x} من ${b}`,
+      alertOver:(n,x)=>`${n}: تجاوز ${x}`, alertWarn:(n,p)=>`${n}: استُخدم ${p}%`, nothingMonth:"لا مصروفات هذا الشهر بعد.",
+      expenses:"المصروفات", search:"بحث", emptyTitle:"سجلّك فارغ",
+      emptyBody:"اضغط على فئة في الحلقة أو امسح إيصالًا. يُحفظ كل قيد في حسابك ويظهر على الحاسوب والهاتف.",
+      noMatch:"لا توجد مصروفات مطابقة", noMatchBody:"جرّب بحثًا آخر أو أزل التصفية.", nothingIn:m=>`لا شيء مسجّل في ${m}.`,
+      today:"اليوم", yesterday:"أمس", tagMonthly:"شهري", tagReceipt:"إيصال",
+      everyMonth:"كل شهر", fixedTotal:x=>`${x} شهريًا للمصاريف الثابتة`,
+      billsTitle:"الفواتير الثابتة", addBill:"إضافة فاتورة", editBill:"تعديل الفاتورة", billName:"اسم الفاتورة", billNamePh:"الإيجار، Netflix…",
+      howOften:"كم مرة", monthly:"كل شهر", every2:"كل شهرين", billDay:"يوم الشهر", billCat:"الفئة",
+      saveBill:"حفظ الفاتورة", stopBill:"إيقاف هذه الفاتورة", billSaved:"تم حفظ الفاتورة", billAdded:n=>`أُضيفت ${n} إلى فواتيرك الثابتة`,
+      billStopped:"أُوقفت الفاتورة. الدفعات السابقة محفوظة.", needBillName:"أعطِ الفاتورة اسمًا.", needDay:"اختر يومًا بين 1 و31.",
+      comingUp:"قريبًا", paidThisMonth:"مدفوع هذا الشهر", notThisMonth:"غير مستحق هذا الشهر",
+      stPaid:"✓ مدفوع", stToday:"مستحق اليوم", stInDays:d=> d===1 ? "غدًا" : `بعد ${d} أيام`, stSkipped:"تم التخطي", stNext:m=>`التالي في ${m}`,
+      billEvery:(d,ev)=> ev===2 ? `كل شهرين · يوم ${d}` : `كل شهر · يوم ${d}`,
+      billsMonthTotal:"الفواتير الثابتة هذا الشهر", billsPaid:x=>`دُفع ${x}`, billsToCome:x=>`${x} متبقية`, billsAllPaid:"تم دفع كل شيء هذا الشهر",
+      billsEmpty:"أضف الإيجار والهاتف وباقي فواتيرك الثابتة مرة واحدة، وستُسجَّل كل واحدة تلقائيًا عند استحقاقها.",
+      billsCardLine:(x,y)=>`${x} هذا الشهر · ${y} متبقية`, billsCardAllPaid:x=>`${x} هذا الشهر · مدفوع بالكامل`,
+      billsCardEmpty:"أضف الإيجار والهاتف وNetflix… مرة واحدة وستُسجَّل لك", billsNext:(n,x,w)=>`التالي: ${n} ${x} · ${w}`,
+      quickPick:"اختيار سريع",
+      pRent:"الإيجار", pArnona:"ضريبة المسكن", pElectric:"الكهرباء", pWater:"الماء", pGas:"الغاز", pVaad:"رسوم المبنى",
+      pPhone:"الهاتف المحمول", pInternet:"الإنترنت", pStream:"البث", pGym:"النادي الرياضي", pInsurance:"التأمين",
+      edit:"تعديل", amount:"المبلغ", dayOfMonth:"يوم الشهر", save:"حفظ",
+      amountErr:"أدخل مبلغًا أكبر من صفر.", addTitle:"إضافة مصروف", editTitle:"تعديل المصروف", editRecTitle:"تعديل دفعة هذا الشهر",
+      close:"إغلاق", whatWasIt:"ما هو؟", notePh:"سوبرماركت، وقود، قهوة…", date:"التاريخ", paidWith:"طريقة الدفع",
+      repeats:"يتكرر كل شهر (إيجار، اشتراكات…)", saveExpense:"حفظ المصروف", saveChanges:"حفظ التغييرات", del:"حذف", cancel:"إلغاء",
+      finishingUpload:"جارٍ إنهاء الرفع…", savingBtn:"جارٍ الحفظ…", pickDate:"اختر تاريخًا.", savedChanges:"تم حفظ التغييرات",
+      savedRec:d=>`تم الحفظ. سيُضاف كل شهر يوم ${d}.`, savedAmt:x=>`تم حفظ ${x}`,
+      errQuota:"المساحة ممتلئة. احذف بعض القيود القديمة وحاول مجددًا.",
+      errSave:"تعذّر الحفظ الآن. تحقّق من الاتصال وحاول مجددًا.", deleted:"تم حذف المصروف", errDelete:"تعذّر الحذف الآن. حاول مجددًا.",
+      addedRec:n=>`أُضيفت ${n} من الدفعات الشهرية`,
+      uploading:"جارٍ رفع الإيصال", pdfAttached:"تم إرفاق PDF. أكمل التفاصيل أدناه.", attached:"تم إرفاق الإيصال",
+      afOff:"تم إرفاق الإيصال. أكمل التفاصيل.",
+      view:"عرض", remove:"إزالة",
+      badFormat:"صيغة الصورة غير مدعومة. استخدم JPG أو PNG.", tooLarge:"الملف كبير جدًا (أكثر من 20 ميغابايت).",
+      storageFull:"مساحة الإيصالات ممتلئة. احذف بعض الإيصالات القديمة أولًا.", upFail:"تعذّر رفع الإيصال. تحقّق من الاتصال وحاول مجددًا.",
+      nothingExport:"لا شيء للتصدير بعد", exportNA:"التصدير غير متاح هنا", csvSaved:"تم حفظ CSV", exportFail:"تعذّر تصدير الملف",
+      category:"الفئة",
+      welcomeTitle:"مرحبًا بك في Spend Ledger", welcomeSub:"ثلاثة أسئلة قصيرة وتبدأ.",
+      askName:"بماذا نناديك؟", nameHint:"يظهر في التحية. لا يراه أحد غيرك.", askBudget:"الميزانية الشهرية (اختياري)",
+      start:"ابدأ", changeLater:"يمكنك تغيير كل ذلك لاحقًا من الإعدادات.", yourName:"اسمك", loading:"جارٍ التحميل…",
+      trips:"الرحلات", newTrip:"رحلة جديدة", tripName:"اسم الرحلة", tripNamePh:"باريس، عطلة على البحر…", from:"من", to:"إلى",
+      tripBudget:"ميزانية الرحلة (اختياري)", createTrip:"إنشاء الرحلة", editTrip:"تعديل الرحلة", tripTotal:"إجمالي الرحلة", days:"الأيام",
+      byType:"حسب النوع", back:"رجوع", home:"الرئيسية", needTripName:"أعطِ الرحلة اسمًا.", datesOrder:"تاريخ النهاية قبل تاريخ البداية.",
+      tripCreated:n=>`تم إنشاء رحلة «${n}»`, tripSaved:"تم حفظ الرحلة", tripDeleted:"تم حذف الرحلة",
+      deleteTrip:n=>n ? `حذف الرحلة ومصروفاتها (${n})` : "حذف الرحلة",
+      delAria:n=>`حذف ${n}`, deletedNamed:(n,x)=>`حُذف: ${n} · ${x}`, undo:"تراجع", restored:"تمت الاستعادة",
+      delTripAria:n=>`حذف رحلة ${n}`, deleting:"جارٍ الحذف…", tripDeletedN:n=>`حُذفت «${n}»`,
+      delTripQ:(n,c)=> c ? `حذف «${n}»؟ ستُحذف أيضًا مصروفاتها (${c}) وإيصالاتها.` : `حذف «${n}»؟`,
+      deleteTripNote:"حذف الرحلة يحذف أيضًا مصروفاتها وإيصالاتها.",
+      noTrips:"لا توجد رحلات بعد. أنشئ رحلة لتجمع مصروفاتها في مكان واحد.", tripEmpty:"لا شيء مسجّل لهذه الرحلة بعد. أضف أول مصروف أو امسح إيصالًا.",
+      onTrip:n=>`في رحلة: ${n}`, tripOpen:"فتح", tripLeft:(x,b)=>`تبقّى ${x} من ${b}`, tripOver:(x,b)=>`تجاوز ميزانية الرحلة ${b} بمقدار ${x}`,
+      noTripBudget:"لم تُحدَّد ميزانية للرحلة", addTo:n=>`إضافة إلى ${n}`, entriesN:n=>`${n} قيود`,
+      tripsAria:"فتح الرحلات",
+      chartPace:"الإنفاق على مدار الشهر", chartCats:"حسب الفئة، مقارنة بالشهر الماضي", asTable:"عرض كجدول",
+      budgetL:"الميزانية", colCat:"الفئة", colChange:"التغيّر", dayN:d=>`اليوم ${d}`,
+      vsPrevShort:(x,m)=>`${x} مقارنة بـ ${m}`, newCat:"جديد", noDataChart:"لا مصروفات هذا الشهر بعد.",
+      receiptsTitle:"الإيصالات", receiptsBtn:n=>`الإيصالات (${n})`, rcptSearch:"البحث في الإيصالات",
+      rcptEmpty:"لا إيصالات بعد. عندما تمسح أو ترفع إيصالًا مع مصروف، سيظهر هنا.",
+      summaryTab:"الملخص", sumTitle:m=>`ملخص ${m}`,
+      colour:"اللون", appearance:"المظهر", mAuto:"تلقائي", mLight:"فاتح", mDark:"داكن",
+      thOcean:"محيط", thCoral:"مرجان", thForest:"غابة", thLavender:"خزامى",
+      ratesTitle:"أسعار الصرف", ratesNote:d=>`الأسعار الأولية مرجعية بتاريخ ${d}. البنوك والبطاقات تأخذ أكثر قليلًا، فعدّل السعر متى شئت وستستخدمه المصروفات الجديدة.`,
+      rateLbl:c=>`1 ${c} =`, needRate:"أدخل سعر الصرف للتحويل", rateErr:"أدخل سعر الصرف لهذه العملة.",
+      tripCurrency:"العملة المحلية", currencyAria:"العملة",
+      tapHintTrip:"اضغط على نوع لإضافة مصروف", cLeft:"المتبقي", cSpent:"المصروف", overB:"تجاوز", ofB:b=>`من ${b}`,
+      stripDay:(d,n)=>`اليوم ${d} من ${n}`, stripSoon:d=> d<=1 ? "تبدأ غدًا" : `تبدأ بعد ${d} أيام`, stripEnded:"انتهت الرحلة",
+      allowPre:"يمكنك إنفاق", allowance:d=> d===1 ? "اليوم، آخر يوم" : `في اليوم خلال الأيام الـ${d} القادمة`, allowOver:x=>`تجاوز ميزانية الرحلة بمقدار ${x}`,
+      gMorning:"صباح الخير", gAfternoon:"نهارك سعيد", gEvening:"مساء الخير", gNight:"تصبح على خير",
+      greet:(g,n)=> n ? `${g}، ${n}` : g,
+      headsUsed:(n,p,m,l,d,pd)=>`${n ? n + "، " : ""}استُخدم ${p}% من ميزانية ${m}. تبقّى ${l} لـ${d} أيام، حوالي ${pd} في اليوم.`,
+      headsOver:(n,x,m)=>`${n ? n + "، " : ""}تجاوزت ميزانية ${m} بمقدار ${x}.`,
+      csvHead:["التاريخ","المبلغ","العملة","الفئة","ملاحظة","طريقة الدفع","شهري","إيصال"], yes:"نعم"
+    },
+    it: {
+      appName:"Spend Ledger", connecting:"Connessione…", synced:"Sincronizzato", saving:"Salvataggio…", cantReach:"Sincronizzazione non raggiungibile",
+      syncStopped:"Sincronizzazione interrotta", notSignedIn:"Non connesso", offline:"Anteprima offline",
+      bannerSignin:"Impossibile caricare i dati dal server. Ricarica la pagina; se succede ancora, il database va sistemato.",
+      bannerLoadFail:"Non è stato possibile caricare le spese. Ricarica la pagina.",
+      settings:"Impostazioni", language:"Lingua", currency:"Valuta", totalBudget:"Budget mensile totale", catBudgets:"Budget per categoria",
+      noLimitHint:"(lascia vuoto per nessun limite)", noLimit:"Nessun limite", saveSettings:"Salva impostazioni", export:"Esporta tutto in CSV",
+      androidNote:"Sul telefono Android apri l'indirizzo dell'app in Chrome e tocca «Installa app». Accedi con la stessa email su ogni dispositivo e le spese si sincronizzano.",
+      importBtn:"Importa da CSV", importing:"Importazione…", imported:n=>n===1?"1 spesa importata":`${n} spese importate`,
+      importNone:"Nessuna spesa trovata nel file.", importFail:"Impossibile leggere il file. Usa un CSV esportato da Spend Ledger.", signOut:"Esci",
+      settingsSaved:"Impostazioni salvate", settingsFail:"Impossibile salvare le impostazioni", signinSettings:"Accedi per salvare le impostazioni",
+      prevMonth:"Mese precedente", nextMonth:"Mese successivo", spent:"Speso", ofBudget:b=>`su ${b}`, thisMonth:"questo mese",
+      tapHint:"Tocca una categoria per aggiungere una spesa", scan:"Scansiona scontrino", upload:"Carica scontrino", addManual:"Aggiungi spesa",
+      noBudget:"Nessun budget mensile", setBudget:"Imposta budget", change:"Modifica",
+      overBy:(x,b)=>`${x} oltre il budget di ${b}`, leftOf:(x,b)=>`${x} rimasti su ${b}`,
+      perDay:"Al giorno", entries:"Voci", biggest:"La più grande", vsPrev:(p,m)=>`${p}% rispetto a ${m}`, noPrev:"",
+      whereWent:"Dove sono andati i soldi", tapFilter:"Tocca per filtrare l'elenco", pctOfMonth:p=>`${p}% del mese`,
+      catOver:(x,b)=>`${x} oltre il budget di ${b}`, catLeft:(x,b)=>`${x} rimasti su ${b}`,
+      alertOver:(n,x)=>`${n}: ${x} oltre`, alertWarn:(n,p)=>`${n}: ${p}% usato`, nothingMonth:"Ancora nessuna spesa questo mese.",
+      expenses:"Spese", search:"Cerca", emptyTitle:"Il tuo registro è vuoto",
+      emptyBody:"Tocca una categoria nell'anello o scansiona uno scontrino. Ogni voce viene salvata nel tuo account e appare su laptop e telefono.",
+      noMatch:"Nessuna spesa trovata", noMatchBody:"Prova un'altra ricerca o togli il filtro.", nothingIn:m=>`Niente registrato a ${m}.`,
+      today:"Oggi", yesterday:"Ieri", tagMonthly:"Mensile", tagReceipt:"Scontrino",
+      everyMonth:"Ogni mese", fixedTotal:x=>`${x} al mese di spese fisse`,
+      billsTitle:"Bollette fisse", addBill:"Aggiungi bolletta", editBill:"Modifica bolletta", billName:"Nome della bolletta", billNamePh:"Affitto, Netflix…",
+      howOften:"Ogni quanto", monthly:"Ogni mese", every2:"Ogni 2 mesi", billDay:"Giorno del mese", billCat:"Categoria",
+      saveBill:"Salva bolletta", stopBill:"Interrompi questa bolletta", billSaved:"Bolletta salvata", billAdded:n=>`${n} aggiunta alle bollette fisse`,
+      billStopped:"Bolletta interrotta. I pagamenti passati restano.", needBillName:"Dai un nome alla bolletta.", needDay:"Scegli un giorno tra 1 e 31.",
+      comingUp:"In arrivo", paidThisMonth:"Pagate questo mese", notThisMonth:"Non dovuta questo mese",
+      stPaid:"✓ Pagata", stToday:"Scade oggi", stInDays:d=> d===1 ? "Domani" : `Tra ${d} giorni`, stSkipped:"Saltata", stNext:m=>`Prossima a ${m}`,
+      billEvery:(d,ev)=> ev===2 ? `Ogni 2 mesi · il ${d}` : `Ogni mese · il ${d}`,
+      billsMonthTotal:"Bollette fisse questo mese", billsPaid:x=>`${x} pagati`, billsToCome:x=>`${x} ancora da pagare`, billsAllPaid:"Tutto pagato questo mese",
+      billsEmpty:"Aggiungi una volta affitto, telefono e le altre bollette fisse. Ognuna viene registrata da sola alla scadenza.",
+      billsCardLine:(x,y)=>`${x} questo mese · ${y} da pagare`, billsCardAllPaid:x=>`${x} questo mese · tutto pagato`,
+      billsCardEmpty:"Aggiungi affitto, telefono, Netflix… una volta e verranno registrati per te", billsNext:(n,x,w)=>`Prossima: ${n} ${x} · ${w}`,
+      quickPick:"Scelta rapida",
+      pRent:"Affitto", pArnona:"Tassa sulla casa", pElectric:"Luce", pWater:"Acqua", pGas:"Gas", pVaad:"Spese condominiali",
+      pPhone:"Cellulare", pInternet:"Internet", pStream:"Streaming", pGym:"Palestra", pInsurance:"Assicurazione",
+      edit:"Modifica", amount:"Importo", dayOfMonth:"Giorno del mese", save:"Salva",
+      amountErr:"Inserisci un importo maggiore di zero.", addTitle:"Aggiungi spesa", editTitle:"Modifica spesa", editRecTitle:"Modifica il pagamento di questo mese",
+      close:"Chiudi", whatWasIt:"Cos'era?", notePh:"Supermercato, benzina, caffè…", date:"Data", paidWith:"Pagato con",
+      repeats:"Si ripete ogni mese (affitto, abbonamenti…)", saveExpense:"Salva spesa", saveChanges:"Salva modifiche", del:"Elimina", cancel:"Annulla",
+      finishingUpload:"Completamento caricamento…", savingBtn:"Salvataggio…", pickDate:"Scegli una data.", savedChanges:"Modifiche salvate",
+      savedRec:d=>`Salvato. Verrà aggiunto ogni mese il ${d}.`, savedAmt:x=>`${x} salvati`,
+      errQuota:"Lo spazio è pieno. Elimina alcune voci vecchie e riprova.",
+      errSave:"Impossibile salvare ora. Controlla la connessione e riprova.", deleted:"Spesa eliminata", errDelete:"Impossibile eliminare ora. Riprova.",
+      addedRec:n=>n===1?"Aggiunto 1 pagamento mensile":`Aggiunti ${n} pagamenti mensili`,
+      uploading:"Caricamento scontrino", pdfAttached:"PDF allegato. Compila i dettagli qui sotto.", attached:"Scontrino allegato",
+      afOff:"Scontrino allegato. Compila i dettagli.",
+      view:"Vedi", remove:"Rimuovi",
+      badFormat:"Formato foto non supportato. Usa JPG o PNG.", tooLarge:"Il file è troppo grande (oltre 20 MB).",
+      storageFull:"Lo spazio scontrini è pieno. Elimina prima alcuni scontrini vecchi.", upFail:"Impossibile caricare lo scontrino. Controlla la connessione e riprova.",
+      nothingExport:"Ancora niente da esportare", exportNA:"Esportazione non disponibile qui", csvSaved:"CSV salvato", exportFail:"Impossibile esportare il file",
+      category:"Categoria",
+      welcomeTitle:"Benvenuto in Spend Ledger", welcomeSub:"Tre domande veloci e sei pronto.",
+      askName:"Come ti chiamiamo?", nameHint:"Appare nel saluto. Lo vedi solo tu.", askBudget:"Budget mensile (facoltativo)",
+      start:"Inizia", changeLater:"Puoi cambiare tutto più tardi nelle Impostazioni.", yourName:"Il tuo nome", loading:"Caricamento…",
+      trips:"Viaggi", newTrip:"Nuovo viaggio", tripName:"Nome del viaggio", tripNamePh:"Parigi, weekend al mare…", from:"Dal", to:"Al",
+      tripBudget:"Budget del viaggio (facoltativo)", createTrip:"Crea viaggio", editTrip:"Modifica viaggio", tripTotal:"Totale viaggio", days:"Giorni",
+      byType:"Per tipo", back:"Indietro", home:"Home", needTripName:"Dai un nome al viaggio.", datesOrder:"La data di fine è prima di quella di inizio.",
+      tripCreated:n=>`Viaggio «${n}» creato`, tripSaved:"Viaggio salvato", tripDeleted:"Viaggio eliminato",
+      deleteTrip:n=>n ? `Elimina il viaggio e ${n===1?"la sua spesa":`le sue ${n} spese`}` : "Elimina viaggio",
+      delAria:n=>`Elimina ${n}`, deletedNamed:(n,x)=>`Eliminato: ${n} · ${x}`, undo:"Annulla", restored:"Ripristinato",
+      delTripAria:n=>`Elimina il viaggio ${n}`, deleting:"Eliminazione…", tripDeletedN:n=>`«${n}» eliminato`,
+      delTripQ:(n,c)=> c ? `Eliminare «${n}»? ${c===1?"Anche la sua spesa e lo scontrino saranno eliminati.":`Anche le sue ${c} spese e gli scontrini saranno eliminati.`}` : `Eliminare «${n}»?`,
+      deleteTripNote:"Eliminando un viaggio si eliminano anche le sue spese e gli scontrini.",
+      noTrips:"Ancora nessun viaggio. Creane uno per tenere le sue spese in un unico posto.", tripEmpty:"Niente registrato per questo viaggio. Aggiungi la prima spesa o scansiona uno scontrino.",
+      onTrip:n=>`In viaggio: ${n}`, tripOpen:"Apri", tripLeft:(x,b)=>`${x} rimasti su ${b}`, tripOver:(x,b)=>`${x} oltre il budget di viaggio di ${b}`,
+      noTripBudget:"Nessun budget di viaggio", addTo:n=>`Aggiungi a ${n}`, entriesN:n=>n===1?"1 voce":`${n} voci`,
+      tripsAria:"Apri i viaggi",
+      chartPace:"Spese nel corso del mese", chartCats:"Per categoria, rispetto al mese scorso", asTable:"Mostra come tabella",
+      budgetL:"Budget", colCat:"Categoria", colChange:"Variazione", dayN:d=>`Giorno ${d}`,
+      vsPrevShort:(x,m)=>`${x} rispetto a ${m}`, newCat:"nuova", noDataChart:"Ancora nessuna spesa questo mese.",
+      receiptsTitle:"Scontrini", receiptsBtn:n=>`Scontrini (${n})`, rcptSearch:"Cerca scontrini",
+      rcptEmpty:"Ancora nessuno scontrino. Quando scansioni o carichi uno scontrino con una spesa, appare qui.",
+      summaryTab:"Riepilogo", sumTitle:m=>`Riepilogo di ${m}`,
+      colour:"Colore", appearance:"Aspetto", mAuto:"Auto", mLight:"Chiaro", mDark:"Scuro",
+      thOcean:"Oceano", thCoral:"Corallo", thForest:"Foresta", thLavender:"Lavanda",
+      ratesTitle:"Tassi di cambio", ratesNote:d=>`I tassi iniziali sono di riferimento al ${d}. Banche e carte applicano un po' di più: modifica un tasso quando vuoi e le nuove spese lo useranno.`,
+      rateLbl:c=>`1 ${c} =`, needRate:"Inserisci il tasso di cambio per convertire", rateErr:"Inserisci il tasso di cambio per questa valuta.",
+      tripCurrency:"Valuta locale", currencyAria:"Valuta",
+      tapHintTrip:"Tocca un tipo per aggiungere una spesa", cLeft:"Rimasti", cSpent:"Speso", overB:"Oltre", ofB:b=>`su ${b}`,
+      stripDay:(d,n)=>`Giorno ${d} di ${n}`, stripSoon:d=> d<=1 ? "Inizia domani" : `Inizia tra ${d} giorni`, stripEnded:"Viaggio finito",
+      allowPre:"Puoi spendere", allowance:d=> d===1 ? "oggi, l'ultimo giorno" : `al giorno per i prossimi ${d} giorni`, allowOver:x=>`${x} oltre il budget di viaggio`,
+      gMorning:"Buongiorno", gAfternoon:"Buon pomeriggio", gEvening:"Buonasera", gNight:"Buonanotte",
+      greet:(g,n)=> n ? `${g}, ${n}` : g,
+      headsUsed:(n,p,m,l,d,pd)=>`${n ? n + ", hai" : "Hai"} usato il ${p}% del budget di ${m}. Restano ${l} per ${d} ${d===1?"giorno":"giorni"}, circa ${pd} al giorno.`,
+      headsOver:(n,x,m)=>`${n ? n + ", sei" : "Sei"} ${x} oltre il budget di ${m}.`,
+      csvHead:["Data","Importo","Valuta","Categoria","Nota","Pagato con","Mensile","Scontrino"], yes:"sì"
+    },
+    es: {
+      appName:"Spend Ledger", connecting:"Conectando…", synced:"Sincronizado", saving:"Guardando…", cantReach:"No se puede sincronizar por ahora",
+      syncStopped:"Sincronización detenida", notSignedIn:"Sin conexión", offline:"Vista sin conexión",
+      bannerSignin:"No se pudieron cargar tus datos del servidor. Recarga la página; si vuelve a pasar, hay que arreglar la base de datos.",
+      bannerLoadFail:"No se pudieron cargar tus gastos. Recarga la página.",
+      settings:"Ajustes", language:"Idioma", currency:"Moneda", totalBudget:"Presupuesto mensual total", catBudgets:"Presupuesto por categoría",
+      noLimitHint:"(déjalo vacío para no poner límite)", noLimit:"Sin límite", saveSettings:"Guardar ajustes", export:"Exportar todo a CSV",
+      androidNote:"En tu teléfono Android, abre la dirección de esta app en Chrome y toca «Instalar app». Inicia sesión con el mismo correo en cada dispositivo y tus gastos se sincronizan.",
+      importBtn:"Importar desde CSV", importing:"Importando…", imported:n=>n===1?"1 gasto importado":`${n} gastos importados`,
+      importNone:"No se encontraron gastos en el archivo.", importFail:"No se pudo leer el archivo. Usa un CSV exportado desde Spend Ledger.", signOut:"Cerrar sesión",
+      settingsSaved:"Ajustes guardados", settingsFail:"No se pudieron guardar los ajustes", signinSettings:"Inicia sesión para guardar los ajustes",
+      prevMonth:"Mes anterior", nextMonth:"Mes siguiente", spent:"Gastado", ofBudget:b=>`de ${b}`, thisMonth:"este mes",
+      tapHint:"Toca una categoría para añadir un gasto", scan:"Escanear recibo", upload:"Subir recibo", addManual:"Añadir gasto",
+      noBudget:"Sin presupuesto mensual", setBudget:"Fijar presupuesto", change:"Cambiar",
+      overBy:(x,b)=>`${x} por encima de tu presupuesto de ${b}`, leftOf:(x,b)=>`Quedan ${x} de ${b}`,
+      perDay:"Por día", entries:"Registros", biggest:"El mayor", vsPrev:(p,m)=>`${p}% vs ${m}`, noPrev:"",
+      whereWent:"A dónde fue el dinero", tapFilter:"Toca para filtrar la lista", pctOfMonth:p=>`${p}% del mes`,
+      catOver:(x,b)=>`${x} por encima del presupuesto de ${b}`, catLeft:(x,b)=>`Quedan ${x} de ${b}`,
+      alertOver:(n,x)=>`${n}: ${x} de más`, alertWarn:(n,p)=>`${n}: ${p}% usado`, nothingMonth:"Aún no has gastado nada este mes.",
+      expenses:"Gastos", search:"Buscar", emptyTitle:"Tu libro está vacío",
+      emptyBody:"Toca una categoría en el anillo o escanea un recibo. Cada gasto se guarda en tu cuenta y aparece en tu portátil y tu teléfono.",
+      noMatch:"No hay gastos que coincidan", noMatchBody:"Prueba otra búsqueda o quita el filtro.", nothingIn:m=>`Nada registrado en ${m}.`,
+      today:"Hoy", yesterday:"Ayer", tagMonthly:"Mensual", tagReceipt:"Recibo",
+      everyMonth:"Cada mes", fixedTotal:x=>`${x} al mes en gastos fijos`,
+      billsTitle:"Facturas fijas", addBill:"Añadir factura", editBill:"Editar factura", billName:"Nombre de la factura", billNamePh:"Alquiler, Netflix…",
+      howOften:"Cada cuánto", monthly:"Cada mes", every2:"Cada 2 meses", billDay:"Día del mes", billCat:"Categoría",
+      saveBill:"Guardar factura", stopBill:"Detener esta factura", billSaved:"Factura guardada", billAdded:n=>`${n} añadido a tus facturas fijas`,
+      billStopped:"Factura detenida. Los pagos anteriores se conservan.", needBillName:"Ponle un nombre a la factura.", needDay:"Elige un día entre 1 y 31.",
+      comingUp:"Próximamente", paidThisMonth:"Pagado este mes", notThisMonth:"No toca este mes",
+      stPaid:"✓ Pagado", stToday:"Vence hoy", stInDays:d=> d===1 ? "Mañana" : `En ${d} días`, stSkipped:"Omitido", stNext:m=>`Próximo en ${m}`,
+      billEvery:(d,ev)=> ev===2 ? `Cada 2 meses · el día ${d}` : `Cada mes · el día ${d}`,
+      billsMonthTotal:"Facturas fijas este mes", billsPaid:x=>`${x} pagado`, billsToCome:x=>`${x} por pagar`, billsAllPaid:"Todo pagado este mes",
+      billsEmpty:"Añade una vez el alquiler, el teléfono y tus otras facturas fijas. Cada una se registra sola cuando vence.",
+      billsCardLine:(x,y)=>`${x} este mes · ${y} por pagar`, billsCardAllPaid:x=>`${x} este mes · todo pagado`,
+      billsCardEmpty:"Añade alquiler, teléfono, Netflix… una vez y se registran por ti", billsNext:(n,x,w)=>`Siguiente: ${n} ${x} · ${w}`,
+      quickPick:"Elección rápida",
+      pRent:"Alquiler", pArnona:"Impuesto municipal", pElectric:"Luz", pWater:"Agua", pGas:"Gas", pVaad:"Comunidad",
+      pPhone:"Móvil", pInternet:"Internet", pStream:"Streaming", pGym:"Gimnasio", pInsurance:"Seguro",
+      edit:"Editar", amount:"Importe", dayOfMonth:"Día del mes", save:"Guardar",
+      amountErr:"Introduce un importe mayor que cero.", addTitle:"Añadir gasto", editTitle:"Editar gasto", editRecTitle:"Editar el pago de este mes",
+      close:"Cerrar", whatWasIt:"¿Qué fue?", notePh:"Supermercado, gasolina, café…", date:"Fecha", paidWith:"Pagado con",
+      repeats:"Se repite cada mes (alquiler, suscripciones…)", saveExpense:"Guardar gasto", saveChanges:"Guardar cambios", del:"Eliminar", cancel:"Cancelar",
+      finishingUpload:"Terminando la subida…", savingBtn:"Guardando…", pickDate:"Elige una fecha.", savedChanges:"Cambios guardados",
+      savedRec:d=>`Guardado. Se añadirá cada mes el día ${d}.`, savedAmt:x=>`${x} guardado`,
+      errQuota:"El almacenamiento está lleno. Borra algunos gastos antiguos e inténtalo de nuevo.",
+      errSave:"No se pudo guardar ahora. Revisa tu conexión e inténtalo de nuevo.", deleted:"Gasto eliminado", errDelete:"No se pudo eliminar ahora. Inténtalo de nuevo.",
+      addedRec:n=>n===1?"Añadido 1 pago mensual":`Añadidos ${n} pagos mensuales`,
+      uploading:"Subiendo recibo", pdfAttached:"PDF adjunto. Completa los datos abajo.", attached:"Recibo adjunto",
+      afOff:"Recibo adjunto. Completa los datos.",
+      view:"Ver", remove:"Quitar",
+      badFormat:"Este formato de foto no es compatible. Usa JPG o PNG.", tooLarge:"El archivo es demasiado grande (más de 20 MB).",
+      storageFull:"El espacio de recibos está lleno. Borra primero algunos recibos antiguos.", upFail:"No se pudo subir el recibo. Revisa tu conexión e inténtalo de nuevo.",
+      nothingExport:"Aún no hay nada que exportar", exportNA:"La exportación no está disponible aquí", csvSaved:"CSV guardado", exportFail:"No se pudo exportar el archivo",
+      category:"Categoría",
+      welcomeTitle:"Bienvenido a Spend Ledger", welcomeSub:"Tres cositas y listo para empezar.",
+      askName:"¿Cómo te llamamos?", nameHint:"Aparece en tu saludo. Solo tú lo ves.", askBudget:"Presupuesto mensual (opcional)",
+      start:"Empezar", changeLater:"Puedes cambiar todo esto después en Ajustes.", yourName:"Tu nombre", loading:"Cargando…",
+      trips:"Viajes", newTrip:"Nuevo viaje", tripName:"Nombre del viaje", tripNamePh:"París, finde en la playa…", from:"Desde", to:"Hasta",
+      tripBudget:"Presupuesto del viaje (opcional)", createTrip:"Crear viaje", editTrip:"Editar viaje", tripTotal:"Total del viaje", days:"Días",
+      byType:"Por tipo", back:"Atrás", home:"Inicio", needTripName:"Ponle un nombre al viaje.", datesOrder:"La fecha de fin es anterior a la de inicio.",
+      tripCreated:n=>`Viaje «${n}» creado`, tripSaved:"Viaje guardado", tripDeleted:"Viaje eliminado",
+      deleteTrip:n=>n ? `Eliminar el viaje y ${n===1?"su gasto":`sus ${n} gastos`}` : "Eliminar viaje",
+      delAria:n=>`Eliminar ${n}`, deletedNamed:(n,x)=>`Eliminado: ${n} · ${x}`, undo:"Deshacer", restored:"Restaurado",
+      delTripAria:n=>`Eliminar el viaje ${n}`, deleting:"Eliminando…", tripDeletedN:n=>`«${n}» eliminado`,
+      delTripQ:(n,c)=> c ? `¿Eliminar «${n}»? ${c===1?"Su gasto y su recibo también se eliminarán.":`Sus ${c} gastos y recibos también se eliminarán.`}` : `¿Eliminar «${n}»?`,
+      deleteTripNote:"Al eliminar un viaje también se eliminan sus gastos y recibos.",
+      noTrips:"Aún no hay viajes. Crea uno para tener sus gastos en un solo lugar.", tripEmpty:"Nada registrado en este viaje todavía. Añade el primer gasto o escanea un recibo.",
+      onTrip:n=>`De viaje: ${n}`, tripOpen:"Abrir", tripLeft:(x,b)=>`Quedan ${x} de ${b}`, tripOver:(x,b)=>`${x} por encima del presupuesto de viaje de ${b}`,
+      noTripBudget:"Sin presupuesto de viaje", addTo:n=>`Añadir a ${n}`, entriesN:n=>n===1?"1 registro":`${n} registros`,
+      tripsAria:"Abrir viajes",
+      chartPace:"Gasto a lo largo del mes", chartCats:"Por categoría, comparado con el mes pasado", asTable:"Mostrar como tabla",
+      budgetL:"Presupuesto", colCat:"Categoría", colChange:"Cambio", dayN:d=>`Día ${d}`,
+      vsPrevShort:(x,m)=>`${x} vs ${m}`, newCat:"nuevo", noDataChart:"Aún no hay gastos este mes.",
+      receiptsTitle:"Recibos", receiptsBtn:n=>`Recibos (${n})`, rcptSearch:"Buscar recibos",
+      rcptEmpty:"Aún no hay recibos. Cuando escanees o subas un recibo con un gasto, aparecerá aquí.",
+      summaryTab:"Resumen", sumTitle:m=>`Resumen de ${m}`,
+      colour:"Color", appearance:"Apariencia", mAuto:"Auto", mLight:"Claro", mDark:"Oscuro",
+      thOcean:"Océano", thCoral:"Coral", thForest:"Bosque", thLavender:"Lavanda",
+      ratesTitle:"Tipos de cambio", ratesNote:d=>`Los tipos iniciales son de referencia del ${d}. Bancos y tarjetas cobran algo más: cambia un tipo cuando quieras y los nuevos gastos lo usarán.`,
+      rateLbl:c=>`1 ${c} =`, needRate:"Introduce el tipo de cambio para convertir", rateErr:"Introduce el tipo de cambio de esta moneda.",
+      tripCurrency:"Moneda local", currencyAria:"Moneda",
+      tapHintTrip:"Toca un tipo para añadir un gasto", cLeft:"Queda", cSpent:"Gastado", overB:"De más", ofB:b=>`de ${b}`,
+      stripDay:(d,n)=>`Día ${d} de ${n}`, stripSoon:d=> d<=1 ? "Empieza mañana" : `Empieza en ${d} días`, stripEnded:"Viaje terminado",
+      allowPre:"Puedes gastar", allowance:d=> d===1 ? "hoy, el último día" : `al día durante los próximos ${d} días`, allowOver:x=>`${x} por encima del presupuesto del viaje`,
+      gMorning:"Buenos días", gAfternoon:"Buenas tardes", gEvening:"Buenas noches", gNight:"Buenas noches",
+      greet:(g,n)=> n ? `${g}, ${n}` : g,
+      headsUsed:(n,p,m,l,d,pd)=>`${n ? n + ", has" : "Has"} usado el ${p}% del presupuesto de ${m}. Quedan ${l} para ${d} ${d===1?"día":"días"}, unos ${pd} al día.`,
+      headsOver:(n,x,m)=>`${n ? n + ", te has" : "Te has"} pasado ${x} del presupuesto de ${m}.`,
+      csvHead:["Fecha","Importe","Moneda","Categoría","Nota","Pagado con","Mensual","Recibo"], yes:"sí"
     }
   };
   const $ = id => document.getElementById(id);
@@ -1409,7 +2080,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
   const lsSet = (k,v) => { try { localStorage.setItem(k,v); } catch {} };
 
   const state = {
-    lang: lsGet("lang") || ((navigator.language||"").startsWith("he") ? "he" : "en"),
+    lang: (() => { const v = lsGet("lang"); if (v && window.__slLangs.SL_LANGS.some(l => l.code === v)) return v; const n = (navigator.language||"en").slice(0,2).toLowerCase(); return window.__slLangs.SL_LANGS.some(l => l.code === n) ? n : "en"; })(),
     expenses: [], rules: [], settings: {currency:"ILS", budget:0, catBudgets:{}},
     month: (() => { const d = new Date(); return {y:d.getFullYear(), m:d.getMonth()}; })(),
     filterCat: null, q: "", editing: null, selCat: "food",
@@ -1420,9 +2091,12 @@ html[dir="rtl"] .amtfield input{text-align:right}
   let tripsCol = null;
   let col = null, recCol = null, settingsRef = null, downloads = null, assets = null, sample = null, sampleImages = false;
 
-  const t = (k, ...a) => { const v = (T[state.lang] || T.en)[k]; return typeof v === "function" ? v(...a) : (v ?? k); };
+  const { SL_LANGS, slLang, slLangButton, slLangGrid } = window.__slLangs;
+  const isRtl = () => slLang(state.lang).rtl;
+  // any text missing in a language falls back to English
+  const t = (k, ...a) => { const d = T[state.lang] || T.en; const v = d[k] !== undefined ? d[k] : T.en[k]; return typeof v === "function" ? v(...a) : (v ?? k); };
   const cname = c => c[state.lang] || c.en;
-  const locale = () => state.lang === "he" ? "he-IL" : undefined;
+  const locale = () => slLang(state.lang).locale;
 
   // ---------- helpers ----------
   const pad2 = n => String(n).padStart(2,"0");
@@ -1448,18 +2122,18 @@ html[dir="rtl"] .amtfield input{text-align:right}
   const parseAmtRate = s => { const n = parseFloat(String(s).replace(/,/g,".").replace(/[^\d.]/g,"")); return Math.round(n*1e6)/1e6; };
   const parseAmt = s => { const n = parseFloat(String(s).replace(/,/g,".").replace(/[^\d.]/g,"")); return Math.round(n*100)/100; };
   const icon = id => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[id]||ICONS.other}</svg>`;
-  const methodName = id => { const m = METHODS.find(x => x.id === id); return m ? m[state.lang] : (id || METHODS[0][state.lang]); };
+  const methodName = id => { const m = METHODS.find(x => x.id === id); return m ? cname(m) : (id || cname(METHODS[0])); };
 
   // ---------- language ----------
   function applyLang() {
-    const he = state.lang === "he";
+    const he = isRtl();
     document.documentElement.lang = state.lang;
     document.documentElement.dir = he ? "rtl" : "ltr";
     document.title = t("appName");
     document.querySelectorAll("[data-t]").forEach(el => { el.textContent = t(el.dataset.t); });
-    $("langBtn").textContent = t("langSwitch"); $("langBtn").lang = he ? "en" : "he";
-    $("segEn").setAttribute("aria-pressed", String(!he)); $("segHe").setAttribute("aria-pressed", String(he));
-    $("wEn").setAttribute("aria-pressed", String(!he)); $("wHe").setAttribute("aria-pressed", String(he));
+    slLangButton($("langBtn"), state.lang, code => setLang(code));
+    slLangGrid($("setLangs"), state.lang, code => setLang(code));
+    slLangGrid($("wLangs"), state.lang, code => setLang(code, false));
     $("wCur").textContent = curSymbol(); $("loading").textContent = t("loading");
     $("tripsBack").textContent = he ? "›" : "‹"; $("tripBack").textContent = he ? "›" : "‹"; $("rcptBack").textContent = he ? "›" : "‹"; $("billsBack").textContent = he ? "›" : "‹"; $("billsBack").setAttribute("aria-label", t("back")); $("billAddBtn").setAttribute("aria-label", t("addBill"));
     if (!$("billForm").hidden) { fillBillSelects(); $("billFormTitle").textContent = t(billEditing ? "editBill" : "addBill"); if (!billEditing) renderPresets(null); }
@@ -1478,7 +2152,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
     if (!$("ntCur").value || $("ntCur").value === "ILS") $("ntCur").value = state.settings.currency || "ILS";
     updateConv();
     const mSel = $("fMethod"), cur = mSel.value;
-    mSel.innerHTML = ""; METHODS.forEach(m => { const o = document.createElement("option"); o.value = m.id; o.textContent = m[state.lang]; mSel.appendChild(o); });
+    mSel.innerHTML = ""; METHODS.forEach(m => { const o = document.createElement("option"); o.value = m.id; o.textContent = cname(m); mSel.appendChild(o); });
     if (cur) mSel.value = cur;
     $("padTitle").textContent = state.editing ? t(state.expenses.find(x=>x.id===state.editing)?.recurringId ? "editRecTitle" : "editTitle") : t("addTitle");
     $("saveBtn").textContent = state.editing ? t("saveChanges") : t("saveExpense");
@@ -1492,11 +2166,6 @@ html[dir="rtl"] .amtfield input{text-align:right}
     state.lang = l; lsSet("lang", l); applyLang();
     if (persist && settingsRef) { try { await settingsRef.set({...state.settings, lang: l}); state.settings.lang = l; } catch {} }
   }
-  $("langBtn").onclick = () => setLang(state.lang === "he" ? "en" : "he");
-  $("segEn").onclick = () => setLang("en");
-  $("segHe").onclick = () => setLang("he");
-  $("wEn").onclick = () => setLang("en", false);
-  $("wHe").onclick = () => setLang("he", false);
 
   // ---------- welcome (first screen) ----------
   let welcomeOpen = false;
@@ -1536,12 +2205,12 @@ html[dir="rtl"] .amtfield input{text-align:right}
     items.forEach((it, i) => {
       // clockwise from top; in RTL mirror horizontally so reading order flows the same way
       const ang = (-90 + i * 360 / n) * Math.PI / 180;
-      const dir = state.lang === "he" ? -1 : 1;
+      const dir = isRtl() ? -1 : 1;
       const x = 50 + dir * R * Math.cos(ang), y = 50 + R * Math.sin(ang);
       const b = document.createElement("button");
       b.type = "button"; b.className = "catbtn";
       b.style.left = x + "%"; b.style.top = y + "%";
-      if (state.lang === "he") { b.style.left = "auto"; b.style.right = (100 - x) + "%"; b.style.transform = "translate(50%,-23px)"; }
+      if (isRtl()) { b.style.left = "auto"; b.style.right = (100 - x) + "%"; b.style.transform = "translate(50%,-23px)"; }
       b.innerHTML = `<span class="ic" style="background:${cssVar(it.v)}">${icon(it.ic)}</span><span class="nm"></span><span class="am"></span>`;
       b.querySelector(".nm").textContent = it.label;
       b.querySelector(".am").textContent = it.amt ? money(it.amt, {short:true}) : "";
@@ -1829,7 +2498,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
     CATS.forEach(c => { const o = document.createElement("option"); o.value = c.id; o.textContent = cname(c); cs.appendChild(o); });
     cs.value = cv || "home";
     const ms = $("bMethod"), mv = ms.value; ms.innerHTML = "";
-    METHODS.forEach(x => { const o = document.createElement("option"); o.value = x.id; o.textContent = x[state.lang]; ms.appendChild(o); });
+    METHODS.forEach(x => { const o = document.createElement("option"); o.value = x.id; o.textContent = cname(x); ms.appendChild(o); });
     ms.value = mv || "Card";
   }
   function renderPresets(active) {
@@ -2028,7 +2697,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
       c.querySelector(".nm span:last-child").textContent = tr.name;
       const live = tr.start && tr.end && tr.start <= td && td <= tr.end;
       c.querySelector(".dates").textContent = fmtRange(tr.start, tr.end);
-      if (live) c.querySelector(".dates").insertAdjacentHTML("beforeend", ` <span class="live">${state.lang==="he"?"עכשיו":"Now"}</span>`);
+      if (live) c.querySelector(".dates").insertAdjacentHTML("beforeend", ` <span class="live">${({he:"עכשיו",de:"Jetzt",fr:"En cours",ru:"Сейчас",ar:"الآن",it:"Adesso",es:"Ahora"})[state.lang] || "Now"}</span>`);
       c.querySelector(".amt").textContent = money(st.total);
       c.querySelector(".cnt").textContent = t("entriesN", st.ex.length);
       if (+tr.budget > 0) {
@@ -2269,9 +2938,39 @@ html[dir="rtl"] .amtfield input{text-align:right}
           added: n => `נוסף ל-\u2068${n}\u2069`, removed: n => `הוצא מ-\u2068${n}\u2069`,
           found: n => n === 1 ? "נמצאה הוצאה אחת מתאריכי הטיול" : `נמצאו ${n} הוצאות מתאריכי הטיול`,
           foundSub: "עוד לא משויכות לאף טיול. חשבונות קבועים לא נכללים.", review: "צרף לטיול", attach: n => n === 1 ? "צרף הוצאה אחת" : `צרף ${n} הוצאות`,
-          attached: n => n === 1 ? "הוצאה אחת צורפה לטיול" : `${n} הוצאות צורפו לטיול` }
+          attached: n => n === 1 ? "הוצאה אחת צורפה לטיול" : `${n} הוצאות צורפו לטיול` },
+    de: { pick: "Zu welcher Reise hinzufügen?", out: "Aus der Reise entfernen", cancel: "Abbrechen", aria: "Zu einer Reise hinzufügen",
+          added: n => `Zu ${n} hinzugefügt`, removed: n => `Aus ${n} entfernt`,
+          found: n => n === 1 ? "1 Ausgabe aus dem Reisezeitraum" : `${n} Ausgaben aus dem Reisezeitraum`,
+          foundSub: "Noch keiner Reise zugeordnet. Fixkosten sind ausgenommen.", review: "Zur Reise hinzufügen", attach: n => n === 1 ? "1 Ausgabe hinzufügen" : `${n} Ausgaben hinzufügen`,
+          attached: n => n === 1 ? "1 Ausgabe zur Reise hinzugefügt" : `${n} Ausgaben zur Reise hinzugefügt` },
+    fr: { pick: "Ajouter à quel voyage ?", out: "Retirer du voyage", cancel: "Annuler", aria: "Ajouter à un voyage",
+          added: n => `Ajouté à ${n}`, removed: n => `Retiré de ${n}`,
+          found: n => n === 1 ? "1 dépense pendant les dates du voyage" : `${n} dépenses pendant les dates du voyage`,
+          foundSub: "Pas encore dans un voyage. Les factures fixes sont exclues.", review: "Ajouter au voyage", attach: n => n === 1 ? "Ajouter 1 dépense" : `Ajouter ${n} dépenses`,
+          attached: n => n === 1 ? "1 dépense ajoutée au voyage" : `${n} dépenses ajoutées au voyage` },
+    ru: { pick: "В какую поездку добавить?", out: "Убрать из поездки", cancel: "Отмена", aria: "Добавить в поездку",
+          added: n => `Добавлено в «${n}»`, removed: n => `Убрано из «${n}»`,
+          found: n => `Расходы в даты поездки: ${n}`,
+          foundSub: "Пока не привязаны к поездке. Постоянные счета не учитываются.", review: "Добавить в поездку", attach: n => `Добавить (${n})`,
+          attached: n => `Добавлено в поездку: ${n}` },
+    ar: { pick: "إلى أي رحلة تضيفه؟", out: "إزالة من الرحلة", cancel: "إلغاء", aria: "إضافة إلى رحلة",
+          added: n => `أُضيف إلى \u2068${n}\u2069`, removed: n => `أُزيل من \u2068${n}\u2069`,
+          found: n => `${n} من المصروفات في تواريخ الرحلة`,
+          foundSub: "غير مرتبطة بأي رحلة بعد. الفواتير الثابتة غير مشمولة.", review: "إضافة إلى الرحلة", attach: n => `إضافة ${n}`,
+          attached: n => `أُضيفت ${n} إلى الرحلة` },
+    it: { pick: "A quale viaggio aggiungere?", out: "Togli dal viaggio", cancel: "Annulla", aria: "Aggiungi a un viaggio",
+          added: n => `Aggiunta a ${n}`, removed: n => `Tolta da ${n}`,
+          found: n => n === 1 ? "1 spesa nelle date del viaggio" : `${n} spese nelle date del viaggio`,
+          foundSub: "Non ancora in nessun viaggio. Le bollette fisse sono escluse.", review: "Aggiungi al viaggio", attach: n => n === 1 ? "Aggiungi 1 spesa" : `Aggiungi ${n} spese`,
+          attached: n => n === 1 ? "1 spesa aggiunta al viaggio" : `${n} spese aggiunte al viaggio` },
+    es: { pick: "¿A qué viaje añadirlo?", out: "Quitar del viaje", cancel: "Cancelar", aria: "Añadir a un viaje",
+          added: n => `Añadido a ${n}`, removed: n => `Quitado de ${n}`,
+          found: n => n === 1 ? "1 gasto en las fechas del viaje" : `${n} gastos en las fechas del viaje`,
+          foundSub: "Aún no están en ningún viaje. Las facturas fijas no se incluyen.", review: "Añadir al viaje", attach: n => n === 1 ? "Añadir 1 gasto" : `Añadir ${n} gastos`,
+          attached: n => n === 1 ? "1 gasto añadido al viaje" : `${n} gastos añadidos al viaje` }
   };
-  const tx = (k, ...a) => { const v = TX[state.lang === "he" ? "he" : "en"][k]; return typeof v === "function" ? v(...a) : v; };
+  const tx = (k, ...a) => { const v = (TX[state.lang] || TX.en)[k]; return typeof v === "function" ? v(...a) : v; };
   const CAT_TO_TRIP = { food: "food", eat: "food", trans: "transport", shop: "shopping", fun: "activity" };
   const PLANE_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS.travel}</svg>`;
   const tripsNewestFirst = () => [...state.trips].sort((a,b) => (b.start||"").localeCompare(a.start||"") || (b.createdAt||0)-(a.createdAt||0));
@@ -2516,7 +3215,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
   function drawPace() {
     const s = chartState, box = $("paceChart"); if (!s || !box) return;
     const W = Math.max(260, box.clientWidth || 320), H = 200;
-    const rtl = state.lang === "he";
+    const rtl = isRtl();
     const padS = 46, padE = 62, padT = 14, padB = 26;
     const budget = +state.settings.budget || 0;
     const prevShown = s.pc.slice(0, Math.min(s.pDays, s.days) + 1);
@@ -2913,11 +3612,12 @@ If the image is not a receipt, reply {"amount": null}.`;
     if (rows.length < 2) return toast(t("importNone"));
     const head = rows[0].map(h => h.trim().toLowerCase());
     const find = (...names) => head.findIndex(h => names.includes(h));
-    const iDate = find("date","תאריך"), iAmt = find("amount","סכום"), iCat = find("category","קטגוריה"),
-          iNote = find("note","הערה"), iPaid = find("paid with","אמצעי תשלום");
+    const heads = i => SL_LANGS.map(l => ((T[l.code] || {}).csvHead || [])[i]).filter(Boolean).map(h => h.toLowerCase());
+    const iDate = find(...heads(0)), iAmt = find(...heads(1)), iCat = find(...heads(3)),
+          iNote = find(...heads(4)), iPaid = find(...heads(5));
     if (iDate < 0 || iAmt < 0) return toast(t("importFail"));
-    const byName = {}; CATS.forEach(c => { byName[c.en.toLowerCase()] = c.id; byName[c.he] = c.id; });
-    const byMethod = {}; METHODS.forEach(m => { byMethod[m.en.toLowerCase()] = m.id; byMethod[m.he] = m.id; });
+    const byName = {}; CATS.forEach(c => SL_LANGS.forEach(l => { if (c[l.code]) { byName[c[l.code].toLowerCase()] = c.id; byName[c[l.code]] = c.id; } }));
+    const byMethod = {}; METHODS.forEach(m => SL_LANGS.forEach(l => { if (m[l.code]) { byMethod[m[l.code].toLowerCase()] = m.id; byMethod[m[l.code]] = m.id; } }));
     const seen = new Set(state.expenses.map(e => `${e.date}|${(+e.amount).toFixed(2)}|${e.note||""}`));
     let added = 0;
     toast(t("importing"));
@@ -2978,7 +3678,7 @@ If the image is not a receipt, reply {"amount": null}.`;
         if (d.theme) { try { localStorage.setItem("theme", JSON.stringify(d.theme)); } catch {} }
         applyTheme();
         fmtCache = {};
-        if (!welcomeOpen && d.lang && d.lang !== state.lang && (d.lang === "he" || d.lang === "en")) { state.lang = d.lang; lsSet("lang", d.lang); applyLang(); }
+        if (!welcomeOpen && d.lang && d.lang !== state.lang && SL_LANGS.some(l => l.code === d.lang)) { state.lang = d.lang; lsSet("lang", d.lang); applyLang(); }
         else render();
       }
       if (!s.metadata || !s.metadata.fromCache) {
