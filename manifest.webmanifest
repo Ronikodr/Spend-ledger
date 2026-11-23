@@ -1,0 +1,20 @@
+{
+  "name": "Spend Ledger",
+  "short_name": "Spend Ledger",
+  "description": "Personal expense tracker: budgets, fixed bills, trips and receipts.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#EEF0F3",
+  "theme_color": "#2346C8",
+  "lang": "he",
+  "dir": "auto",
+  "categories": ["finance", "productivity"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
