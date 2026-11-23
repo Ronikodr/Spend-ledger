@@ -7,8 +7,8 @@
 <meta name="description" content="Personal expense tracker">
 <meta name="theme-color" content="#2346C8">
 <link rel="manifest" href="/manifest.webmanifest">
-<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
-<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png?v=2">
+<link rel="apple-touch-icon" href="/icons/icon-192.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -450,11 +450,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
 <section class="welcome" id="welcome" hidden aria-labelledby="wTitle">
   <div class="wcard">
     <div class="whead">
-      <svg width="84" height="84" viewBox="0 0 84 84" aria-hidden="true">
-        <circle cx="42" cy="42" r="40" fill="var(--accent)"></circle>
-        <circle cx="42" cy="42" r="31" fill="none" stroke="var(--accent-ink)" stroke-opacity=".35" stroke-width="2"></circle>
-        <text x="42" y="54" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-weight="600" font-size="34" fill="var(--accent-ink)">₪</text>
-      </svg>
+      <svg width="84" height="84" viewBox="0 0 120 120" aria-hidden="true"><rect width="120" height="120" rx="27" fill="#2346C8"/><g transform="translate(60 61) scale(.98) translate(-53 -66)"><g stroke="#C98F00" stroke-width="2.5"><ellipse cx="50" cy="86" rx="24" ry="8" fill="#FFD25A"/><rect x="26" y="74" width="48" height="12" fill="#FFD25A" stroke="none"/><path d="M26 74v12M74 74v12" /><ellipse cx="50" cy="74" rx="24" ry="8" fill="#FFD25A"/><rect x="26" y="62" width="48" height="12" fill="#FFD25A" stroke="none"/><path d="M26 62v12M74 62v12"/><ellipse cx="50" cy="62" rx="24" ry="8" fill="#FFD25A"/></g><circle cx="80" cy="46" r="22" fill="#FFD25A" stroke="#C98F00" stroke-width="2.5"/><text x="80" y="55" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" font-size="26" fill="#9A6A00">$</text></g></svg>
       <h1 id="wTitle" data-t="welcomeTitle">Welcome to Spend Ledger</h1>
       <p data-t="welcomeSub">Three quick things and you're ready to track.</p>
     </div>
@@ -479,7 +475,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
 <div class="wrap" id="app">
   <header class="top">
     <div class="hello">
-      <span class="avatar" id="avatar" aria-hidden="true">₪</span>
+      <span class="avatar" id="avatar" aria-hidden="true"><svg viewBox="0 0 120 120" width="72%" height="72%" aria-hidden="true"><g transform="translate(60 61) scale(1.15) translate(-53 -66)"><g stroke="#C98F00" stroke-width="2.5"><ellipse cx="50" cy="86" rx="24" ry="8" fill="#FFD25A"/><rect x="26" y="74" width="48" height="12" fill="#FFD25A" stroke="none"/><path d="M26 74v12M74 74v12" /><ellipse cx="50" cy="74" rx="24" ry="8" fill="#FFD25A"/><rect x="26" y="62" width="48" height="12" fill="#FFD25A" stroke="none"/><path d="M26 62v12M74 62v12"/><ellipse cx="50" cy="62" rx="24" ry="8" fill="#FFD25A"/></g><circle cx="80" cy="46" r="22" fill="#FFD25A" stroke="#C98F00" stroke-width="2.5"/><text x="80" y="55" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" font-size="26" fill="#9A6A00">$</text></g></svg></span>
       <div style="min-width:0"><h1 id="greet">Spend Ledger</h1><div class="sub"><span id="todayLine"></span> · <span id="syncState"></span></div></div>
     </div>
     <div class="topbtns">
@@ -837,7 +833,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
   <form class="card" id="authForm" novalidate>
     <button type="button" class="lang" id="authLang"></button>
     <div class="head">
-      <svg width="76" height="76" viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="40" fill="var(--accent)"></circle><circle cx="42" cy="42" r="31" fill="none" stroke="var(--accent-ink)" stroke-opacity=".35" stroke-width="2"></circle><text x="42" y="54" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-weight="600" font-size="34" fill="var(--accent-ink)">₪</text></svg>
+      <svg width="76" height="76" viewBox="0 0 120 120" aria-hidden="true"><rect width="120" height="120" rx="27" fill="#2346C8"/><g transform="translate(60 61) scale(.98) translate(-53 -66)"><g stroke="#C98F00" stroke-width="2.5"><ellipse cx="50" cy="86" rx="24" ry="8" fill="#FFD25A"/><rect x="26" y="74" width="48" height="12" fill="#FFD25A" stroke="none"/><path d="M26 74v12M74 74v12" /><ellipse cx="50" cy="74" rx="24" ry="8" fill="#FFD25A"/><rect x="26" y="62" width="48" height="12" fill="#FFD25A" stroke="none"/><path d="M26 62v12M74 62v12"/><ellipse cx="50" cy="62" rx="24" ry="8" fill="#FFD25A"/></g><circle cx="80" cy="46" r="22" fill="#FFD25A" stroke="#C98F00" stroke-width="2.5"/><text x="80" y="55" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" font-size="26" fill="#9A6A00">$</text></g></svg>
       <h1 id="authTitle"></h1>
       <p id="authSub"></p>
     </div>
@@ -1180,6 +1176,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
   }
   try { matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => applyTheme()); } catch {}
   try { new MutationObserver(() => applyTheme()).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]}); } catch {}
+  const AVATAR_COINS = `<svg viewBox="0 0 120 120" width="72%" height="72%" aria-hidden="true"><g transform="translate(60 61) scale(1.15) translate(-53 -66)"><g stroke="#C98F00" stroke-width="2.5"><ellipse cx="50" cy="86" rx="24" ry="8" fill="#FFD25A"/><rect x="26" y="74" width="48" height="12" fill="#FFD25A" stroke="none"/><path d="M26 74v12M74 74v12" /><ellipse cx="50" cy="74" rx="24" ry="8" fill="#FFD25A"/><rect x="26" y="62" width="48" height="12" fill="#FFD25A" stroke="none"/><path d="M26 62v12M74 62v12"/><ellipse cx="50" cy="62" rx="24" ry="8" fill="#FFD25A"/></g><circle cx="80" cy="46" r="22" fill="#FFD25A" stroke="#C98F00" stroke-width="2.5"/><text x="80" y="55" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" font-size="26" fill="#9A6A00">$</text></g></svg>`;
   const CATS = [
     {id:"food",   v:"--c-food",   en:"Groceries",    he:"סופר ומכולת"},
     {id:"eat",    v:"--c-eat",    en:"Eating out",   he:"אוכל בחוץ"},
@@ -1602,7 +1599,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
     const hr = new Date().getHours();
     const part = hr >= 5 && hr < 12 ? "gMorning" : hr >= 12 && hr < 17 ? "gAfternoon" : hr >= 17 && hr < 22 ? "gEvening" : "gNight";
     $("greet").textContent = t("greet", t(part), name);
-    $("avatar").textContent = name ? name.charAt(0).toUpperCase() : "₪";
+    if (name) $("avatar").textContent = name.charAt(0).toUpperCase(); else $("avatar").innerHTML = AVATAR_COINS;
     $("todayLine").textContent = new Date().toLocaleDateString(locale(), {weekday:"long", day:"numeric", month:"long"});
 
     // budget heads-up (current month only)
