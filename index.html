@@ -798,6 +798,14 @@ html[dir="rtl"] .amtfield input{text-align:right}
 .auth .switch{border:0;background:none;color:var(--accent);font:600 14px var(--f-body);cursor:pointer;padding:8px}
 .auth .msg{font-size:13.5px;color:var(--bad);min-height:1em}
 .auth .msg.ok{color:var(--good)}
+.inst{position:fixed;z-index:70;left:50%;transform:translateX(-50%);bottom:calc(88px + env(safe-area-inset-bottom,0px));width:min(420px,calc(100% - 24px));box-sizing:border-box;
+  display:flex;align-items:center;gap:12px;padding:12px 12px 12px 14px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 30px rgba(10,20,40,.18);font-family:var(--f-body)}
+.inst .ic{flex:none;width:44px;height:44px;border-radius:12px}
+.inst .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.inst b{font-size:15px}
+.inst span{font-size:12.5px;color:var(--muted);line-height:1.35}
+.inst .ib{flex:none;height:42px;padding:0 16px;border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);font:600 15px var(--f-body);cursor:pointer}
+.inst .ix{flex:none;width:32px;height:32px;border:0;background:none;color:var(--muted);font-size:20px;cursor:pointer;border-radius:50%}
 .auth .lang{align-self:flex-end;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;height:36px;padding:0 14px;font:500 13px var(--f-body);cursor:pointer}
 </style>
 <div class="auth" id="authView" hidden>
@@ -814,6 +822,13 @@ html[dir="rtl"] .amtfield input{text-align:right}
     <button class="go" id="authGo" type="submit"></button>
     <button class="switch" id="authSwitch" type="button"></button>
   </form>
+</div>
+
+<div class="inst" id="instBar" hidden role="dialog" aria-live="polite">
+  <img class="ic" src="/icons/icon-192.png" alt="">
+  <div class="tx"><b id="instT"></b><span id="instS"></span></div>
+  <button class="ib" id="instGo" type="button"></button>
+  <button class="ix" id="instX" type="button" aria-label="Close">×</button>
 </div>
 
 <script>
@@ -1000,7 +1015,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
   };
 
   // ---------- the same interface the app already uses ----------
-  loaded = userReady.then(async user => { uid = user.id; await loadAll(); listen(); });
+  loaded = userReady.then(async user => { uid = user.id; try { await loadAll(); } catch (e) { console.error("Spend Ledger: loading data failed:", e); throw e; } listen(); });
   window.claude = {
     use: async name => {
       await loaded;
@@ -1016,6 +1031,41 @@ html[dir="rtl"] .amtfield input{text-align:right}
     email: async () => { const { data } = await sb.auth.getUser(); return data && data.user ? data.user.email : ""; },
     signOut: async () => { try { await sb.auth.signOut(); } catch {} try { localStorage.removeItem("onboarded"); } catch {} location.hash = ""; location.reload(); }
   };
+
+  // ---------- "Install app" bar: one tap to put the app on the home screen ----------
+  (function installBar() {
+    const bar = $("instBar"); if (!bar) return;
+    const standalone = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+    if (standalone) return;
+    const IT = { en: { t: "Install Spend Ledger", s: "Get it on your home screen, like a normal app.", go: "Install",
+                       iosS: "Tap the Share button ⬆︎ below, then “Add to Home Screen”.", ok: "Got it" },
+                 he: { t: "התקנת פנקס ההוצאות", s: "שימו את האפליקציה על מסך הבית, כמו כל אפליקציה.", go: "התקנה",
+                       iosS: "הקישו על כפתור השיתוף ⬆︎ למטה, ואז ״הוסף למסך הבית״.", ok: "הבנתי" } };
+    let seen = false; try { seen = sessionStorage.getItem("instClosed") === "1"; } catch {}
+    if (seen) return;
+    const L = () => IT[lang()];
+    const ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    let prompt = null;
+    function show(kind) {
+      $("instT").textContent = L().t;
+      $("instS").textContent = kind === "ios" ? L().iosS : L().s;
+      $("instGo").textContent = kind === "ios" ? L().ok : L().go;
+      bar.dir = lang() === "he" ? "rtl" : "ltr";
+      bar.hidden = false;
+    }
+    function close() { bar.hidden = true; try { sessionStorage.setItem("instClosed", "1"); } catch {} }
+    $("instX").onclick = close;
+    $("instGo").onclick = async () => {
+      if (!prompt) return close();
+      prompt.prompt();
+      try { await prompt.userChoice; } catch {}
+      prompt = null; bar.hidden = true;
+    };
+    window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); prompt = e; show("android"); });
+    window.addEventListener("appinstalled", () => { bar.hidden = true; });
+    if (ios) setTimeout(() => show("ios"), 800);
+    window.__slInstallPreview = show;
+  })();
   start();
 
   // ---------- installable app: offline shell ----------
@@ -1127,9 +1177,9 @@ html[dir="rtl"] .amtfield input{text-align:right}
   const T = {
     en: {
       appName:"Spend Ledger", connecting:"Connecting…", synced:"Synced", saving:"Saving…", cantReach:"Can't reach sync yet",
-      syncStopped:"Sync stopped", notSignedIn:"Not signed in", offline:"Offline preview",
+      syncStopped:"Sync stopped", notSignedIn:"Not connected", offline:"Offline preview",
       bannerOffline:"Open this page on claude.ai to save expenses.",
-      bannerSignin:"Sign in to claude.ai to save expenses. Your entries are private to your account.",
+      bannerSignin:"Couldn't load your data from the server. Refresh the page; if this keeps happening, the database setup needs a fix.",
       bannerRevoked:"Access to this page changed. Reload to continue.", bannerLoadFail:"Your expenses couldn't load. Reload the page to try again.",
       settings:"Settings", language:"Language", currency:"Currency", totalBudget:"Total monthly budget", catBudgets:"Budget per category",
       noLimitHint:"(leave empty for no limit)", noLimit:"No limit", saveSettings:"Save settings", export:"Export all to CSV",
@@ -1229,9 +1279,9 @@ html[dir="rtl"] .amtfield input{text-align:right}
     },
     he: {
       appName:"פנקס הוצאות", connecting:"מתחבר…", synced:"מסונכרן", saving:"שומר…", cantReach:"אין חיבור לסנכרון כרגע",
-      syncStopped:"הסנכרון נעצר", notSignedIn:"לא מחובר", offline:"תצוגה מקדימה",
+      syncStopped:"הסנכרון נעצר", notSignedIn:"אין חיבור לשרת", offline:"תצוגה מקדימה",
       bannerOffline:"פתחו את הדף ב-claude.ai כדי לשמור הוצאות.",
-      bannerSignin:"התחברו ל-claude.ai כדי לשמור הוצאות. הרשומות פרטיות לחשבון שלכם.",
+      bannerSignin:"לא הצלחתי לטעון את הנתונים מהשרת. רעננו את הדף; אם זה חוזר, צריך לתקן את הגדרת מסד הנתונים.",
       bannerRevoked:"ההרשאה לדף השתנתה. טענו מחדש כדי להמשיך.", bannerLoadFail:"לא הצלחנו לטעון את ההוצאות. טענו את הדף מחדש.",
       settings:"הגדרות", language:"שפה", currency:"מטבע", totalBudget:"תקציב חודשי כולל", catBudgets:"תקציב לפי קטגוריה",
       noLimitHint:"(השאירו ריק ללא הגבלה)", noLimit:"ללא הגבלה", saveSettings:"שמירת הגדרות", export:"ייצוא הכול ל-CSV",
