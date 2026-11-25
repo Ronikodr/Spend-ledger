@@ -662,6 +662,8 @@ html[dir="rtl"] .amtfield input{text-align:right}
 
   <section id="sumView" hidden>
     <div class="tbar"><h2 data-t="summaryTab">Summary</h2></div>
+    <div class="seg sumtabs" role="group"><button type="button" id="sumTabMonth" aria-pressed="true"></button><button type="button" id="sumTabReport" aria-pressed="false"></button></div>
+    <div id="sumMonthPart">
     <div class="month" style="margin-bottom:16px">
       <button id="sumPrev" type="button"></button>
       <strong id="sumMonthLabel">—</strong>
@@ -686,7 +688,38 @@ html[dir="rtl"] .amtfield input{text-align:right}
         </section>
       </div>
     </div>
+    </div>
+    <div id="sumReportPart" hidden>
+      <div class="grid rpgrid">
+        <div class="col">
+          <section class="panel rpfilters">
+            <h2 id="rpTitle"></h2>
+            <div class="rplab" id="rpPeriodLab"></div>
+            <div class="rpchips" id="rpPeriods"></div>
+            <div class="rpdates" id="rpDates">
+              <label><span id="rpFromLab"></span><input type="date" id="rpFrom"></label>
+              <label><span id="rpToLab"></span><input type="date" id="rpTo"></label>
+            </div>
+            <div class="rplab" id="rpTypeLab"></div>
+            <div class="rpchips" id="rpCats"></div>
+          </section>
+        </div>
+        <div class="col">
+          <section class="panel rpresult">
+            <div class="rphead"><span id="rpSub"></span><strong id="rpTotal"></strong></div>
+            <div class="rpchart" id="rpChart"></div>
+            <div class="rpnote" id="rpNote"></div>
+            <div id="rpList"></div>
+          </section>
+          <div class="rpbtns">
+            <button type="button" class="rpbtn pri" id="rpPdf"></button>
+            <button type="button" class="rpbtn" id="rpCsv"></button>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
+  <div id="printReport" aria-hidden="true"></div>
 
   <div class="grid" id="homeView">
     <div class="col hubcol">
@@ -840,6 +873,55 @@ html[dir="rtl"] .amtfield input{text-align:right}
 .lgrid button[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);font-weight:600}
 .lgrid button[aria-pressed="true"]::after{content:"✓";margin-inline-start:auto;color:var(--accent);font-weight:700}
 .field.wide{grid-column:1/-1}
+.sumtabs{max-width:360px;margin:0 0 16px}
+.rpfilters h2{margin:0 0 6px}
+.rplab{font-size:12.5px;font-weight:600;color:var(--muted);margin:14px 0 8px}
+.rpchips{display:flex;flex-wrap:wrap;gap:6px}
+.rpchips button{height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:500 14px var(--f-body);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.rpchips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.rpchips button .dot{width:9px;height:9px;border-radius:50%;flex:none}
+.rpchips button[aria-pressed="true"] .dot{box-shadow:0 0 0 2px #fff}
+.rpdates{display:flex;gap:8px;margin-top:10px}
+.rpdates label{flex:1;display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);min-width:0}
+.rpdates input{height:42px;border:1px solid var(--line);border-radius:10px;padding:0 10px;background:var(--surface);color:var(--ink);font:500 14px var(--f-body);min-width:0}
+.rphead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.rphead span{font-size:13px;color:var(--muted)}
+.rphead strong{font:700 26px var(--f-mono,monospace)}
+.rpchart{display:flex;align-items:flex-end;gap:8px;height:220px;margin-top:14px;padding-top:22px;border-bottom:1.5px solid var(--line)}
+.rpcol{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px;border:0;background:none;padding:0;cursor:pointer;color:var(--ink)}
+.rpcol .v{font:600 11.5px var(--f-mono,monospace);white-space:nowrap}
+.rpcol .b{width:100%;max-width:46px;border-radius:7px 7px 0 0;min-height:3px;transition:opacity .15s}
+.rpchart.picked .rpcol:not([aria-pressed="true"]) .b{opacity:.3}
+.rpx{display:flex;gap:8px;margin-top:6px}
+.rpx span{flex:1;min-width:0;text-align:center;font-size:11px;color:var(--muted);line-height:1.25;word-break:keep-all;overflow-wrap:normal}
+.rpnote{font-size:12.5px;color:var(--muted);margin-top:10px}
+.rpempty{padding:40px 0;text-align:center;color:var(--muted)}
+#rpList .rpit{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line)}
+#rpList .rpit .n{flex:1;min-width:0;display:flex;flex-direction:column}
+#rpList .rpit .n b{font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#rpList .rpit .n span{font-size:12px;color:var(--muted)}
+#rpList .rpit .a{font-family:var(--f-mono,monospace)}
+#rpList h3{font-size:15px;margin:16px 0 4px}
+.rpbtns{display:flex;gap:8px;margin-top:12px}
+.rpbtn{flex:1;height:48px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 15px var(--f-body);cursor:pointer}
+.rpbtn.pri{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+#printReport{display:none}
+@media print{
+  @page{margin:14mm}
+  body:has(#printReport:not(:empty)) > *:not(#printReport){display:none !important}
+  #printReport:not(:empty){display:block;color:#000;background:#fff;font:12pt/1.4 Arial,"Noto Sans Hebrew",sans-serif}
+  #printReport h1{font-size:20pt;margin:0 0 4pt}
+  #printReport .meta{color:#444;margin-bottom:12pt}
+  #printReport .tot{font-size:16pt;font-weight:700;margin:6pt 0 12pt}
+  #printReport .pchart{display:flex;align-items:flex-end;gap:8pt;height:150pt;border-bottom:1pt solid #999;margin-bottom:4pt}
+  #printReport .pcol{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;font-size:9pt}
+  #printReport .pcol i{display:block;width:70%;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #printReport .px{display:flex;gap:8pt;font-size:9pt;color:#444;margin-bottom:14pt}
+  #printReport .px span{flex:1;text-align:center}
+  #printReport table{width:100%;border-collapse:collapse;font-size:10.5pt}
+  #printReport th,#printReport td{border-bottom:.5pt solid #bbb;padding:4pt 6pt;text-align:start}
+  #printReport td.num,#printReport th.num{text-align:end;white-space:nowrap}
+}
 .auth .lang{align-self:flex-end;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;height:36px;padding:0 14px;font:500 13px var(--f-body);cursor:pointer}
 </style>
 <div class="auth" id="authView" hidden>
@@ -3121,6 +3203,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
     const mName = new Date(y, m, 1).toLocaleDateString(locale(), {month:"long"});
     $("sumTitle").textContent = t("sumTitle", mName);
     if (state.ready) renderCharts(y, m);
+    renderReport();
   }
   $("sumPrev").onclick = () => $("prevM").click();
   $("sumNext").onclick = () => $("nextM").click();
@@ -3131,6 +3214,165 @@ html[dir="rtl"] .amtfield input{text-align:right}
     render();
     setTimeout(() => $("expPanel").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start"}), 60);
   }
+
+  // ---------- report: pick a period and expense types, see columns per category, save as PDF or CSV ----------
+  const RPT = {
+    en:{month:"This month", rep:"Report", title:"Expense report", period:"Period", m1:"This month", m3:"3 months", m6:"6 months", y:"This year", custom:"Other range…",
+        from:"From", to:"To", type:"Expense type", all:"All", count:n=> n===1?"1 expense":`${n} expenses`, tap:"Tap a column to see its expenses",
+        empty:"No expenses match this period and type.", pdf:"📄 Save as PDF", csv:"⬇ CSV", made:d=>`Made on ${d}`, allTypes:"All expense types", colDate:"Date", colNote:"What", colCat:"Category", colAmt:"Amount"},
+    he:{month:"החודש", rep:"דוח", title:"דוח הוצאות", period:"תקופה", m1:"החודש", m3:"3 חודשים", m6:"6 חודשים", y:"השנה", custom:"טווח אחר…",
+        from:"מ־", to:"עד", type:"סוג הוצאה", all:"הכול", count:n=> n===1?"הוצאה אחת":`${n} הוצאות`, tap:"לחיצה על עמודה מציגה את ההוצאות שלה",
+        empty:"אין הוצאות בתקופה ובסוג שנבחרו.", pdf:"📄 שמור כ‑PDF", csv:"⬇ CSV", made:d=>`הופק ב-${d}`, allTypes:"כל סוגי ההוצאות", colDate:"תאריך", colNote:"מה", colCat:"קטגוריה", colAmt:"סכום"},
+    de:{month:"Dieser Monat", rep:"Bericht", title:"Ausgabenbericht", period:"Zeitraum", m1:"Dieser Monat", m3:"3 Monate", m6:"6 Monate", y:"Dieses Jahr", custom:"Anderer Zeitraum…",
+        from:"Von", to:"Bis", type:"Ausgabenart", all:"Alle", count:n=> n===1?"1 Ausgabe":`${n} Ausgaben`, tap:"Tippe auf eine Säule, um ihre Ausgaben zu sehen",
+        empty:"Keine Ausgaben für diesen Zeitraum und diese Art.", pdf:"📄 Als PDF speichern", csv:"⬇ CSV", made:d=>`Erstellt am ${d}`, allTypes:"Alle Ausgabenarten", colDate:"Datum", colNote:"Was", colCat:"Kategorie", colAmt:"Betrag"},
+    fr:{month:"Ce mois-ci", rep:"Rapport", title:"Rapport de dépenses", period:"Période", m1:"Ce mois-ci", m3:"3 mois", m6:"6 mois", y:"Cette année", custom:"Autre période…",
+        from:"Du", to:"Au", type:"Type de dépense", all:"Tout", count:n=> n===1?"1 dépense":`${n} dépenses`, tap:"Touchez une colonne pour voir ses dépenses",
+        empty:"Aucune dépense pour cette période et ce type.", pdf:"📄 Enregistrer en PDF", csv:"⬇ CSV", made:d=>`Créé le ${d}`, allTypes:"Tous les types", colDate:"Date", colNote:"Quoi", colCat:"Catégorie", colAmt:"Montant"},
+    ru:{month:"Этот месяц", rep:"Отчёт", title:"Отчёт о расходах", period:"Период", m1:"Этот месяц", m3:"3 месяца", m6:"6 месяцев", y:"Этот год", custom:"Другой период…",
+        from:"С", to:"По", type:"Тип расходов", all:"Все", count:n=>`Расходов: ${n}`, tap:"Нажмите на столбец, чтобы увидеть его расходы",
+        empty:"Нет расходов за этот период и тип.", pdf:"📄 Сохранить в PDF", csv:"⬇ CSV", made:d=>`Создано ${d}`, allTypes:"Все типы расходов", colDate:"Дата", colNote:"Что", colCat:"Категория", colAmt:"Сумма"},
+    ar:{month:"هذا الشهر", rep:"تقرير", title:"تقرير المصروفات", period:"الفترة", m1:"هذا الشهر", m3:"3 أشهر", m6:"6 أشهر", y:"هذه السنة", custom:"فترة أخرى…",
+        from:"من", to:"إلى", type:"نوع المصروف", all:"الكل", count:n=>`${n} من المصروفات`, tap:"اضغط على عمود لرؤية مصروفاته",
+        empty:"لا توجد مصروفات لهذه الفترة وهذا النوع.", pdf:"📄 حفظ كـ PDF", csv:"⬇ CSV", made:d=>`أُعدّ في ${d}`, allTypes:"كل الأنواع", colDate:"التاريخ", colNote:"ماذا", colCat:"الفئة", colAmt:"المبلغ"},
+    it:{month:"Questo mese", rep:"Report", title:"Report delle spese", period:"Periodo", m1:"Questo mese", m3:"3 mesi", m6:"6 mesi", y:"Quest'anno", custom:"Altro periodo…",
+        from:"Dal", to:"Al", type:"Tipo di spesa", all:"Tutte", count:n=> n===1?"1 spesa":`${n} spese`, tap:"Tocca una colonna per vedere le sue spese",
+        empty:"Nessuna spesa per questo periodo e tipo.", pdf:"📄 Salva come PDF", csv:"⬇ CSV", made:d=>`Creato il ${d}`, allTypes:"Tutti i tipi", colDate:"Data", colNote:"Cosa", colCat:"Categoria", colAmt:"Importo"},
+    es:{month:"Este mes", rep:"Informe", title:"Informe de gastos", period:"Periodo", m1:"Este mes", m3:"3 meses", m6:"6 meses", y:"Este año", custom:"Otro rango…",
+        from:"Desde", to:"Hasta", type:"Tipo de gasto", all:"Todos", count:n=> n===1?"1 gasto":`${n} gastos`, tap:"Toca una columna para ver sus gastos",
+        empty:"No hay gastos en este periodo y tipo.", pdf:"📄 Guardar como PDF", csv:"⬇ CSV", made:d=>`Creado el ${d}`, allTypes:"Todos los tipos", colDate:"Fecha", colNote:"Qué", colCat:"Categoría", colAmt:"Importe"}
+  };
+  const rt = (k, ...a) => { const d = RPT[state.lang] || RPT.en; const v = d[k] !== undefined ? d[k] : RPT.en[k]; return typeof v === "function" ? v(...a) : v; };
+  const rp = { tab: "month", period: "m1", from: "", to: "", cats: new Set(), pick: null };
+  function rpRange() {
+    const now = new Date(), y = now.getFullYear(), m = now.getMonth();
+    const back = k => ymd(new Date(y, m - k, 1)), endM = ymd(new Date(y, m + 1, 0));
+    if (rp.period === "m1") return [back(0), endM];
+    if (rp.period === "m3") return [back(2), endM];
+    if (rp.period === "m6") return [back(5), endM];
+    if (rp.period === "y") return [`${y}-01-01`, `${y}-12-31`];
+    return [rp.from || back(0), rp.to || endM];
+  }
+  function rpData() {
+    let [from, to] = rpRange(); if (from > to) [from, to] = [to, from];
+    const list = state.expenses.filter(e => e.date >= from && e.date <= to && (!rp.cats.size || rp.cats.has(e.cat)))
+      .sort((a, b) => b.date.localeCompare(a.date) || (b.createdAt||0) - (a.createdAt||0));
+    const by = {}; list.forEach(e => { by[e.cat] = (by[e.cat] || 0) + (+e.amount || 0); });
+    const cols = Object.entries(by).map(([id, v]) => ({ c: catOf(id), v })).sort((a, b) => b.v - a.v);
+    return { from, to, list, cols, total: list.reduce((s, e) => s + (+e.amount || 0), 0) };
+  }
+  const fmtDay = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m-1, d).toLocaleDateString(locale(), {day:"numeric", month:"short", year:"numeric"}); };
+  function setSumTab(tab) {
+    rp.tab = tab;
+    $("sumTabMonth").setAttribute("aria-pressed", String(tab === "month"));
+    $("sumTabReport").setAttribute("aria-pressed", String(tab === "report"));
+    $("sumMonthPart").hidden = tab !== "month"; $("sumReportPart").hidden = tab !== "report";
+    if (tab === "month") renderSummary(); else renderReport();
+  }
+  $("sumTabMonth").onclick = () => setSumTab("month");
+  $("sumTabReport").onclick = () => setSumTab("report");
+  function renderReport() {
+    $("sumTabMonth").textContent = rt("month"); $("sumTabReport").textContent = rt("rep");
+    if ($("sumView").hidden || rp.tab !== "report") return;
+    $("rpTitle").textContent = rt("title"); $("rpPeriodLab").textContent = rt("period"); $("rpTypeLab").textContent = rt("type");
+    $("rpFromLab").textContent = rt("from"); $("rpToLab").textContent = rt("to");
+    $("rpPdf").textContent = rt("pdf"); $("rpCsv").textContent = rt("csv");
+    // period buttons
+    const pb = $("rpPeriods"); pb.innerHTML = "";
+    ["m1","m3","m6","y","custom"].forEach(p => {
+      const b = document.createElement("button"); b.type = "button"; b.textContent = rt(p); b.setAttribute("aria-pressed", String(rp.period === p));
+      b.onclick = () => { if (p === "custom" && rp.period !== "custom") { const [f, tt] = rpRange(); rp.from = f; rp.to = tt; } rp.period = p; rp.pick = null; renderReport(); };
+      pb.appendChild(b);
+    });
+    const [f, tt] = rpRange();
+    $("rpDates").hidden = rp.period !== "custom";
+    if (rp.period === "custom") { $("rpFrom").value = f; $("rpTo").value = tt; }
+    // type buttons: "All", then every category that has expenses
+    const cb = $("rpCats"); cb.innerHTML = "";
+    const allB = document.createElement("button"); allB.type = "button"; allB.textContent = rt("all"); allB.setAttribute("aria-pressed", String(!rp.cats.size));
+    allB.onclick = () => { rp.cats.clear(); rp.pick = null; renderReport(); }; cb.appendChild(allB);
+    const used = new Set(state.expenses.map(e => e.cat));
+    CATS.filter(c => used.has(c.id)).forEach(c => {
+      const b = document.createElement("button"); b.type = "button";
+      b.innerHTML = `<span class="dot" style="background:${cssVar(c.v)}"></span><span></span>`; b.lastChild.textContent = cname(c);
+      b.setAttribute("aria-pressed", String(rp.cats.has(c.id)));
+      b.onclick = () => { rp.cats.has(c.id) ? rp.cats.delete(c.id) : rp.cats.add(c.id); rp.pick = null; renderReport(); };
+      cb.appendChild(b);
+    });
+    // result
+    const d = rpData();
+    $("rpSub").textContent = `${fmtDay(d.from)} – ${fmtDay(d.to)} · ${rt("count", d.list.length)}`;
+    $("rpTotal").textContent = money(d.total);
+    const ch = $("rpChart"), list = $("rpList"); ch.innerHTML = ""; list.innerHTML = "";
+    const old = ch.nextElementSibling; if (old && old.classList.contains("rpx")) old.remove();
+    if (!d.cols.length) { ch.hidden = true; $("rpNote").textContent = ""; list.innerHTML = `<div class="rpempty"></div>`; list.firstChild.textContent = rt("empty"); return; }
+    ch.hidden = false; ch.classList.toggle("picked", !!rp.pick);
+    const max = d.cols[0].v, xl = document.createElement("div"); xl.className = "rpx";
+    d.cols.forEach(({c, v}) => {
+      const b = document.createElement("button"); b.type = "button"; b.className = "rpcol";
+      b.innerHTML = `<span class="v"></span><span class="b" style="height:${Math.max(2, v / max * 86)}%;background:${cssVar(c.v)}"></span>`;
+      b.querySelector(".v").textContent = money(v, {short:true});
+      b.setAttribute("aria-pressed", String(rp.pick === c.id)); b.setAttribute("aria-label", `${cname(c)}: ${money(v)}`);
+      b.onclick = () => { rp.pick = rp.pick === c.id ? null : c.id; renderReport(); };
+      ch.appendChild(b);
+      const lab = document.createElement("span"); lab.textContent = cname(c); xl.appendChild(lab);
+    });
+    ch.after(xl);
+    $("rpNote").textContent = rp.pick ? "" : rt("tap");
+    if (rp.pick) {
+      const c = catOf(rp.pick), items = d.list.filter(e => e.cat === rp.pick);
+      const h = document.createElement("h3"); h.textContent = `${cname(c)} · ${money(items.reduce((s, e) => s + (+e.amount||0), 0))}`; list.appendChild(h);
+      items.forEach(e => {
+        const r = document.createElement("div"); r.className = "rpit";
+        r.innerHTML = `<span class="n"><b></b><span></span></span><span class="a"></span>`;
+        r.querySelector(".n b").textContent = e.note || cname(c);
+        r.querySelector(".n span").textContent = dayLabel(e.date) + " · " + methodName(e.method);
+        r.querySelector(".a").textContent = money(+e.amount);
+        list.appendChild(r);
+      });
+    }
+  }
+  $("rpFrom").onchange = () => { rp.from = $("rpFrom").value; rp.pick = null; renderReport(); };
+  $("rpTo").onchange = () => { rp.to = $("rpTo").value; rp.pick = null; renderReport(); };
+  // CSV of just the expenses in the report
+  function csvFor(list) {
+    const esc = s => `"${String(s??"").replace(/"/g,'""')}"`;
+    return "﻿" + [t("csvHead").map(esc).join(",")].concat([...list].sort((a,b)=>a.date.localeCompare(b.date)).map(e => [(e.date || "").split("-").reverse().join("/"), (+e.amount).toFixed(2), state.settings.currency, esc(cname(catOf(e.cat))), esc(e.note), esc(methodName(e.method)), e.recurringId?t("yes"):"", e.receipt?t("yes"):""].join(","))).join("\n");
+  }
+  $("rpCsv").onclick = async () => {
+    const d = rpData(); if (!d.list.length) return toast(rt("empty"));
+    if (!downloads) return toast(t("exportNA"));
+    try { await downloads.save({filename:`report-${d.from}_${d.to}.csv`, data: csvFor(d.list)}); toast(t("csvSaved")); }
+    catch (e) { if (!e || e.code !== "declined") toast(t("exportFail")); }
+  };
+  // PDF: build a clean page and open the browser's print window, where "Save as PDF" is a choice
+  $("rpPdf").onclick = () => {
+    const d = rpData(); if (!d.list.length) return toast(rt("empty"));
+    const pr = $("printReport"); if (pr.parentNode !== document.body) document.body.appendChild(pr); pr.innerHTML = ""; pr.dir = isRtl() ? "rtl" : "ltr"; pr.lang = state.lang;
+    const add = (tag, cls, text) => { const el = document.createElement(tag); if (cls) el.className = cls; if (text != null) el.textContent = text; pr.appendChild(el); return el; };
+    add("h1", "", rt("title") + (state.settings.name ? ` · ${state.settings.name}` : ""));
+    add("div", "meta", `${fmtDay(d.from)} – ${fmtDay(d.to)} · ${rp.cats.size ? [...rp.cats].map(id => cname(catOf(id))).join(", ") : rt("allTypes")} · ${rt("made", fmtDay(todayStr()))}`);
+    add("div", "tot", `${money(d.total)} · ${rt("count", d.list.length)}`);
+    const pc = add("div", "pchart"), px = add("div", "px"), max = d.cols[0].v;
+    d.cols.forEach(({c, v}) => {
+      const col = document.createElement("div"); col.className = "pcol";
+      col.innerHTML = `<span></span><i style="height:${Math.max(1, v / max * 82)}%;background:${getComputedStyle(document.documentElement).getPropertyValue(c.v).trim() || "#2346C8"}"></i>`;
+      col.firstChild.textContent = money(v, {short:true}); pc.appendChild(col);
+      const l = document.createElement("span"); l.textContent = cname(c); px.appendChild(l);
+    });
+    const tb = add("table"); const hr = tb.insertRow();
+    [["colDate",""],["colNote",""],["colCat",""],["colAmt","num"]].forEach(([k, cls]) => { const th = document.createElement("th"); th.textContent = rt(k); if (cls) th.className = cls; hr.appendChild(th); });
+    [...d.list].reverse().forEach(e => {
+      const r = tb.insertRow();
+      [fmtDay(e.date), e.note || "", cname(catOf(e.cat)), money(+e.amount)].forEach((v, i) => { const td = r.insertCell(); td.textContent = v; if (i === 3) td.className = "num"; });
+    });
+    const oldTitle = document.title; document.title = `${rt("title")} ${d.from} – ${d.to}`;
+    // the report page stays ready until the print window closes, so phones that open the print window in the background still get it
+    const done = () => { document.title = oldTitle; window.removeEventListener("afterprint", done); };
+    window.addEventListener("afterprint", done);
+    setTimeout(() => window.print(), 50);
+  };
+
   // ---------- summary charts ----------
   const tip = document.createElement("div"); tip.className = "charttip"; tip.hidden = true; document.body.appendChild(tip);
   function showTip(html, x, y) {
