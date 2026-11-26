@@ -168,7 +168,21 @@ html[dir="rtl"] .bc-go{transform:scaleX(-1)}
 .undobar span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .undobar button{flex:none;border:0;background:var(--bg);color:var(--ink);font-weight:700;height:38px;padding:0 16px;border-radius:10px}
 .tcwrap{position:relative;display:flex}
-.tcwrap .tcard{padding-inline-end:56px}
+.tcwrap .tcard{padding:0;overflow:hidden;gap:0}
+.tcover{position:relative;padding:16px;padding-inline-end:60px;color:#fff;display:flex;flex-direction:column;gap:4px;min-height:96px;justify-content:flex-end}
+.tcover .fl{font-size:calc(30px*var(--fs,1));line-height:1}
+.tcover .fl .ti{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.22);display:grid;place-items:center}
+.tcover .fl .ti svg{width:20px;height:20px}
+.tcover .tn{font-family:var(--f-display);font-weight:700;font-size:calc(20px*var(--fs,1));white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 2px rgba(0,0,0,.15)}
+.tcover .td{font-size:calc(12.5px*var(--fs,1));opacity:.92;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tcover .st{background:rgba(255,255,255,.24);border-radius:999px;padding:1px 9px;font-weight:600;font-size:calc(11.5px*var(--fs,1))}
+.tbody{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px}
+.tbody .row1{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.tbody .ob{font-size:calc(12.5px*var(--fs,1));color:var(--muted)}
+.tbody .row2{display:flex;justify-content:space-between;gap:8px;font-size:calc(12.5px*var(--fs,1));color:var(--muted);flex-wrap:wrap}
+.tbody .lf{font-weight:600;color:var(--accent)} .tbody .lf.over{color:var(--bad)}
+.tcwrap .tdel{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.35);color:#fff}
+.tcwrap .tdel:hover{background:#fff;color:var(--bad);border-color:#fff}
 .tdel{position:absolute;top:10px;inset-inline-end:10px;width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--muted);display:grid;place-items:center}
 .tdel:hover{color:var(--bad);border-color:var(--bad);background:var(--bad-soft)}
 .tdel svg{width:19px;height:19px}
@@ -337,9 +351,13 @@ html[lang="he"] .center .k,html[lang="ar"] .center .k{letter-spacing:0;font-size
 .listhead{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:6px}
 .search{flex:1 1 200px;min-width:0;height:38px;border:1px solid var(--line);background:var(--sunk);border-radius:999px;padding:0 14px}
 .chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 10px;font-size:calc(12.5px*var(--fs,1))}
-.day{margin-top:14px}
-.dayh{display:flex;justify-content:space-between;padding:0 4px 6px;border-bottom:1px solid var(--line);font-size:calc(13px*var(--fs,1));color:var(--muted)}
-.dayh b{color:var(--ink);font-weight:600}
+.day{margin-top:12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:2px 10px 4px;box-shadow:0 1px 3px rgba(20,30,60,.05)}
+.dayh{display:flex;justify-content:space-between;align-items:center;padding:12px 4px 10px;border-bottom:1px solid var(--line);font-size:calc(13px*var(--fs,1));color:var(--muted)}
+.dayh b{color:var(--ink);font-weight:700;font-size:calc(14.5px*var(--fs,1))}
+.dayh .num{font-family:var(--f-mono);font-weight:600;color:var(--ink);background:var(--sunk);border-radius:999px;padding:3px 10px}
+.day .irow:last-child .item,.day .irow:last-child .idel,.day .irow:last-child .itrip{border-bottom:0}
+.day .item{border-radius:10px}
+#expView #expPanel,.panel:has(> #tvList){background:none;border:0;box-shadow:none;padding-inline:0}
 .item{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:12px;align-items:center;width:100%;text-align:start;background:none;border:0;border-bottom:1px dashed var(--line);padding:10px 4px}
 .item:hover{background:var(--sunk)}
 .badge{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:#fff}
@@ -578,6 +596,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
     <div class="tbar">
       <button class="back" id="tripBack"></button>
       <div style="min-width:0;flex:1"><h2 id="tvName"></h2><div class="note" id="tvDates"></div></div>
+      <button class="pill" id="tvRepBtn" type="button"></button>
       <button class="pill" id="tvEditBtn" data-t="editTrip">Edit trip</button>
       <button class="tdel static" id="tvDelBtn" type="button"></button>
     </div>
@@ -748,6 +767,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
             <h2 id="rpTitle"></h2>
             <div class="rplab" id="rpPeriodLab"></div>
             <div class="rpchips" id="rpPeriods"></div>
+            <div id="rpTrips" hidden></div>
             <div class="rpdates" id="rpDates">
               <label><span id="rpFromLab"></span><input type="date" id="rpFrom"></label>
               <label><span id="rpToLab"></span><input type="date" id="rpTo"></label>
@@ -759,6 +779,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
         <div class="col">
           <section class="panel rpresult">
             <div class="rphead"><span id="rpSub"></span><strong id="rpTotal"></strong></div>
+            <div class="note" id="rpTripStats" hidden style="margin-top:4px"></div>
             <div class="rpchart" id="rpChart"></div>
             <div class="rpnote" id="rpNote"></div>
             <div id="rpList"></div>
@@ -3260,7 +3281,7 @@ html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
     $("settings").hidden = show !== "prefs";
     if (show === "prefs" && !wasPrefs) fillPrefs();
     if (show === "trips") renderTripsList();
-    if (show === "trip") { renderTrip(trip); renderTripFind(trip); }
+    if (show === "trip") { renderTrip(trip); renderTripFind(trip); $("tvRepBtn").textContent = rt2("rep"); $("tvRepBtn").onclick = () => openTripReport(trip.id); }
     const tab = (show === "trip" || show === "trips" || show === "bills" || show === "split") ? "home" : show;
     document.querySelectorAll("#tabbar .tab[data-v]").forEach(b => { if ((b.dataset.v || "home") === tab) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
   }
@@ -3280,6 +3301,12 @@ html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
       const st = tripStats(tr);
       const wrap = document.createElement("div"); wrap.className = "tcwrap";
       const c = document.createElement("button"); c.className = "tcard";
+      if (tripCardV2(c, tr, st, td)) { c.onclick = () => go("trip-" + tr.id); wrap.appendChild(c);
+        const del = document.createElement("button"); del.type = "button"; del.className = "tdel";
+        del.innerHTML = TRASH_SVG; del.setAttribute("aria-label", t("delTripAria", tr.name));
+        const conf = tripConfirm(tr, st.ex.length, () => { conf.hidden = true; del.hidden = false; });
+        del.onclick = () => { conf.hidden = false; del.hidden = true; conf.querySelector(".tc-yes").focus(); };
+        wrap.appendChild(del); wrap.appendChild(conf); box.appendChild(wrap); return; }
       c.innerHTML = `<span class="nm"><span class="ti">${icon("travel")}</span><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span></span><span class="note dates"></span><span class="amt"></span><span class="note cnt"></span>`;
       c.querySelector(".nm span:last-child").textContent = tr.name;
       const live = tr.start && tr.end && tr.start <= td && td <= tr.end;
@@ -3302,6 +3329,50 @@ html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
       wrap.appendChild(del); wrap.appendChild(conf);
       box.appendChild(wrap);
     });
+  }
+  // ---------- trip card: colored cover with flag, then totals ----------
+  const TCT = {
+    en:{soon:n=>n===1?"Starts tomorrow":`Starts in ${n} days`, now:"Now", done:"Ended", days:n=>`${n} days`},
+    he:{soon:n=>n===1?"מתחיל מחר":`מתחיל בעוד ${n} ימים`, now:"עכשיו", done:"הסתיים", days:n=>`${n} ימים`},
+    de:{soon:n=>n===1?"Beginnt morgen":`Beginnt in ${n} Tagen`, now:"Jetzt", done:"Vorbei", days:n=>`${n} Tage`},
+    fr:{soon:n=>n===1?"Commence demain":`Commence dans ${n} jours`, now:"En cours", done:"Terminé", days:n=>`${n} jours`},
+    ru:{soon:n=>n===1?"Начнётся завтра":`Начнётся через ${n} дн.`, now:"Сейчас", done:"Завершён", days:n=>`${n} дн.`},
+    ar:{soon:n=>n===1?"يبدأ غدًا":`يبدأ بعد ${n} أيام`, now:"الآن", done:"انتهى", days:n=>`${n} أيام`},
+    it:{soon:n=>n===1?"Inizia domani":`Inizia tra ${n} giorni`, now:"Adesso", done:"Finito", days:n=>`${n} giorni`},
+    es:{soon:n=>n===1?"Empieza mañana":`Empieza en ${n} días`, now:"Ahora", done:"Terminado", days:n=>`${n} días`}
+  };
+  const tct = (k, ...a) => { const d = TCT[state.lang] || TCT.en; const v = d[k] !== undefined ? d[k] : TCT.en[k]; return typeof v === "function" ? v(...a) : v; };
+  const COVERS = [["#2f7fd8","#45c4c0"],["#e8753a","#f2b33d"],["#7a5af5","#c06bdc"],["#1f9d6b","#7cc85a"],["#d94a6a","#f08a5d"],["#2e5aa8","#6c8cf0"],["#0f8a9d","#3fc1a5"]];
+  const flagEmoji = code => code && /^[A-Z]{2}$/.test(code) ? String.fromCodePoint(...[...code].map(ch => 0x1F1E6 + ch.charCodeAt(0) - 65)) : "";
+  function tripCardV2(c, tr, st, td) {
+    let h = 0; for (const ch of (tr.id || tr.name || "")) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+    const [a, b] = COVERS[h % COVERS.length];
+    const pl = placeFromName(tr.name || "");
+    c.innerHTML = `<span class="tcover" style="background:linear-gradient(135deg,${a},${b})"><span class="fl"></span><span class="tn"></span><span class="td"><span class="dt"></span></span></span><span class="tbody"><span class="row1"><span class="amt"></span><span class="ob"></span></span><span class="row2"><span class="pd"></span><span class="cnt"></span></span></span>`;
+    const fl = c.querySelector(".fl"), em = pl && flagEmoji(pl.code);
+    if (em) fl.textContent = em; else fl.innerHTML = `<span class="ti">${icon("travel")}</span>`;
+    c.querySelector(".tn").textContent = tr.name;
+    const dt = c.querySelector(".dt"); dt.textContent = fmtRange(tr.start, tr.end);
+    let stt = "";
+    if (tr.start && tr.end) {
+      if (td < tr.start) stt = tct("soon", daysBetween(td, tr.start) - 1);
+      else if (td <= tr.end) stt = tct("now");
+      else stt = tct("done");
+      if (st.days) dt.textContent += " · " + tct("days", st.days);
+    }
+    if (stt) { const s2 = document.createElement("span"); s2.className = "st"; s2.textContent = stt; c.querySelector(".td").appendChild(s2); }
+    c.querySelector(".amt").textContent = money(st.total);
+    c.querySelector(".cnt").textContent = t("entriesN", st.ex.length);
+    c.querySelector(".pd").textContent = st.ex.length ? `${t("perDay")}: ${money(st.perDay)}` : "";
+    if (+tr.budget > 0) {
+      const r = st.total / tr.budget;
+      const mini = document.createElement("span"); mini.className = "mini" + (r > 1 ? " over" : r > .8 ? " warn" : "");
+      mini.innerHTML = `<i style="width:${Math.min(100, r*100)}%"></i>`;
+      const lf = document.createElement("span"); lf.className = "lf" + (r > 1 ? " over" : "");
+      lf.textContent = r > 1 ? t("tripOver", money(st.total - tr.budget), money(+tr.budget)) : t("tripLeft", money(tr.budget - st.total), money(+tr.budget));
+      const tb = c.querySelector(".tbody"); tb.insertBefore(mini, tb.querySelector(".row2")); tb.insertBefore(lf, tb.querySelector(".row2"));
+    }
+    return true;
   }
   const TRASH_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M10 11v6M14 11v6"/><path d="M6 7l1 13h10l1-13"/><path d="M9 7V4h6v3"/></svg>';
   function tripConfirm(tr, count, onCancel) {
@@ -4415,8 +4486,23 @@ html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
         from:"Desde", to:"Hasta", type:"Tipo de gasto", all:"Todos", count:n=> n===1?"1 gasto":`${n} gastos`, tap:"Toca una columna para ver sus gastos",
         empty:"No hay gastos en este periodo y tipo.", pdf:"📄 Guardar como PDF", csv:"⬇ CSV", made:d=>`Creado el ${d}`, allTypes:"Todos los tipos", colDate:"Fecha", colNote:"Qué", colCat:"Categoría", colAmt:"Importe"}
   };
+  const RPT2 = {
+    en:{trip:"✈ Trip", pickTrip:"Which trip?", noTrips:"No trips yet.", tripTitle:n=>`Trip report · ${n}`, perDay:x=>`${x} a day`, days:n=>`${n} days`, local:x=>`≈ ${x}`, ofBudget:x=>`of a ${x} budget`, rep:"📊 Report"},
+    he:{trip:"✈ טיול", pickTrip:"איזה טיול?", noTrips:"עוד אין טיולים.", tripTitle:n=>`דוח טיול · ${n}`, perDay:x=>`${x} ליום`, days:n=>`${n} ימים`, local:x=>`≈ ${x}`, ofBudget:x=>`מתוך תקציב ${x}`, rep:"📊 דוח"},
+    de:{trip:"✈ Reise", pickTrip:"Welche Reise?", noTrips:"Noch keine Reisen.", tripTitle:n=>`Reisebericht · ${n}`, perDay:x=>`${x} pro Tag`, days:n=>`${n} Tage`, local:x=>`≈ ${x}`, ofBudget:x=>`von ${x} Budget`, rep:"📊 Bericht"},
+    fr:{trip:"✈ Voyage", pickTrip:"Quel voyage ?", noTrips:"Aucun voyage pour l'instant.", tripTitle:n=>`Rapport de voyage · ${n}`, perDay:x=>`${x} par jour`, days:n=>`${n} jours`, local:x=>`≈ ${x}`, ofBudget:x=>`sur un budget de ${x}`, rep:"📊 Rapport"},
+    ru:{trip:"✈ Поездка", pickTrip:"Какая поездка?", noTrips:"Поездок пока нет.", tripTitle:n=>`Отчёт о поездке · ${n}`, perDay:x=>`${x} в день`, days:n=>`${n} дн.`, local:x=>`≈ ${x}`, ofBudget:x=>`из бюджета ${x}`, rep:"📊 Отчёт"},
+    ar:{trip:"✈ رحلة", pickTrip:"أي رحلة؟", noTrips:"لا توجد رحلات بعد.", tripTitle:n=>`تقرير الرحلة · ${n}`, perDay:x=>`${x} في اليوم`, days:n=>`${n} أيام`, local:x=>`≈ ${x}`, ofBudget:x=>`من ميزانية ${x}`, rep:"📊 تقرير"},
+    it:{trip:"✈ Viaggio", pickTrip:"Quale viaggio?", noTrips:"Ancora nessun viaggio.", tripTitle:n=>`Report del viaggio · ${n}`, perDay:x=>`${x} al giorno`, days:n=>`${n} giorni`, local:x=>`≈ ${x}`, ofBudget:x=>`su un budget di ${x}`, rep:"📊 Report"},
+    es:{trip:"✈ Viaje", pickTrip:"¿Qué viaje?", noTrips:"Aún no hay viajes.", tripTitle:n=>`Informe del viaje · ${n}`, perDay:x=>`${x} al día`, days:n=>`${n} días`, local:x=>`≈ ${x}`, ofBudget:x=>`de un presupuesto de ${x}`, rep:"📊 Informe"}
+  };
+  const rt2 = (k, ...a) => { const d = RPT2[state.lang] || RPT2.en; const v = d[k] !== undefined ? d[k] : RPT2.en[k]; return typeof v === "function" ? v(...a) : v; };
   const rt = (k, ...a) => { const d = RPT[state.lang] || RPT.en; const v = d[k] !== undefined ? d[k] : RPT.en[k]; return typeof v === "function" ? v(...a) : v; };
-  const rp = { tab: "month", period: "m1", from: "", to: "", cats: new Set(), pick: null };
+  const rp = { tab: "month", period: "m1", from: "", to: "", cats: new Set(), pick: null, trip: null };
+  // in a trip report the columns are the trip's own types (flights, stay, food...)
+  const rpTrip = () => rp.period === "trip" ? state.trips.find(x => x.id === rp.trip) || null : null;
+  const rpKey = e => rpTrip() ? (e.tripCat || "other") : e.cat;
+  const rpCat = key => rpTrip() ? tcatOf(key) : catOf(key);
   function rpRange() {
     const now = new Date(), y = now.getFullYear(), m = now.getMonth();
     const back = k => ymd(new Date(y, m - k, 1)), endM = ymd(new Date(y, m + 1, 0));
@@ -4424,14 +4510,16 @@ html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
     if (rp.period === "m3") return [back(2), endM];
     if (rp.period === "m6") return [back(5), endM];
     if (rp.period === "y") return [`${y}-01-01`, `${y}-12-31`];
+    if (rp.period === "trip") { const tr = rpTrip(); if (tr) { const ds = state.expenses.filter(e => e.tripId === tr.id).map(e => e.date).filter(Boolean).sort(); return [tr.start || ds[0] || back(0), tr.end || ds[ds.length - 1] || endM]; } }
     return [rp.from || back(0), rp.to || endM];
   }
   function rpData() {
     let [from, to] = rpRange(); if (from > to) [from, to] = [to, from];
-    const list = state.expenses.filter(e => e.date >= from && e.date <= to && (!rp.cats.size || rp.cats.has(e.cat)))
+    const tr = rpTrip();
+    const list = state.expenses.filter(e => (tr ? e.tripId === tr.id : (e.date >= from && e.date <= to)) && (!rp.cats.size || rp.cats.has(rpKey(e))))
       .sort((a, b) => b.date.localeCompare(a.date) || (b.createdAt||0) - (a.createdAt||0));
-    const by = {}; list.forEach(e => { by[e.cat] = (by[e.cat] || 0) + (+e.amount || 0); });
-    const cols = Object.entries(by).map(([id, v]) => ({ c: catOf(id), v })).sort((a, b) => b.v - a.v);
+    const by = {}; list.forEach(e => { const k = rpKey(e); by[k] = (by[k] || 0) + (+e.amount || 0); });
+    const cols = Object.entries(by).map(([id, v]) => ({ c: rpCat(id), id, v })).sort((a, b) => b.v - a.v);
     return { from, to, list, cols, total: list.reduce((s, e) => s + (+e.amount || 0), 0) };
   }
   const fmtDay = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m-1, d).toLocaleDateString(locale(), {day:"numeric", month:"short", year:"numeric"}); };
@@ -4452,11 +4540,24 @@ html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
     $("rpPdf").textContent = rt("pdf"); $("rpCsv").textContent = rt("csv");
     // period buttons
     const pb = $("rpPeriods"); pb.innerHTML = "";
-    ["m1","m3","m6","y","custom"].forEach(p => {
-      const b = document.createElement("button"); b.type = "button"; b.textContent = rt(p); b.setAttribute("aria-pressed", String(rp.period === p));
-      b.onclick = () => { if (p === "custom" && rp.period !== "custom") { const [f, tt] = rpRange(); rp.from = f; rp.to = tt; } rp.period = p; rp.pick = null; renderReport(); };
+    ["m1","m3","m6","y","custom","trip"].forEach(p => {
+      const b = document.createElement("button"); b.type = "button"; b.textContent = p === "trip" ? rt2("trip") : rt(p); b.setAttribute("aria-pressed", String(rp.period === p));
+      b.onclick = () => {
+        if (p === "custom" && rp.period !== "custom") { const [f, tt] = rpRange(); rp.from = f; rp.to = tt; }
+        if (p === "trip" && !rpTripValid()) rp.trip = (tripsByDate()[0] || {}).id || null;
+        if ((p === "trip") !== (rp.period === "trip")) rp.cats.clear();
+        rp.period = p; rp.pick = null; renderReport(); };
       pb.appendChild(b);
     });
+    const tp = $("rpTrips"); tp.innerHTML = ""; tp.hidden = rp.period !== "trip";
+    if (rp.period === "trip") {
+      const lab = document.createElement("div"); lab.className = "rplab"; lab.style.margin = "10px 0 6px"; lab.textContent = rt2("pickTrip"); tp.appendChild(lab);
+      const row = document.createElement("div"); row.className = "rpchips"; tp.appendChild(row);
+      const trips = tripsByDate();
+      if (!trips.length) { const n = document.createElement("div"); n.className = "note"; n.textContent = rt2("noTrips"); row.appendChild(n); }
+      trips.forEach(tr => { const b = document.createElement("button"); b.type = "button"; b.textContent = tr.name; b.setAttribute("aria-pressed", String(rp.trip === tr.id));
+        b.onclick = () => { rp.trip = tr.id; rp.cats.clear(); rp.pick = null; renderReport(); }; row.appendChild(b); });
+    }
     const [f, tt] = rpRange();
     $("rpDates").hidden = rp.period !== "custom";
     if (rp.period === "custom") { $("rpFrom").value = f; $("rpTo").value = tt; }
@@ -4464,8 +4565,9 @@ html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
     const cb = $("rpCats"); cb.innerHTML = "";
     const allB = document.createElement("button"); allB.type = "button"; allB.textContent = rt("all"); allB.setAttribute("aria-pressed", String(!rp.cats.size));
     allB.onclick = () => { rp.cats.clear(); rp.pick = null; renderReport(); }; cb.appendChild(allB);
-    const used = new Set(state.expenses.map(e => e.cat));
-    CATS.filter(c => used.has(c.id)).forEach(c => {
+    const trR = rpTrip();
+    const used = new Set(state.expenses.filter(e => !trR || e.tripId === trR.id).map(e => trR ? (e.tripCat || "other") : e.cat));
+    (trR ? TRIPCATS : CATS).filter(c => used.has(c.id)).forEach(c => {
       const b = document.createElement("button"); b.type = "button";
       b.innerHTML = `<span class="dot" style="background:${cssVar(c.v)}"></span><span></span>`; b.lastChild.textContent = cname(c);
       b.setAttribute("aria-pressed", String(rp.cats.has(c.id)));
@@ -4476,24 +4578,32 @@ html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
     const d = rpData();
     $("rpSub").textContent = `${fmtDay(d.from)} – ${fmtDay(d.to)} · ${rt("count", d.list.length)}`;
     $("rpTotal").textContent = money(d.total);
+    const ts = $("rpTripStats"); ts.innerHTML = ""; ts.hidden = !trR;
+    if (trR) {
+      const days = trR.start && trR.end ? Math.max(1, daysBetween(trR.start, trR.end)) : 0, bits = [];
+      if (days) { bits.push(rt2("days", days)); bits.push(rt2("perDay", money(d.total / days, {short: true}))); }
+      if (trR.currency && trR.currency !== (state.settings.currency || "ILS")) { const r = rateOf(trR.currency); if (r) bits.push(rt2("local", fmtCur(Math.round(d.total / r), trR.currency))); }
+      if (+trR.budget > 0) bits.push(rt2("ofBudget", money(+trR.budget, {short: true})));
+      ts.textContent = bits.join(" · ");
+    }
     const ch = $("rpChart"), list = $("rpList"); ch.innerHTML = ""; list.innerHTML = "";
     const old = ch.nextElementSibling; if (old && old.classList.contains("rpx")) old.remove();
     if (!d.cols.length) { ch.hidden = true; $("rpNote").textContent = ""; list.innerHTML = `<div class="rpempty"></div>`; list.firstChild.textContent = rt("empty"); return; }
     ch.hidden = false; ch.classList.toggle("picked", !!rp.pick);
     const max = d.cols[0].v, xl = document.createElement("div"); xl.className = "rpx";
-    d.cols.forEach(({c, v}) => {
+    d.cols.forEach(({c, id, v}) => {
       const b = document.createElement("button"); b.type = "button"; b.className = "rpcol";
       b.innerHTML = `<span class="v"></span><span class="b" style="height:${Math.max(2, v / max * 86)}%;background:${cssVar(c.v)}"></span>`;
       b.querySelector(".v").textContent = money(v, {short:true});
-      b.setAttribute("aria-pressed", String(rp.pick === c.id)); b.setAttribute("aria-label", `${cname(c)}: ${money(v)}`);
-      b.onclick = () => { rp.pick = rp.pick === c.id ? null : c.id; renderReport(); };
+      b.setAttribute("aria-pressed", String(rp.pick === id)); b.setAttribute("aria-label", `${cname(c)}: ${money(v)}`);
+      b.onclick = () => { rp.pick = rp.pick === id ? null : id; renderReport(); };
       ch.appendChild(b);
       const lab = document.createElement("span"); lab.textContent = cname(c); xl.appendChild(lab);
     });
     ch.after(xl);
     $("rpNote").textContent = rp.pick ? "" : rt("tap");
     if (rp.pick) {
-      const c = catOf(rp.pick), items = d.list.filter(e => e.cat === rp.pick);
+      const c = rpCat(rp.pick), items = d.list.filter(e => rpKey(e) === rp.pick);
       const h = document.createElement("h3"); h.textContent = `${cname(c)} · ${money(items.reduce((s, e) => s + (+e.amount||0), 0))}`; list.appendChild(h);
       items.forEach(e => {
         const r = document.createElement("div"); r.className = "rpit";
@@ -4505,6 +4615,9 @@ html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
       });
     }
   }
+  const tripsByDate = () => [...state.trips].sort((a, b) => (b.start || "").localeCompare(a.start || "") || (b.createdAt || 0) - (a.createdAt || 0));
+  const rpTripValid = () => !!state.trips.find(x => x.id === rp.trip);
+  function openTripReport(id) { rp.period = "trip"; rp.trip = id; rp.cats.clear(); rp.pick = null; go("summary"); setSumTab("report"); }
   $("rpFrom").onchange = () => { rp.from = $("rpFrom").value; rp.pick = null; renderReport(); };
   $("rpTo").onchange = () => { rp.to = $("rpTo").value; rp.pick = null; renderReport(); };
   // CSV of just the expenses in the report
@@ -4515,7 +4628,8 @@ html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
   $("rpCsv").onclick = async () => {
     const d = rpData(); if (!d.list.length) return toast(rt("empty"));
     if (!downloads) return toast(t("exportNA"));
-    try { await downloads.save({filename:`report-${d.from}_${d.to}.csv`, data: csvFor(d.list)}); toast(t("csvSaved")); }
+    const trC = rpTrip(), fname = trC ? `trip-${(trC.name || "trip").replace(/[^\p{L}\p{N}]+/gu, "-")}.csv` : `report-${d.from}_${d.to}.csv`;
+    try { await downloads.save({filename: fname, data: csvFor(d.list)}); toast(t("csvSaved")); }
     catch (e) { if (!e || e.code !== "declined") toast(t("exportFail")); }
   };
   // PDF: build a clean page and open the browser's print window, where "Save as PDF" is a choice
@@ -4523,8 +4637,10 @@ html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
     const d = rpData(); if (!d.list.length) return toast(rt("empty"));
     const pr = $("printReport"); if (pr.parentNode !== document.body) document.body.appendChild(pr); pr.innerHTML = ""; pr.dir = isRtl() ? "rtl" : "ltr"; pr.lang = state.lang;
     const add = (tag, cls, text) => { const el = document.createElement(tag); if (cls) el.className = cls; if (text != null) el.textContent = text; pr.appendChild(el); return el; };
-    add("h1", "", rt("title") + (state.settings.name ? ` · ${state.settings.name}` : ""));
-    add("div", "meta", `${fmtDay(d.from)} – ${fmtDay(d.to)} · ${rp.cats.size ? [...rp.cats].map(id => cname(catOf(id))).join(", ") : rt("allTypes")} · ${rt("made", fmtDay(todayStr()))}`);
+    const trP = rpTrip();
+    add("h1", "", (trP ? rt2("tripTitle", trP.name) : rt("title")) + (state.settings.name ? ` · ${state.settings.name}` : ""));
+    add("div", "meta", `${fmtDay(d.from)} – ${fmtDay(d.to)} · ${rp.cats.size ? [...rp.cats].map(id => cname(rpCat(id))).join(", ") : rt("allTypes")} · ${rt("made", fmtDay(todayStr()))}`);
+    if (trP && $("rpTripStats").textContent) add("div", "meta", $("rpTripStats").textContent);
     add("div", "tot", `${money(d.total)} · ${rt("count", d.list.length)}`);
     const pc = add("div", "pchart"), px = add("div", "px"), max = d.cols[0].v;
     d.cols.forEach(({c, v}) => {
@@ -4537,9 +4653,9 @@ html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
     [["colDate",""],["colNote",""],["colCat",""],["colAmt","num"]].forEach(([k, cls]) => { const th = document.createElement("th"); th.textContent = rt(k); if (cls) th.className = cls; hr.appendChild(th); });
     [...d.list].reverse().forEach(e => {
       const r = tb.insertRow();
-      [fmtDay(e.date), e.note || "", cname(catOf(e.cat)), money(+e.amount)].forEach((v, i) => { const td = r.insertCell(); td.textContent = v; if (i === 3) td.className = "num"; });
+      [fmtDay(e.date), e.note || "", cname(rpCat(rpKey(e))), money(+e.amount)].forEach((v, i) => { const td = r.insertCell(); td.textContent = v; if (i === 3) td.className = "num"; });
     });
-    const oldTitle = document.title; document.title = `${rt("title")} ${d.from} – ${d.to}`;
+    const oldTitle = document.title; document.title = trP ? rt2("tripTitle", trP.name) : `${rt("title")} ${d.from} – ${d.to}`;
     // the report page stays ready until the print window closes, so phones that open the print window in the background still get it
     const done = () => { document.title = oldTitle; window.removeEventListener("afterprint", done); };
     window.addEventListener("afterprint", done);
