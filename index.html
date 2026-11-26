@@ -486,54 +486,73 @@ html[dir="rtl"] .amtfield input{text-align:right}
 
   <div id="banner" class="banner" hidden></div>
 
-  <section class="panel settings" id="settings" hidden>
-    <h2 data-t="settings">Settings</h2>
-    <div class="srow">
-      <div class="field"><label class="label" for="setName" data-t="yourName">Your name</label>
-        <input id="setName" type="text" maxlength="30"></div>
-      <div class="field wide"><span class="label" data-t="language">Language</span>
-        <div class="lgrid" id="setLangs"></div></div>
-      <div class="field"><label class="label" for="setCur" data-t="currency">Currency</label>
-        <select id="setCur">
+  <section class="settings setv" id="settings" hidden>
+    <div id="setMain">
+      <h2 data-t="settings">Settings</h2>
+      <button type="button" class="sprof" data-page="profile"><span class="spav" id="spAv"></span><span class="sn"><b id="spName"></b><small id="acctEmail"></small></span><span class="schev" aria-hidden="true"></span></button>
+      <div class="sgl" id="sgGen"></div>
+      <div class="sgrp">
+        <button type="button" class="srowi" data-page="lang"><span class="sic" style="background:#E4E9FB">🌐</span><span class="sn"><span id="slLang"></span></span><span class="sv" id="svLang"></span><span class="schev" aria-hidden="true"></span></button>
+        <button type="button" class="srowi" data-page="look"><span class="sic" style="background:#FDEBD6">🎨</span><span class="sn"><span id="slLook"></span></span><span class="sv" id="svLook"></span><span class="schev" aria-hidden="true"></span></button>
+        <button type="button" class="srowi" data-page="text"><span class="sic" style="background:#ECEEF2">Aa</span><span class="sn"><span id="slText"></span></span><span class="sv" id="svText"></span><span class="schev" aria-hidden="true"></span></button>
+      </div>
+      <div class="sgl" id="sgMoney"></div>
+      <div class="sgrp">
+        <button type="button" class="srowi" data-page="currency"><span class="sic" style="background:#DFF2E7">₪</span><span class="sn"><span id="slCur"></span></span><span class="sv" id="svCur"></span><span class="schev" aria-hidden="true"></span></button>
+        <button type="button" class="srowi" data-page="budgets"><span class="sic" style="background:#E7E0FA">🎯</span><span class="sn"><span id="slBud"></span><small id="ssBud"></small></span><span class="sv" id="svBud"></span><span class="schev" aria-hidden="true"></span></button>
+        <button type="button" class="srowi" data-page="rates"><span class="sic" style="background:#DCE6FB">💱</span><span class="sn"><span id="slRates"></span><small id="ssRates"></small></span><span class="sv" id="svRates"></span><span class="schev" aria-hidden="true"></span></button>
+      </div>
+      <div class="sgl" id="sgNotif"></div>
+      <div class="sgrp">
+        <button type="button" class="srowi" data-page="reminders"><span class="sic" style="background:#FFF4D6">🔔</span><span class="sn"><span id="slRem"></span></span><span class="sv" id="svRem"></span><span class="schev" aria-hidden="true"></span></button>
+      </div>
+      <div class="sgl" id="sgData"></div>
+      <div class="scubes">
+        <button type="button" class="scube" id="cubeExport"><span class="sic big" style="background:#DFF2E7">⬇️</span><b id="cbExpT"></b><small id="cbExpS"></small></button>
+        <label class="scube" for="importCsv"><span class="sic big" style="background:#E4E9FB">⬆️</span><b id="cbImpT"></b><small id="cbImpS"></small></label>
+      </div>
+      <input type="file" id="importCsv" accept=".csv,text/csv" hidden>
+      <button class="ssignout" id="signOutBtn" type="button" data-t="signOut">Sign out</button>
+      <p class="note snote" data-t="androidNote"></p>
+      <button class="primary" id="saveSettings" hidden data-t="saveSettings">Save settings</button>
+      <button class="ghost" id="exportCsv" hidden data-t="export">Export all to CSV</button>
+    </div>
+    <div class="spage" data-page="profile" hidden>
+      <div class="sphead"><button type="button" class="back spback"></button><h2 id="spTitleProfile"></h2></div>
+      <div class="spbody"><div class="scard"><label class="label" for="setName" data-t="yourName">Your name</label><input id="setName" type="text" maxlength="30"></div></div>
+    </div>
+    <div class="spage" data-page="lang" hidden>
+      <div class="sphead"><button type="button" class="back spback"></button><h2 id="spTitleLang"></h2></div>
+      <div class="spbody"><div class="scard"><div class="lgrid" id="setLangs"></div></div></div>
+    </div>
+    <div class="spage" data-page="look" hidden>
+      <div class="sphead"><button type="button" class="back spback"></button><h2 id="spTitleLook"></h2></div>
+      <div class="spbody"><div class="scard"><span class="label" data-t="colour">Colour</span><div class="swatches" id="swatches"></div><span class="label" data-t="appearance" style="margin-top:12px">Appearance</span><div class="seg" role="group"><button type="button" id="mAuto" data-t="mAuto">Auto</button><button type="button" id="mLight" data-t="mLight">Light</button><button type="button" id="mDark" data-t="mDark">Dark</button></div></div></div>
+    </div>
+    <div class="spage" data-page="text" hidden>
+      <div class="sphead"><button type="button" class="back spback"></button><h2 id="spTitleText"></h2></div>
+      <div class="spbody"><div class="scard"><span class="label" id="tsLabel">Text size</span><div class="seg tsseg" role="group"><button type="button" id="tsN" style="font-size:14px"></button><button type="button" id="tsL" style="font-size:16px"></button><button type="button" id="tsX" style="font-size:18px"></button></div></div></div>
+    </div>
+    <div class="spage" data-page="currency" hidden>
+      <div class="sphead"><button type="button" class="back spback"></button><h2 id="spTitleCur"></h2></div>
+      <div class="spbody"><div class="scard"><label class="label" for="setCur" data-t="currency">Currency</label><select id="setCur">
           <option value="ILS">₪ ILS</option><option value="USD">$ USD</option>
           <option value="EUR">€ EUR</option><option value="GBP">£ GBP</option>
-        </select></div>
-      <div class="field"><label class="label" for="setBudget" data-t="totalBudget">Total monthly budget</label>
-        <input id="setBudget" type="number" inputmode="decimal" min="0" step="1" placeholder="6000"></div>
+        </select></div></div>
     </div>
-    <div>
-      <div class="label" style="margin-bottom:6px"><span data-t="catBudgets">Budget per category</span> <span style="text-transform:none;letter-spacing:0;font-weight:400" data-t="noLimitHint">(leave empty for no limit)</span></div>
-      <div class="cbgrid" id="cbGrid"></div>
+    <div class="spage" data-page="budgets" hidden>
+      <div class="sphead"><button type="button" class="back spback"></button><h2 id="spTitleBud"></h2></div>
+      <div class="spbody"><div class="scard"><label class="label" for="setBudget" data-t="totalBudget">Total monthly budget</label><input id="setBudget" type="number" inputmode="decimal" min="0" step="1" placeholder="6000"></div><div class="sgl"><span data-t="catBudgets">Budget per category</span> <span style="font-weight:400" data-t="noLimitHint">(leave empty for no limit)</span></div><div class="scard"><div class="cbgrid" id="cbGrid"></div></div></div>
     </div>
-    <div class="srow">
-      <div class="field"><span class="label" data-t="colour">Colour</span><div class="swatches" id="swatches"></div></div>
-      <div class="field"><span class="label" data-t="appearance">Appearance</span>
-        <div class="seg" role="group"><button type="button" id="mAuto" data-t="mAuto">Auto</button><button type="button" id="mLight" data-t="mLight">Light</button><button type="button" id="mDark" data-t="mDark">Dark</button></div></div>
+    <div class="spage" data-page="rates" hidden>
+      <div class="sphead"><button type="button" class="back spback"></button><h2 id="spTitleRates"></h2></div>
+      <div class="spbody"><div class="scard"><div class="rates" id="ratesGrid"></div><p class="note" id="ratesNote" style="margin:8px 0 0"></p></div></div>
     </div>
-    <div class="srow">
-      <div class="field"><span class="label" id="tsLabel">Text size</span>
-        <div class="seg tsseg" role="group"><button type="button" id="tsN" style="font-size:14px"></button><button type="button" id="tsL" style="font-size:16px"></button><button type="button" id="tsX" style="font-size:18px"></button></div></div>
+    <div class="spage" data-page="reminders" hidden>
+      <div class="sphead"><button type="button" class="back spback"></button><h2 id="spTitleRem"></h2></div>
+      <div class="spbody"><span id="remSetLabel" hidden></span><div class="remctl" id="remSettings"></div></div>
     </div>
-    <div>
-      <div class="label" style="margin-bottom:6px" id="remSetLabel">Reminders</div>
-      <div class="remctl" id="remSettings"></div>
-    </div>
-    <div>
-      <div class="label" style="margin-bottom:6px" data-t="ratesTitle">Exchange rates</div>
-      <div class="rates" id="ratesGrid"></div>
-      <p class="note" id="ratesNote" style="margin:6px 0 0"></p>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="primary" id="saveSettings" style="flex:0 0 auto;padding:0 18px" data-t="saveSettings">Save settings</button>
-      <button class="ghost" id="exportCsv" data-t="export">Export all to CSV</button>
-      <label class="ghost" for="importCsv" style="display:inline-flex;align-items:center;cursor:pointer" data-t="importBtn">Import from CSV</label>
-      <input type="file" id="importCsv" accept=".csv,text/csv" hidden>
-    </div>
-    <p class="note" data-t="androidNote"></p>
-    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px">
-      <span class="note" id="acctEmail"></span>
-      <button class="ghost danger" id="signOutBtn" type="button" data-t="signOut">Sign out</button>
-    </div>
+    <p class="note sautosave" id="sAutoNote"></p>
   </section>
 
   <section id="tripsView" hidden>
@@ -698,7 +717,11 @@ html[dir="rtl"] .amtfield input{text-align:right}
       <strong id="sumMonthLabel">—</strong>
       <button id="sumNext" type="button"></button>
     </div>
-    <div class="grid">
+    <div class="grid sring">
+      <div class="col"><section class="panel srcard"><svg viewBox="0 0 120 120" class="srsvg" id="srSvg" role="img"></svg><div class="srdelta" id="srDelta"></div></section></div>
+      <div class="col"><section class="panel srlist" id="srList"></section></div>
+    </div>
+    <div class="grid legacy">
       <div class="col">
         <section class="panel" aria-label="By category">
           <div class="phead"><h2 data-t="whereWent">Where it went</h2><span class="note" data-t="tapFilter">Tap to filter the list</span></div>
@@ -831,8 +854,10 @@ html[dir="rtl"] .amtfield input{text-align:right}
     <div class="col col2">
       <section class="panel colpanel" aria-labelledby="whereTitle">
         <div class="chead"><h2 id="whereTitle"></h2>
-          <button type="button" class="nofix" id="noFixBtn"><span id="noFixLab"></span><span class="rsw" role="switch" id="noFixSw" aria-checked="false"></span></button></div>
-        <div class="hcols" id="hCols"></div><div class="hx" id="hX"></div>
+          <div class="seg chartseg" role="group"><button type="button" id="hcColsBtn"></button><button type="button" id="hcRingBtn"></button></div></div>
+        <button type="button" class="nofix" id="noFixBtn"><span id="noFixLab"></span><span class="rsw" role="switch" id="noFixSw" aria-checked="false"></span></button>
+        <div id="hColsWrap"><div class="hcols" id="hCols"></div><div class="hx" id="hX"></div></div>
+        <div id="hRingWrap" hidden></div>
       </section>
       <section class="panel recent" aria-labelledby="recentTitle">
         <div class="rhead"><h2 id="recentTitle"></h2><button type="button" id="seeAllBtn"></button></div>
@@ -944,6 +969,38 @@ html[dir="rtl"] .amtfield input{text-align:right}
 .lgrid button[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);font-weight:600}
 .lgrid button[aria-pressed="true"]::after{content:"✓";margin-inline-start:auto;color:var(--accent);font-weight:700}
 .field.wide{grid-column:1/-1}
+.setv{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+#setMain{display:flex;flex-direction:column;gap:12px}
+#setMain > h2{margin:0}
+.sprof{display:flex;align-items:center;gap:12px;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px;text-align:start;color:var(--ink);cursor:pointer;font:inherit}
+.spav{width:48px;height:48px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:700;font-size:calc(19px*var(--fs,1));flex:none}
+.sn{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.sn b{font-size:calc(16px*var(--fs,1))}
+.sn small{color:var(--muted);font-size:calc(12px*var(--fs,1));overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sgl{font-size:calc(12.5px*var(--fs,1));font-weight:600;color:var(--muted);margin:6px 8px -6px}
+.sgrp{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.srowi{display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;border:0;border-bottom:1px solid var(--line);background:none;color:var(--ink);text-align:start;cursor:pointer;font:500 calc(15px*var(--fs,1)) var(--f-body)}
+.srowi:last-child{border-bottom:0}
+.srowi:hover,.sprof:hover{background:var(--sunk)}
+.sic{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:calc(15px*var(--fs,1));flex:none;color:#1b2230}
+.sic.big{width:44px;height:44px;border-radius:14px;font-size:calc(20px*var(--fs,1))}
+.sv{color:var(--muted);font-size:calc(13.5px*var(--fs,1));white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:45%}
+.schev::before{content:"›";color:var(--muted);font-size:20px;line-height:1}
+html[dir="rtl"] .schev::before{content:"‹"}
+.scubes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.scube{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 10px;cursor:pointer;color:var(--ink);font:inherit}
+.scube:hover{border-color:var(--accent)}
+.scube b{font-size:calc(15px*var(--fs,1))}
+.scube small{color:var(--muted);font-size:calc(12px*var(--fs,1))}
+.ssignout{align-self:center;border:0;background:none;color:var(--bad,#B3261E);font:600 calc(14.5px*var(--fs,1)) var(--f-body);padding:8px 16px;cursor:pointer}
+.snote{text-align:center;font-size:calc(12px*var(--fs,1))}
+.spage{display:flex;flex-direction:column;gap:12px}
+.sphead{display:flex;align-items:center;gap:12px}
+.sphead h2{margin:0;flex:1}
+.spbody{display:flex;flex-direction:column;gap:12px}
+.scard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.scard input,.scard select{width:100%}
+.sautosave{text-align:center;font-size:calc(12px*var(--fs,1))}
 .legacy,#heads,#alerts{display:none!important}
 .top{flex-wrap:nowrap}
 @media (max-width:560px){#langBtn .lname,#langBtn .lcaret{display:none}#langBtn{padding:0 10px}}
@@ -976,6 +1033,23 @@ html[dir="rtl"] .amtfield input{text-align:right}
 .nofix .rsw{width:38px;height:22px}
 .nofix .rsw::after{width:16px;height:16px}
 .nofix .rsw[aria-checked="true"]::after{inset-inline-start:19px}
+.sring .srcard{display:flex;flex-direction:column;align-items:center;gap:8px}
+.srsvg{width:min(260px,100%);height:auto;aspect-ratio:1}
+.srdelta{color:var(--muted);font-size:calc(13px*var(--fs,1))}
+.srlist .sri{display:flex;align-items:center;gap:10px;width:100%;padding:11px 2px;border:0;border-bottom:1px dashed var(--line);background:none;color:var(--ink);font:500 calc(14.5px*var(--fs,1)) var(--f-body);cursor:pointer;text-align:start}
+.srlist .sri:last-child{border-bottom:0}
+.srlist .sri .dot{width:12px;height:12px;border-radius:50%;flex:none}
+.srlist .sri .n{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.srlist .sri .pc{width:40px;font-weight:700}
+.srlist .sri .am{width:72px;font-family:var(--f-mono,monospace);text-align:end}
+.srlist .sri .ch{width:52px;text-align:end;font-size:calc(12.5px*var(--fs,1));font-weight:600}
+.srlist .up{color:var(--bad,#B3261E)}.srlist .dn{color:var(--good,#1F7A4A)}.srlist .eq{color:var(--muted)}
+.srempty{padding:30px 0;text-align:center;color:var(--muted)}
+.chartseg{height:34px;width:auto}
+.chartseg button{padding:0 12px;font-size:calc(12.5px*var(--fs,1))}
+.colpanel .nofix{margin-top:10px}
+#hRingWrap{display:flex;flex-direction:column;align-items:center;padding-top:8px}
+#hRingWrap .ringbox{margin-bottom:30px}
 .hcols{display:flex;align-items:flex-end;gap:6px;height:170px;margin-top:12px;padding-top:18px;border-bottom:1.5px solid var(--line)}
 .hcol{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px;border:0;background:none;padding:0;cursor:pointer;color:var(--ink)}
 .hcol .v{font:600 calc(10.5px*var(--fs,1)) var(--f-mono,monospace);white-space:nowrap}
@@ -2733,7 +2807,7 @@ html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
   }
 
   function render() {
-    renderSplitCard(); renderReminders(); renderHome2(); if (!$("splitView").hidden) renderSplitView();
+    renderSplitCard(); renderReminders(); renderHome2(); if (!$("settings").hidden) paintSettingsList(); if (!$("splitView").hidden) renderSplitView();
     const {y,m} = state.month;
     const mk = monthKey(y,m);
     $("monthLabel").textContent = monthName(y,m);
@@ -3191,9 +3265,10 @@ html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
     document.querySelectorAll("#tabbar .tab[data-v]").forEach(b => { if ((b.dataset.v || "home") === tab) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
   }
   function fillPrefs() {
+    showSetPage("");
     drawRemControls($("remSettings"));
     $("setName").value = state.settings.name || ""; $("setCur").value = state.settings.currency || "ILS"; $("setBudget").value = state.settings.budget || "";
-    renderBudgetInputs(); renderThemeControls(); renderRatesGrid();
+    renderBudgetInputs(); renderThemeControls(); renderRatesGrid(); paintSettingsList();
   }
   const isPhoneW = () => matchMedia("(max-width:899px)").matches;
   function renderTripsList() {
@@ -4030,7 +4105,7 @@ html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
     $("qScan").textContent = nh("scan"); $("qScan2").textContent = nh("scan"); $("qAddL").textContent = nh("add"); $("qSplitL").textContent = nh("split");
     $("qTripL").textContent = nh("trips"); $("qBillsL").textContent = nh("bills"); $("qReportL").textContent = nh("report");
     // columns: where the money went
-    $("whereTitle").textContent = t("whereWent"); $("noFixLab").textContent = nh("noFix"); $("noFixSw").setAttribute("aria-checked", String(noFixed));
+    $("whereTitle").textContent = t("whereWent"); paintHomeChart(); $("noFixLab").textContent = nh("noFix"); $("noFixSw").setAttribute("aria-checked", String(noFixed));
     const by = {}; inMonth.filter(e => !(noFixed && e.recurringId)).forEach(e => { by[e.cat] = (by[e.cat] || 0) + (+e.amount || 0); });
     const cols = Object.entries(by).filter(([, v]) => v > 0).map(([id, v]) => ({c: catOf(id), v})).sort((a, b2) => b2.v - a.v);
     const hc = $("hCols"), hx = $("hX"); hc.innerHTML = ""; hx.innerHTML = "";
@@ -4063,6 +4138,21 @@ html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
     $("tabExpL").textContent = nh("expenses"); $("splitAddL").textContent = nh("newSplit");
     $("bellBtn").setAttribute("aria-label", nh("bell"));
   }
+
+  // "where the money went": columns or the ring with bubbles, remembered on this device
+  const HCT = { en:["Columns","Ring"], he:["עמודות","טבעת"], de:["Säulen","Ring"], fr:["Colonnes","Anneau"], ru:["Столбцы","Кольцо"], ar:["أعمدة","حلقة"], it:["Colonne","Anello"], es:["Columnas","Anillo"] };
+  let homeChart = "cols"; try { homeChart = localStorage.getItem("homeChart") === "ring" ? "ring" : "cols"; } catch {}
+  function paintHomeChart() {
+    const L = HCT[state.lang] || HCT.en;
+    $("hcColsBtn").textContent = L[0]; $("hcRingBtn").textContent = L[1];
+    $("hcColsBtn").setAttribute("aria-pressed", String(homeChart === "cols")); $("hcRingBtn").setAttribute("aria-pressed", String(homeChart === "ring"));
+    const ring = homeChart === "ring";
+    if (ring && $("ringbox").parentNode !== $("hRingWrap")) $("hRingWrap").appendChild($("ringbox"));
+    $("hRingWrap").hidden = !ring; $("hColsWrap").hidden = ring; $("noFixBtn").hidden = ring;
+  }
+  const setHomeChart = v => { homeChart = v; try { localStorage.setItem("homeChart", v); } catch {} paintHomeChart(); };
+  $("hcColsBtn").onclick = () => setHomeChart("cols");
+  $("hcRingBtn").onclick = () => setHomeChart("ring");
   $("wPrev").onclick = () => $("prevM").click();
   $("wNext").onclick = () => $("nextM").click();
   $("noFixBtn").onclick = () => { noFixed = !noFixed; try { localStorage.setItem("noFixed", noFixed ? "1" : "0"); } catch {} renderHome2(); };
@@ -4094,6 +4184,93 @@ html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
   setTimeout(() => refreshRates(false), 1500);
   setInterval(() => refreshRates(false), 3 * 3600e3);
   document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshRates(false); });
+
+
+  // ---------- Settings: a grouped list; each row opens its own short page; changes save by themselves ----------
+  const STX = {
+    en:{gen:"General", money:"Money", notif:"Notifications", data:"Your data", lang:"Language", look:"Appearance", text:"Text size", cur:"Main currency", bud:"Budgets", budSub:"Monthly and per category",
+        rates:"Exchange rates", ratesSub:"Update by themselves every day", rem:"Reminders", exp:"Export", expSub:"Save all your expenses to a file", imp:"Import", impSub:"Add expenses from a file",
+        noName:"Add your name", noLimit:"No limit", remOff:"Off", auto:"Changes save by themselves.", csv:"Excel file (CSV)", csvSub:"All expenses, with dates", pdf:"PDF report", pdfSub:"Opens the report screen", profile:"Profile"},
+    he:{gen:"כללי", money:"כסף", notif:"התראות", data:"הנתונים שלך", lang:"שפה", look:"מראה", text:"גודל טקסט", cur:"מטבע ראשי", bud:"תקציבים", budSub:"חודשי ולכל קטגוריה",
+        rates:"שערי מטבע", ratesSub:"מתעדכנים לבד כל יום", rem:"תזכורות", exp:"ייצוא", expSub:"שמירת כל ההוצאות לקובץ", imp:"ייבוא", impSub:"הוספת הוצאות מקובץ",
+        noName:"הוסיפו את השם שלכם", noLimit:"ללא הגבלה", remOff:"כבויות", auto:"השינויים נשמרים לבד.", csv:"קובץ לאקסל (CSV)", csvSub:"כל ההוצאות, עם תאריכים", pdf:"דוח PDF", pdfSub:"פותח את מסך הדוח", profile:"פרופיל"},
+    de:{gen:"Allgemein", money:"Geld", notif:"Benachrichtigungen", data:"Deine Daten", lang:"Sprache", look:"Darstellung", text:"Textgröße", cur:"Hauptwährung", bud:"Budgets", budSub:"Monatlich und pro Kategorie",
+        rates:"Wechselkurse", ratesSub:"Aktualisieren sich täglich", rem:"Erinnerungen", exp:"Export", expSub:"Alle Ausgaben in eine Datei", imp:"Import", impSub:"Ausgaben aus einer Datei",
+        noName:"Namen hinzufügen", noLimit:"Kein Limit", remOff:"Aus", auto:"Änderungen werden automatisch gespeichert.", csv:"Excel-Datei (CSV)", csvSub:"Alle Ausgaben, mit Datum", pdf:"PDF-Bericht", pdfSub:"Öffnet den Bericht", profile:"Profil"},
+    fr:{gen:"Général", money:"Argent", notif:"Notifications", data:"Vos données", lang:"Langue", look:"Apparence", text:"Taille du texte", cur:"Devise principale", bud:"Budgets", budSub:"Mensuel et par catégorie",
+        rates:"Taux de change", ratesSub:"Mis à jour chaque jour", rem:"Rappels", exp:"Exporter", expSub:"Toutes vos dépenses dans un fichier", imp:"Importer", impSub:"Ajouter des dépenses depuis un fichier",
+        noName:"Ajoutez votre prénom", noLimit:"Aucune limite", remOff:"Désactivés", auto:"Les changements s'enregistrent tout seuls.", csv:"Fichier Excel (CSV)", csvSub:"Toutes les dépenses, avec dates", pdf:"Rapport PDF", pdfSub:"Ouvre l'écran du rapport", profile:"Profil"},
+    ru:{gen:"Общие", money:"Деньги", notif:"Уведомления", data:"Ваши данные", lang:"Язык", look:"Оформление", text:"Размер текста", cur:"Основная валюта", bud:"Бюджеты", budSub:"На месяц и по категориям",
+        rates:"Курсы валют", ratesSub:"Обновляются каждый день", rem:"Напоминания", exp:"Экспорт", expSub:"Все расходы в файл", imp:"Импорт", impSub:"Добавить расходы из файла",
+        noName:"Добавьте имя", noLimit:"Без лимита", remOff:"Выключены", auto:"Изменения сохраняются сами.", csv:"Файл Excel (CSV)", csvSub:"Все расходы с датами", pdf:"Отчёт PDF", pdfSub:"Открывает отчёт", profile:"Профиль"},
+    ar:{gen:"عام", money:"المال", notif:"الإشعارات", data:"بياناتك", lang:"اللغة", look:"المظهر", text:"حجم النص", cur:"العملة الرئيسية", bud:"الميزانيات", budSub:"شهرية ولكل فئة",
+        rates:"أسعار الصرف", ratesSub:"تتحدّث تلقائيًا كل يوم", rem:"التذكيرات", exp:"تصدير", expSub:"حفظ كل المصروفات في ملف", imp:"استيراد", impSub:"إضافة مصروفات من ملف",
+        noName:"أضف اسمك", noLimit:"بلا حد", remOff:"متوقفة", auto:"تُحفظ التغييرات تلقائيًا.", csv:"ملف Excel ‏(CSV)", csvSub:"كل المصروفات مع التواريخ", pdf:"تقرير PDF", pdfSub:"يفتح شاشة التقرير", profile:"الملف الشخصي"},
+    it:{gen:"Generale", money:"Soldi", notif:"Notifiche", data:"I tuoi dati", lang:"Lingua", look:"Aspetto", text:"Dimensione testo", cur:"Valuta principale", bud:"Budget", budSub:"Mensile e per categoria",
+        rates:"Tassi di cambio", ratesSub:"Si aggiornano ogni giorno", rem:"Promemoria", exp:"Esporta", expSub:"Tutte le spese in un file", imp:"Importa", impSub:"Aggiungi spese da un file",
+        noName:"Aggiungi il tuo nome", noLimit:"Nessun limite", remOff:"Spenti", auto:"Le modifiche si salvano da sole.", csv:"File Excel (CSV)", csvSub:"Tutte le spese, con date", pdf:"Report PDF", pdfSub:"Apre la schermata del report", profile:"Profilo"},
+    es:{gen:"General", money:"Dinero", notif:"Notificaciones", data:"Tus datos", lang:"Idioma", look:"Apariencia", text:"Tamaño del texto", cur:"Moneda principal", bud:"Presupuestos", budSub:"Mensual y por categoría",
+        rates:"Tipos de cambio", ratesSub:"Se actualizan cada día", rem:"Recordatorios", exp:"Exportar", expSub:"Guardar todos tus gastos en un archivo", imp:"Importar", impSub:"Añadir gastos desde un archivo",
+        noName:"Añade tu nombre", noLimit:"Sin límite", remOff:"Apagados", auto:"Los cambios se guardan solos.", csv:"Archivo Excel (CSV)", csvSub:"Todos los gastos, con fechas", pdf:"Informe PDF", pdfSub:"Abre la pantalla del informe", profile:"Perfil"}
+  };
+  const sx = k => (STX[state.lang] || STX.en)[k] ?? STX.en[k];
+  let setPage = "";
+  function showSetPage(p) {
+    setPage = p || "";
+    $("setMain").hidden = !!setPage;
+    document.querySelectorAll("#settings .spage").forEach(el => { el.hidden = el.dataset.page !== setPage; });
+    $("sAutoNote").hidden = !setPage;
+    window.scrollTo(0, 0);
+    if (!setPage) paintSettingsList();
+  }
+  function paintSettingsList() {
+    const L = (k, id) => { $(id).textContent = sx(k); };
+    L("gen", "sgGen"); L("money", "sgMoney"); L("notif", "sgNotif"); L("data", "sgData");
+    L("lang", "slLang"); L("look", "slLook"); L("text", "slText"); L("cur", "slCur"); L("bud", "slBud"); L("budSub", "ssBud");
+    L("rates", "slRates"); L("ratesSub", "ssRates"); L("rem", "slRem");
+    L("exp", "cbExpT"); L("expSub", "cbExpS"); L("imp", "cbImpT"); L("impSub", "cbImpS");
+    L("profile", "spTitleProfile"); L("lang", "spTitleLang"); L("look", "spTitleLook"); L("text", "spTitleText"); L("cur", "spTitleCur"); L("bud", "spTitleBud"); L("rates", "spTitleRates"); L("rem", "spTitleRem");
+    $("sAutoNote").textContent = sx("auto");
+    const nm = (state.settings.name || "").trim();
+    $("spName").textContent = nm || sx("noName"); $("spAv").textContent = nm ? nm.charAt(0).toUpperCase() : "🙂";
+    const Lg = slLang(state.lang); $("svLang").textContent = Lg.name;
+    const th = themeSetting(); $("svLook").textContent = `${t((ACCENTS[th.accent] || ACCENTS.ocean).t)} · ${t({auto:"mAuto", light:"mLight", dark:"mDark"}[th.mode] || "mAuto")}`;
+    const tk = window.__slText.textSizeKey(), TL = TSL[state.lang] || TSL.en; $("svText").textContent = TL[{normal:1, large:2, xl:3}[tk] || 1];
+    const c = state.settings.currency || "ILS"; $("svCur").textContent = `${curSym(c)} ${c}`;
+    $("svBud").textContent = +state.settings.budget > 0 ? money(+state.settings.budget, {short: true}) : sx("noLimit");
+    $("svRates").textContent = "";
+    const rc = remCfg(), parts = []; if (rc.daily.on) parts.push(rc.daily.time); if (rc.bills.on) parts.push("⚡");
+    $("svRem").textContent = parts.length ? parts.join(" · ") : sx("remOff");
+    document.querySelectorAll("#settings .spback").forEach(b => { b.textContent = isRtl() ? "›" : "‹"; b.setAttribute("aria-label", t("back")); });
+  }
+  document.querySelectorAll("#settings [data-page]").forEach(el => { if (el.classList.contains("srowi") || el.classList.contains("sprof")) el.addEventListener("click", () => showSetPage(el.dataset.page)); });
+  document.querySelectorAll("#settings .spback").forEach(b => b.addEventListener("click", () => showSetPage("")));
+  // autosave: the old "Save settings" button still does the saving, quietly
+  let quietSave = false, saveTimer = null;
+  const autoSave = () => { clearTimeout(saveTimer); saveTimer = setTimeout(() => { quietSave = true; $("saveSettings").click(); }, 250); };
+  $("setName").addEventListener("change", autoSave);
+  $("setCur").addEventListener("change", autoSave);
+  $("setBudget").addEventListener("change", autoSave);
+  $("cbGrid").addEventListener("change", autoSave);
+  $("ratesGrid").addEventListener("change", autoSave);
+  // Export cube: a small window with CSV or the PDF report
+  $("cubeExport").onclick = () => {
+    const old = document.querySelector(".rmmodal"); if (old) old.remove();
+    const m = document.createElement("div"); m.className = "rmmodal"; m.setAttribute("role", "dialog"); m.setAttribute("aria-modal", "true"); m.setAttribute("aria-label", sx("exp"));
+    m.innerHTML = `<div class="rmpanel"><div class="hd"><h2></h2><button type="button" aria-label="Close">×</button></div><div class="sgrp">
+      <button type="button" class="srowi" id="exCsv"><span class="sic" style="background:#DFF2E7">📊</span><span class="sn"><span></span><small></small></span><span class="schev" aria-hidden="true"></span></button>
+      <button type="button" class="srowi" id="exPdf"><span class="sic" style="background:#FDE7E5">📄</span><span class="sn"><span></span><small></small></span><span class="schev" aria-hidden="true"></span></button></div></div>`;
+    m.querySelector("h2").textContent = sx("exp");
+    const fill = (id, a, b) => { const r = m.querySelector("#" + id); r.querySelector(".sn span").textContent = sx(a); r.querySelector(".sn small").textContent = sx(b); };
+    fill("exCsv", "csv", "csvSub"); fill("exPdf", "pdf", "pdfSub");
+    const close = () => { m.remove(); document.removeEventListener("keydown", esc); };
+    const esc = e => { if (e.key === "Escape") close(); };
+    m.querySelector(".hd button").onclick = close; m.addEventListener("click", e => { if (e.target === m) close(); });
+    document.addEventListener("keydown", esc);
+    m.querySelector("#exCsv").onclick = () => { close(); $("exportCsv").click(); };
+    m.querySelector("#exPdf").onclick = () => { close(); go("summary"); setSumTab("report"); };
+    document.body.appendChild(m); m.querySelector("#exCsv").focus();
+  };
 
   // ---------- currency picker wiring (runs once the page helpers exist) ----------
   $("ntName").addEventListener("input", () => autoTripCurrency($("ntName"), $("ntCur"), $("ntCurHint")));
@@ -4152,8 +4329,54 @@ html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
     if ($("sumView").hidden) return; // charts are measured, so draw them only while the screen is visible
     const mName = new Date(y, m, 1).toLocaleDateString(locale(), {month:"long"});
     $("sumTitle").textContent = t("sumTitle", mName);
-    if (state.ready) renderCharts(y, m);
+    if (state.ready) { renderCharts(y, m); renderSumRing(y, m); }
     renderReport();
+  }
+
+  // ---------- Summary: ring + list with each category's share and change vs last month ----------
+  const SRT = { en:{spent:"Spent", less:(p,m)=>`▼ ${p}% less than ${m}`, more:(p,m)=>`▲ ${p}% more than ${m}`, same:m=>`About the same as ${m}`, isNew:"new"},
+    he:{spent:"הוצאת", less:(p,m)=>`▼ ${p}% פחות מ${m}`, more:(p,m)=>`▲ ${p}% יותר מ${m}`, same:m=>`בערך כמו ב${m}`, isNew:"חדש"},
+    de:{spent:"Ausgegeben", less:(p,m)=>`▼ ${p}% weniger als im ${m}`, more:(p,m)=>`▲ ${p}% mehr als im ${m}`, same:m=>`Etwa wie im ${m}`, isNew:"neu"},
+    fr:{spent:"Dépensé", less:(p,m)=>`▼ ${p}% de moins qu'en ${m}`, more:(p,m)=>`▲ ${p}% de plus qu'en ${m}`, same:m=>`À peu près comme en ${m}`, isNew:"nouveau"},
+    ru:{spent:"Потрачено", less:(p,m)=>`▼ на ${p}% меньше, чем в ${m}`, more:(p,m)=>`▲ на ${p}% больше, чем в ${m}`, same:m=>`Примерно как в ${m}`, isNew:"новое"},
+    ar:{spent:"المصروف", less:(p,m)=>`▼ أقل بـ${p}% من ${m}`, more:(p,m)=>`▲ أكثر بـ${p}% من ${m}`, same:m=>`تقريبًا مثل ${m}`, isNew:"جديد"},
+    it:{spent:"Speso", less:(p,m)=>`▼ ${p}% in meno di ${m}`, more:(p,m)=>`▲ ${p}% in più di ${m}`, same:m=>`Circa come ${m}`, isNew:"nuova"},
+    es:{spent:"Gastado", less:(p,m)=>`▼ ${p}% menos que en ${m}`, more:(p,m)=>`▲ ${p}% más que en ${m}`, same:m=>`Más o menos como en ${m}`, isNew:"nuevo"} };
+  const srt = (k, ...a) => { const d = SRT[state.lang] || SRT.en; const v = d[k] !== undefined ? d[k] : SRT.en[k]; return typeof v === "function" ? v(...a) : v; };
+  function renderSumRing(y, m) {
+    const mk = monthKey(y, m), pm = m === 0 ? {y: y-1, m: 11} : {y, m: m-1}, pk = monthKey(pm.y, pm.m);
+    const cur = {}, prev = {};
+    state.expenses.forEach(e => { const d = e.date || ""; if (d.startsWith(mk)) cur[e.cat] = (cur[e.cat] || 0) + (+e.amount || 0); else if (d.startsWith(pk)) prev[e.cat] = (prev[e.cat] || 0) + (+e.amount || 0); });
+    const total = Object.values(cur).reduce((a, b) => a + b, 0), ptotal = Object.values(prev).reduce((a, b) => a + b, 0);
+    const rows = Object.entries(cur).filter(([, v]) => v > 0).map(([id, v]) => ({c: catOf(id), v, p: prev[id] || 0})).sort((a, b) => b.v - a.v);
+    // ring
+    const R = 44, Cc = 2 * Math.PI * R; let off = 0, h = `<circle cx="60" cy="60" r="${R}" fill="none" stroke="var(--sunk)" stroke-width="15"/>`;
+    rows.forEach(r => { const len = r.v / total * Cc, gap = rows.length > 1 ? 1.2 : 0;
+      h += `<circle cx="60" cy="60" r="${R}" fill="none" stroke="${cssVar(r.c.v)}" stroke-width="15" stroke-dasharray="${Math.max(0, len - gap).toFixed(2)} ${Cc.toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 60 60)"/>`; off += len; });
+    const big = (() => { try { return new Intl.NumberFormat(locale(), {style:"currency", currency: state.settings.currency || "ILS", maximumFractionDigits: 0}).format(total); } catch { return money(total); } })();
+    h += `<text x="60" y="55" text-anchor="middle" font-size="7.5" fill="var(--muted)"></text><text x="60" y="70" text-anchor="middle" font-size="${big.length > 8 ? 12 : 14}" font-weight="700" fill="var(--ink)" style="font-family:var(--f-mono,monospace)"></text>`;
+    const svg = $("srSvg"); svg.innerHTML = h;
+    const tx = svg.querySelectorAll("text"); tx[0].textContent = srt("spent"); tx[1].textContent = big;
+    svg.setAttribute("aria-label", `${srt("spent")} ${big}`);
+    const pmName = new Date(pm.y, pm.m, 1).toLocaleDateString(locale(), {month: "long"});
+    const dlt = $("srDelta");
+    if (ptotal > 0 && total > 0) { const ch = Math.round((total - ptotal) / ptotal * 100); dlt.textContent = Math.abs(ch) < 2 ? srt("same", pmName) : ch < 0 ? srt("less", -ch, pmName) : srt("more", ch, pmName); }
+    else dlt.textContent = "";
+    // list
+    const list = $("srList"); list.innerHTML = "";
+    if (!rows.length) { const d = document.createElement("div"); d.className = "srempty"; d.textContent = t("noDataChart"); list.appendChild(d); return; }
+    rows.forEach(r => {
+      const b = document.createElement("button"); b.type = "button"; b.className = "sri";
+      b.innerHTML = `<span class="dot" style="background:${cssVar(r.c.v)}"></span><span class="n"></span><span class="pc"></span><span class="am"></span><span class="ch"></span>`;
+      b.querySelector(".n").textContent = cname(r.c);
+      b.querySelector(".pc").textContent = Math.round(r.v / total * 100) + "%";
+      b.querySelector(".am").textContent = money(r.v, {short: true});
+      const ch = b.querySelector(".ch");
+      if (!r.p) { ch.textContent = srt("isNew"); ch.className = "ch eq"; }
+      else { const c = Math.round((r.v - r.p) / r.p * 100); if (Math.abs(c) < 1) { ch.textContent = "="; ch.className = "ch eq"; } else { ch.textContent = (c > 0 ? "▲ " : "▼ ") + Math.abs(c) + "%"; ch.className = "ch " + (c > 0 ? "up" : "dn"); } }
+      b.onclick = () => showCategoryOnHome(r.c.id);
+      list.appendChild(b);
+    });
   }
   $("sumPrev").onclick = () => $("prevM").click();
   $("sumNext").onclick = () => $("nextM").click();
@@ -4769,7 +4992,8 @@ If the image is not a receipt, reply {"amount": null}.`;
     const next = { ...state.settings, name: $("setName").value.trim().slice(0,30), currency: main, budget: Math.max(0, parseFloat($("setBudget").value) || 0), catBudgets, lang: state.lang, onboarded: true,
       rates: main === (state.settings.currency || "ILS") ? rates : {}, ratesMain: main };
     if (!settingsRef) return toast(t("signinSettings"));
-    try { await settingsRef.set(next); state.settings = next; fmtCache = {}; render(); fillPrefs(); toast(t("settingsSaved")); refreshRates(false); }
+    const quiet = quietSave; quietSave = false; const keepPage = setPage;
+    try { await settingsRef.set(next); state.settings = next; fmtCache = {}; render(); fillPrefs(); if (keepPage) showSetPage(keepPage); if (!quiet) toast(t("settingsSaved")); refreshRates(false); }
     catch { toast(t("settingsFail")); }
   };
   $("exportCsv").onclick = async () => {
