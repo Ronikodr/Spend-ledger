@@ -44,27 +44,27 @@ img{max-width:100%}
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.45}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:calc(15px*var(--fs,1));line-height:1.45}
 .wrap{max-width:1160px;margin:0 auto;padding-block:16px calc(120px + env(safe-area-inset-bottom, 0px));
   padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
 h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.01em}
-h2{font-size:18px}
+h2{font-size:calc(18px*var(--fs,1))}
 button,input,select,textarea{font:inherit;color:inherit}
 button,label[for]{cursor:pointer}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
-.label{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
-html[lang="he"] .label,html[lang="ar"] .label{letter-spacing:0;text-transform:none;font-size:12.5px}
-.note{font-size:12.5px;color:var(--muted)}
-.linkbtn{border:0;background:none;color:var(--accent);padding:0;font-weight:600;font-size:13px}
+.label{font-size:calc(11.5px*var(--fs,1));text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+html[lang="he"] .label,html[lang="ar"] .label{letter-spacing:0;text-transform:none;font-size:calc(12.5px*var(--fs,1))}
+.note{font-size:calc(12.5px*var(--fs,1));color:var(--muted)}
+.linkbtn{border:0;background:none;color:var(--accent);padding:0;font-weight:600;font-size:calc(13px*var(--fs,1))}
 
 /* top bar */
 .top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
 .hello{display:flex;align-items:center;gap:12px;min-width:0;flex:1 1 220px}
-.avatar{width:44px;height:44px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:18px;flex:none}
-.hello h1{font-size:21px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hello .sub{color:var(--muted);font-size:12.5px}
-.heads{display:flex;gap:10px;align-items:flex-start;border-radius:var(--r);padding:10px 14px;font-size:13.5px;background:var(--accent-soft);color:var(--ink)}
+.avatar{width:44px;height:44px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:calc(18px*var(--fs,1));flex:none}
+.hello h1{font-size:calc(21px*var(--fs,1));font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hello .sub{color:var(--muted);font-size:calc(12.5px*var(--fs,1))}
+.heads{display:flex;gap:10px;align-items:flex-start;border-radius:var(--r);padding:10px 14px;font-size:calc(13.5px*var(--fs,1));background:var(--accent-soft);color:var(--ink)}
 .heads.warn{background:var(--warn-soft);color:var(--warn)}
 .heads.over{background:var(--bad-soft);color:var(--bad)}
 .heads svg{width:18px;height:18px;flex:none;margin-top:1px}
@@ -74,24 +74,24 @@ html[lang="he"] .label,html[lang="ar"] .label{letter-spacing:0;text-transform:no
   padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
 .wcard{width:100%;max-width:420px;display:flex;flex-direction:column;gap:22px}
 .whead{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
-.whead h1{font-size:30px;letter-spacing:-.02em}
-.whead p{margin:0;color:var(--muted);font-size:15px;max-width:300px}
-.winp{height:52px;border:1.5px solid var(--line);border-radius:14px;background:var(--surface);padding:0 16px;font-size:17px;font-weight:500;width:100%}
+.whead h1{font-size:calc(30px*var(--fs,1));letter-spacing:-.02em}
+.whead p{margin:0;color:var(--muted);font-size:calc(15px*var(--fs,1));max-width:300px}
+.winp{height:52px;border:1.5px solid var(--line);border-radius:14px;background:var(--surface);padding:0 16px;font-size:calc(17px*var(--fs,1));font-weight:500;width:100%}
 .winp:focus{border-color:var(--accent);outline:none}
 .wmoney{position:relative}
-.wmoney span{position:absolute;inset-inline-start:16px;top:50%;transform:translateY(-50%);font-family:var(--f-mono);color:var(--muted);font-size:17px}
+.wmoney span{position:absolute;inset-inline-start:16px;top:50%;transform:translateY(-50%);font-family:var(--f-mono);color:var(--muted);font-size:calc(17px*var(--fs,1))}
 .wmoney input,.wmoney input.winp{padding-inline-start:44px;font-family:var(--f-mono);direction:ltr}
 html[dir="rtl"] .wmoney input{text-align:right;padding-left:16px;padding-right:44px}
 .seg.big{height:52px;border-radius:14px;padding:4px}
-.seg.big button{font-size:15px;border-radius:10px}
-.wstart{height:56px;border:0;border-radius:16px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:17px;width:100%}
+.seg.big button{font-size:calc(15px*var(--fs,1));border-radius:10px}
+.wstart{height:56px;border:0;border-radius:16px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:calc(17px*var(--fs,1));width:100%}
 .wstart:disabled{opacity:.6}
 .loading{padding:80px 16px;text-align:center;color:var(--muted)}
 
 /* trips */
 .tbar{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-.tbar h2{font-size:24px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.back{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);font-size:20px;line-height:1;flex:none}
+.tbar h2{font-size:calc(24px*var(--fs,1));white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.back{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);font-size:calc(20px*var(--fs,1));line-height:1;flex:none}
 .back:hover{background:var(--sunk)}
 .tgrid{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
 @media (min-width:900px){.tgrid{grid-template-columns:360px minmax(0,1fr);align-items:start}}
@@ -102,25 +102,25 @@ html[dir="rtl"] .wmoney input{text-align:right;padding-left:16px;padding-right:4
 .bc-ic{width:42px;height:42px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;flex:none}
 .bc-ic svg{width:22px;height:22px}
 .bc-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
-.bc-body b{font-family:var(--f-display);font-size:16px}
-.bc-line{font-size:13px;color:var(--ink)}
-.bc-next{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.bc-go{font-size:24px;color:var(--muted);line-height:1}
+.bc-body b{font-family:var(--f-display);font-size:calc(16px*var(--fs,1))}
+.bc-line{font-size:calc(13px*var(--fs,1));color:var(--ink)}
+.bc-next{font-size:calc(12.5px*var(--fs,1));color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bc-go{font-size:calc(24px*var(--fs,1));color:var(--muted);line-height:1}
 html[dir="rtl"] .bc-go{transform:scaleX(-1)}
 .billform{display:grid;gap:12px;margin-bottom:16px}
 #billAddBtn{flex:none}
 @media (max-width:430px){#billAddBtn [data-t]{display:none}#billAddBtn{width:44px;height:44px;padding:0;justify-content:center;border-radius:50%}}
 .presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.preset{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:13px;font-weight:500}
+.preset{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:calc(13px*var(--fs,1));font-weight:500}
 .preset:hover{border-color:var(--accent)}
 .preset[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
 .preset svg{width:15px;height:15px}
 .billsum{margin-bottom:16px}
 .bsbar{height:10px;background:var(--sunk);border-radius:999px;overflow:hidden;margin:12px 0 8px}
 .bsbar i{display:block;height:100%;background:var(--good);border-radius:999px;transition:width .4s}
-.bsline{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.bsline{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:calc(13px*var(--fs,1));color:var(--muted)}
 .bgroup{margin-bottom:16px}
-.bgroup h3{font-size:13px;font-weight:600;color:var(--muted);margin:0 4px 8px;font-family:var(--f-body)}
+.bgroup h3{font-size:calc(13px*var(--fs,1));font-weight:600;color:var(--muted);margin:0 4px 8px;font-family:var(--f-body)}
 .bgroup .panel{padding:4px 14px}
 .brow{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:12px;align-items:center;width:100%;text-align:start;background:none;border:0;border-bottom:1px dashed var(--line);padding:12px 2px}
 .brow:last-child{border-bottom:0}
@@ -128,10 +128,10 @@ html[dir="rtl"] .bc-go{transform:scaleX(-1)}
 .brow .bi{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#fff}
 .brow .bi svg{width:19px;height:19px}
 .brow .bt{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.brow .bm{font-size:12.5px;color:var(--muted)}
+.brow .bm{font-size:calc(12.5px*var(--fs,1));color:var(--muted)}
 .brow .br{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
 .brow .ba{font-family:var(--f-mono);font-weight:500}
-.bchip{font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--sunk);color:var(--muted);white-space:nowrap}
+.bchip{font-size:calc(11.5px*var(--fs,1));font-weight:600;padding:2px 9px;border-radius:999px;background:var(--sunk);color:var(--muted);white-space:nowrap}
 .bchip.paid{background:color-mix(in oklab, var(--good) 16%, var(--surface));color:var(--good)}
 .bchip.today{background:var(--warn-soft);color:var(--warn)}
 .bchip.soon{background:var(--accent-soft);color:var(--accent)}
@@ -144,16 +144,16 @@ html[dir="rtl"] .bc-go{transform:scaleX(-1)}
 .itrip:hover,.itrip:focus-visible,.itrip[aria-expanded="true"]{color:var(--accent);background:var(--sunk)}
 .itrip svg{width:18px;height:18px}
 .tpick{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 12px;background:var(--sunk);border-radius:12px;margin:6px 0 8px}
-.tpick .q{width:100%;font-size:12.5px;font-weight:600;color:var(--muted)}
-.tpick button{height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 14px var(--f-body);cursor:pointer}
+.tpick .q{width:100%;font-size:calc(12.5px*var(--fs,1));font-weight:600;color:var(--muted)}
+.tpick button{height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 calc(14px*var(--fs,1)) var(--f-body);cursor:pointer}
 .tpick button.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .tpick button.out{color:var(--bad)}
 .tpick button.x{border:0;background:none;color:var(--muted);font-weight:500}
 .tvfind .row1{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .tvfind .row1 .tx{flex:1;min-width:180px;display:flex;flex-direction:column;gap:2px}
-.tvfind .row1 b{font-size:15px}
-.tvfind .row1 span{font-size:13px;color:var(--muted)}
-.tvfind .pbtn{height:42px;padding:0 16px;border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);font:600 15px var(--f-body);cursor:pointer}
+.tvfind .row1 b{font-size:calc(15px*var(--fs,1))}
+.tvfind .row1 span{font-size:calc(13px*var(--fs,1));color:var(--muted)}
+.tvfind .pbtn{height:42px;padding:0 16px;border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);font:600 calc(15px*var(--fs,1)) var(--f-body);cursor:pointer}
 .tvfind .pbtn.alt{background:var(--sunk);color:var(--ink)}
 .tvfind .pbtn:disabled{opacity:.55}
 .tvfind ul{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column}
@@ -161,10 +161,10 @@ html[dir="rtl"] .bc-go{transform:scaleX(-1)}
 .tvfind li input{width:20px;height:20px;accent-color:var(--accent);flex:none}
 .tvfind li .nm{flex:1;min-width:0;display:flex;flex-direction:column}
 .tvfind li .nm b{font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.tvfind li .nm span{font-size:12px;color:var(--muted)}
-.tvfind li .am{font-family:var(--f-mono,monospace);font-size:14px}
+.tvfind li .nm span{font-size:calc(12px*var(--fs,1));color:var(--muted)}
+.tvfind li .am{font-family:var(--f-mono,monospace);font-size:calc(14px*var(--fs,1))}
 .tvfind .btns{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-.undobar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(92px + env(safe-area-inset-bottom, 0px));z-index:41;background:var(--ink);color:var(--bg);border-radius:14px;padding-block:6px;padding-inline:16px 6px;display:flex;align-items:center;gap:12px;font-size:14px;width:max-content;max-width:calc(100% - 32px);box-shadow:0 10px 30px rgba(10,15,30,.3)}
+.undobar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(92px + env(safe-area-inset-bottom, 0px));z-index:41;background:var(--ink);color:var(--bg);border-radius:14px;padding-block:6px;padding-inline:16px 6px;display:flex;align-items:center;gap:12px;font-size:calc(14px*var(--fs,1));width:max-content;max-width:calc(100% - 32px);box-shadow:0 10px 30px rgba(10,15,30,.3)}
 .undobar span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .undobar button{flex:none;border:0;background:var(--bg);color:var(--ink);font-weight:700;height:38px;padding:0 16px;border-radius:10px}
 .tcwrap{position:relative;display:flex}
@@ -175,81 +175,81 @@ html[dir="rtl"] .bc-go{transform:scaleX(-1)}
 .tdel.static{position:static;width:44px;height:44px;flex:none}
 .tconfirm{position:absolute;inset:0;background:var(--surface);border:1.5px solid var(--bad);border-radius:var(--r);padding:14px 16px;display:flex;flex-direction:column;justify-content:center;gap:10px}
 .tconfirm.inline{position:static;margin:-4px 0 16px}
-.tconfirm p{margin:0;font-size:14px;font-weight:500}
+.tconfirm p{margin:0;font-size:calc(14px*var(--fs,1));font-weight:500}
 .tc-btns{display:flex;gap:8px}
 .tc-yes{height:42px;padding:0 18px;border:0;border-radius:10px;background:var(--bad);color:#fff;font-weight:600}
 .tc-no{height:42px;padding:0 16px;border:1px solid var(--line);border-radius:10px;background:var(--surface);font-weight:500}
 .tc-yes:disabled,.tc-no:disabled{opacity:.6}
 .tcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;text-align:start;display:flex;flex-direction:column;gap:8px;width:100%}
 .tcard:hover{border-color:var(--accent)}
-.tcard .nm{font-family:var(--f-display);font-weight:700;font-size:19px;display:flex;align-items:center;gap:10px}
+.tcard .nm{font-family:var(--f-display);font-weight:700;font-size:calc(19px*var(--fs,1));display:flex;align-items:center;gap:10px}
 .tcard .nm .ti{width:34px;height:34px;border-radius:10px;background:var(--c-travel);color:#fff;display:grid;place-items:center;flex:none}
 .tcard .nm .ti svg{width:18px;height:18px}
-.tcard .amt{font-family:var(--f-mono);font-size:20px;font-weight:500}
+.tcard .amt{font-family:var(--f-mono);font-size:calc(20px*var(--fs,1));font-weight:500}
 .mini{height:6px;background:var(--sunk);border-radius:999px;overflow:hidden}
 .mini i{display:block;height:100%;background:var(--accent);border-radius:999px}
 .mini.warn i{background:var(--warn)} .mini.over i{background:var(--bad)}
-.live{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
-.tbig{font-family:var(--f-display);font-weight:700;font-size:44px;letter-spacing:-.02em;line-height:1.05;font-variant-numeric:tabular-nums}
+.live{font-size:calc(11px*var(--fs,1));font-weight:600;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.tbig{font-family:var(--f-display);font-weight:700;font-size:calc(44px*var(--fs,1));letter-spacing:-.02em;line-height:1.05;font-variant-numeric:tabular-nums}
 .stack{display:flex;height:14px;border-radius:999px;overflow:hidden;background:var(--sunk);gap:2px;margin:12px 0 6px}
 .stack span{height:100%}
 .tripchip{display:flex;align-items:center;gap:10px;width:100%;border:1px solid var(--line);background:var(--surface);border-radius:var(--r);padding:10px 14px;text-align:start}
 .tripchip .ti{width:34px;height:34px;border-radius:10px;background:var(--c-travel);color:#fff;display:grid;place-items:center;flex:none}
 .tripchip .ti svg{width:18px;height:18px}
-.chartlbl{font-size:13px;font-weight:600;margin-top:12px}
-.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:6px 0 2px}
+.chartlbl{font-size:calc(13px*var(--fs,1));font-weight:600;margin-top:12px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:calc(12px*var(--fs,1));color:var(--muted);margin:6px 0 2px}
 .legend span{display:inline-flex;align-items:center;gap:6px}
 .legend svg{width:22px;height:8px;overflow:visible}
 .chartbox{position:relative;width:100%;height:200px;touch-action:pan-y}
 .chartbox svg{display:block;width:100%;height:100%;overflow:visible}
-.charttip{position:fixed;z-index:45;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12.5px;line-height:1.45;padding:7px 10px;border-radius:8px;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.2)}
+.charttip{position:fixed;z-index:45;pointer-events:none;background:var(--ink);color:var(--bg);font-size:calc(12.5px*var(--fs,1));line-height:1.45;padding:7px 10px;border-radius:8px;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.2)}
 .charttip b{font-family:var(--f-mono);font-weight:500}
 .catchart{display:flex;flex-direction:column;gap:2px;margin-top:6px}
 .crow{display:grid;grid-template-columns:minmax(80px,112px) minmax(0,1fr) auto;gap:10px;align-items:center;padding:6px 4px;border:0;background:none;border-radius:8px;text-align:start;width:100%}
 .crow:hover{background:var(--sunk)}
-.crow .cn{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.crow .cn{font-size:calc(13px*var(--fs,1));font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .crow .bars{display:flex;flex-direction:column;gap:3px;min-width:0}
 .crow .now{height:10px;border-start-end-radius:4px;border-end-end-radius:4px;min-width:2px}
 .crow .prev{height:4px;border-start-end-radius:2px;border-end-end-radius:2px;background:var(--muted);opacity:.45;min-width:2px}
-.crow .cv{text-align:end;font-family:var(--f-mono);font-size:13px;min-width:74px}
-.crow .cv small{display:block;font-size:11px;color:var(--muted)}
-.tbl{margin-top:12px;font-size:13px}
-.tbl summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:13px}
+.crow .cv{text-align:end;font-family:var(--f-mono);font-size:calc(13px*var(--fs,1));min-width:74px}
+.crow .cv small{display:block;font-size:calc(11px*var(--fs,1));color:var(--muted)}
+.tbl{margin-top:12px;font-size:calc(13px*var(--fs,1))}
+.tbl summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:calc(13px*var(--fs,1))}
 .tbl .scroll{overflow-x:auto;margin-top:8px}
 .tbl table{border-collapse:collapse;width:100%;min-width:320px}
 .tbl th,.tbl td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:start}
 .tbl td.n,.tbl th.n{text-align:end;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 .aibox{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
-.sumtext{white-space:pre-line;font-size:14.5px;line-height:1.6;margin-top:10px;max-width:68ch}
-.sumtext.empty{color:var(--muted);font-size:13.5px}
-.sumbtn{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-radius:12px;border:0;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:14px}
+.sumtext{white-space:pre-line;font-size:calc(14.5px*var(--fs,1));line-height:1.6;margin-top:10px;max-width:68ch}
+.sumtext.empty{color:var(--muted);font-size:calc(13.5px*var(--fs,1))}
+.sumbtn{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-radius:12px;border:0;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:calc(14px*var(--fs,1))}
 .sumbtn:disabled{opacity:.55;cursor:not-allowed}
 .sumbtn svg{width:17px;height:17px}
-.rmonth{margin:18px 0 8px;font-weight:600;color:var(--muted);font-size:13px}
+.rmonth{margin:18px 0 8px;font-weight:600;color:var(--muted);font-size:calc(13px*var(--fs,1))}
 .rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
 .rcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:0;overflow:hidden;text-align:start;display:flex;flex-direction:column;width:100%}
 .rcard:hover{border-color:var(--accent)}
-.rcard .ph{aspect-ratio:3/4;max-width:100%;width:100%;background:var(--sunk);display:grid;place-items:center;color:var(--muted);font-family:var(--f-mono);font-size:13px;overflow:hidden}
+.rcard .ph{aspect-ratio:3/4;max-width:100%;width:100%;background:var(--sunk);display:grid;place-items:center;color:var(--muted);font-family:var(--f-mono);font-size:calc(13px*var(--fs,1));overflow:hidden}
 .rcard .ph img{width:100%;height:100%;object-fit:cover}
 .rcard .info{padding:8px 10px;display:flex;flex-direction:column;gap:1px;min-width:0}
 .rcard .info b{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rcard .info span{font-size:12px;color:var(--muted)}
-.rcard .info .num{color:var(--ink);font-size:13px}
-.curpick{position:relative;flex:none;display:flex;align-items:center;font-family:var(--f-mono);color:var(--muted);font-size:20px;padding-inline-end:4px;cursor:pointer}
-.curpick span::after{content:"▾";font-size:11px;margin-inline-start:3px;vertical-align:3px}
-.curpick select{position:absolute;inset:0;opacity:0;width:100%;cursor:pointer;font-size:16px}
-.conv{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:8px}
+.rcard .info span{font-size:calc(12px*var(--fs,1));color:var(--muted)}
+.rcard .info .num{color:var(--ink);font-size:calc(13px*var(--fs,1))}
+.curpick{position:relative;flex:none;display:flex;align-items:center;font-family:var(--f-mono);color:var(--muted);font-size:calc(20px*var(--fs,1));padding-inline-end:4px;cursor:pointer}
+.curpick span::after{content:"▾";font-size:calc(11px*var(--fs,1));margin-inline-start:3px;vertical-align:3px}
+.curpick select{position:absolute;inset:0;opacity:0;width:100%;cursor:pointer;font-size:calc(16px*var(--fs,1))}
+.conv{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:calc(13px*var(--fs,1));color:var(--muted);margin-top:8px}
 .conv input{width:100px;height:34px;border:1px solid var(--line);border-radius:8px;padding:0 8px;background:var(--surface);font-family:var(--f-mono);direction:ltr}
 .conv b{color:var(--ink);font-family:var(--f-mono);font-weight:500}
-.orig{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);display:block;text-align:end;font-weight:400}
+.orig{font-family:var(--f-mono);font-size:calc(11.5px*var(--fs,1));color:var(--muted);display:block;text-align:end;font-weight:400}
 .swatches{display:flex;gap:14px;flex-wrap:wrap}
-.sw{display:flex;flex-direction:column;align-items:center;gap:4px;border:0;background:none;font-size:12px;padding:0}
+.sw{display:flex;flex-direction:column;align-items:center;gap:4px;border:0;background:none;font-size:calc(12px*var(--fs,1));padding:0}
 .sw span{width:40px;height:40px;border-radius:50%;border:3px solid var(--surface);box-shadow:0 0 0 2px transparent}
 .sw[aria-pressed="true"] span{box-shadow:0 0 0 2px var(--ink)}
 .sw[aria-pressed="true"]{font-weight:600}
 .rates{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
-.rates .field label{font-size:13px;font-weight:500;font-family:var(--f-mono)}
-.tstrip{display:flex;align-items:center;gap:10px;background:var(--c-travel);color:#fff;border-radius:var(--r);padding:10px 14px;font-weight:600;font-size:14px;position:relative}
+.rates .field label{font-size:calc(13px*var(--fs,1));font-weight:500;font-family:var(--f-mono)}
+.tstrip{display:flex;align-items:center;gap:10px;background:var(--c-travel);color:#fff;border-radius:var(--r);padding:10px 14px;font-weight:600;font-size:calc(14px*var(--fs,1));position:relative}
 .tstrip svg{width:18px;height:18px;flex:none}
 html[dir="rtl"] .tstrip svg{transform:scaleX(-1)}
 .tstrip #tvStripText{flex:1;min-width:0}
@@ -258,12 +258,12 @@ html[dir="rtl"] .tstrip svg{transform:scaleX(-1)}
 .tdots i.done{background:#fff}
 .tdots i.now{background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.35)}
 .tripring .catbtn .ic{border-radius:14px}
-.allow{background:var(--accent-soft);border-radius:var(--r);padding:12px 14px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;font-size:13.5px}
-.allow b{font-family:var(--f-display);font-size:24px;letter-spacing:-.01em}
+.allow{background:var(--accent-soft);border-radius:var(--r);padding:12px 14px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;font-size:calc(13.5px*var(--fs,1))}
+.allow b{font-family:var(--f-display);font-size:calc(24px*var(--fs,1));letter-spacing:-.01em}
 .allow.over{background:var(--bad-soft);color:var(--bad)}
-.padtrip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:3px 10px;margin:-4px 0 10px}
+.padtrip{display:inline-flex;align-items:center;gap:6px;font-size:calc(12.5px*var(--fs,1));font-weight:600;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:3px 10px;margin:-4px 0 10px}
 .topbtns{display:flex;gap:8px}
-.pill{border:1px solid var(--line);background:var(--surface);height:38px;padding:0 14px;border-radius:999px;font-size:13.5px;font-weight:500}
+.pill{border:1px solid var(--line);background:var(--surface);height:38px;padding:0 14px;border-radius:999px;font-size:calc(13.5px*var(--fs,1));font-weight:500}
 .pill:hover{background:var(--sunk)}
 .homebtn{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
 .homebtn:hover{background:var(--accent);filter:brightness(1.08)}
@@ -271,7 +271,7 @@ html[dir="rtl"] .tstrip svg{transform:scaleX(-1)}
 
 .grid{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
 @media (min-width:900px){
-  .grid{grid-template-columns:420px minmax(0,1fr);align-items:start}
+  .grid{grid-template-columns:calc(420px*var(--fs,1)) minmax(0,1fr);align-items:start}
 }
 .col{display:flex;flex-direction:column;gap:16px;min-width:0}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px}
@@ -280,43 +280,43 @@ html[dir="rtl"] .tstrip svg{transform:scaleX(-1)}
 /* hub */
 .hub{display:flex;flex-direction:column;gap:14px;align-items:stretch}
 .month{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.month button{width:44px;height:44px;border:1px solid var(--line);background:var(--surface);border-radius:50%;font-size:20px;line-height:1}
+.month button{width:44px;height:44px;border:1px solid var(--line);background:var(--surface);border-radius:50%;font-size:calc(20px*var(--fs,1));line-height:1}
 .month button:hover{background:var(--sunk)}
-.month strong{font-weight:600;font-size:16px}
-.ringbox{position:relative;width:min(340px,100%);aspect-ratio:1/1;align-self:center;margin-bottom:26px}
+.month strong{font-weight:600;font-size:calc(16px*var(--fs,1))}
+.ringbox{position:relative;width:min(calc(340px*var(--fs,1)),100%);aspect-ratio:1/1;align-self:center;margin-bottom:26px;container-type:inline-size}
 .donut{position:absolute;left:25%;top:25%;width:50%;height:50%}
 .donut svg{width:100%;height:100%;transform:rotate(-90deg);overflow:visible}
 .donut circle{transition:stroke-dasharray .5s, stroke-dashoffset .5s}
 .center{position:absolute;inset:25%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none}
-.center .k{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
-html[lang="he"] .center .k,html[lang="ar"] .center .k{letter-spacing:0;font-size:12.5px}
-.center .v{font-family:var(--f-display);font-weight:700;font-size:clamp(20px,6.4vw,27px);white-space:nowrap;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.15}
-.center .s{font-size:12px;color:var(--muted)}
-.catbtn{position:absolute;width:76px;transform:translate(-50%,-23px);display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;padding:0;border-radius:12px}
-.catbtn .ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#fff;transition:transform .15s;box-shadow:0 2px 6px rgba(20,30,60,.15)}
+.center .k{font-size:calc(3.24cqw*min(var(--fs,1),1.1));color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+html[lang="he"] .center .k,html[lang="ar"] .center .k{letter-spacing:0;font-size:calc(3.68cqw*min(var(--fs,1),1.1))}
+.center .v{font-family:var(--f-display);font-weight:700;font-size:calc(7.9cqw*min(var(--fs,1),1.1));white-space:nowrap;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.15}
+.center .s{font-size:calc(3.53cqw*min(var(--fs,1),1.08));color:var(--muted)}
+.catbtn{position:absolute;width:calc(22.4cqw*var(--fs,1));transform:translate(-50%,-6.76cqw);display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;padding:0;border-radius:12px}
+.catbtn .ic{width:13.5cqw;height:13.5cqw;border-radius:50%;display:grid;place-items:center;color:#fff;transition:transform .15s;box-shadow:0 2px 6px rgba(20,30,60,.15)}
 .catbtn:hover .ic{transform:scale(1.07)}
 .catbtn:active .ic{transform:scale(.95)}
-.catbtn .ic svg{width:22px;height:22px}
-.catbtn .nm{font-size:11px;color:var(--ink);font-weight:500;white-space:nowrap;max-width:76px;overflow:hidden;text-overflow:ellipsis;line-height:1.25}
-.catbtn .am{font-family:var(--f-mono);font-size:10.5px;color:var(--muted);line-height:1.1}
-.hint{margin:-8px 0 0;text-align:center;font-size:12.5px;color:var(--muted)}
+.catbtn .ic svg{width:6.5cqw;height:6.5cqw}
+.catbtn .nm{font-size:calc(3.24cqw*var(--fs,1));color:var(--ink);font-weight:500;white-space:nowrap;max-width:calc(22.4cqw*var(--fs,1));overflow:hidden;text-overflow:ellipsis;line-height:1.25}
+.catbtn .am{font-family:var(--f-mono);font-size:calc(3.1cqw*var(--fs,1));color:var(--muted);line-height:1.1}
+.hint{margin:-8px 0 0;text-align:center;font-size:calc(12.5px*var(--fs,1));color:var(--muted)}
 .actions2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.bigbtn{height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:15px}
+.bigbtn{height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:calc(15px*var(--fs,1))}
 .bigbtn svg{width:19px;height:19px}
 .bigbtn.go{background:var(--accent);color:var(--accent-ink);border:0}
 .bigbtn.alt{background:var(--surface);border:1px solid var(--line)}
 .budget .track{height:10px;background:var(--sunk);border-radius:999px;overflow:hidden;margin-top:8px}
 .budget .fill{height:100%;background:var(--accent);border-radius:999px;transition:width .4s}
 .budget.warn .fill{background:var(--warn)} .budget.over .fill{background:var(--bad)}
-.budget .row{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+.budget .row{display:flex;justify-content:space-between;gap:8px;font-size:calc(13px*var(--fs,1));color:var(--muted);flex-wrap:wrap}
 .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
 .stat{background:var(--sunk);border-radius:10px;padding:8px 10px;min-width:0}
-.stat .v{font-family:var(--f-mono);font-size:15px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stat .v{font-family:var(--f-mono);font-size:calc(15px*var(--fs,1));font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .alerts{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.alert{font-size:12.5px;padding:4px 10px;border-radius:999px;font-weight:500;border:0}
+.alert{font-size:calc(12.5px*var(--fs,1));padding:4px 10px;border-radius:999px;font-weight:500;border:0}
 .alert.warn{background:var(--warn-soft);color:var(--warn)}
 .alert.over{background:var(--bad-soft);color:var(--bad)}
-.delta{font-size:12px;font-weight:500}
+.delta{font-size:calc(12px*var(--fs,1));font-weight:500}
 .delta.up{color:var(--bad)} .delta.down{color:var(--good)}
 
 /* categories */
@@ -325,8 +325,8 @@ html[lang="he"] .center .k,html[lang="ar"] .center .k{letter-spacing:0;font-size
 .catrow:hover{background:var(--sunk)}
 .catrow.on{background:var(--accent-soft)}
 .catrow .nm{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.catrow .amt{font-size:13.5px}
-.catrow .sub{grid-column:2/4;font-size:12px;color:var(--muted)}
+.catrow .amt{font-size:calc(13.5px*var(--fs,1))}
+.catrow .sub{grid-column:2/4;font-size:calc(12px*var(--fs,1));color:var(--muted)}
 .catrow .sub.warn{color:var(--warn)} .catrow .sub.over{color:var(--bad);font-weight:500}
 .cbar{grid-column:2/4;height:5px;background:var(--sunk);border-radius:999px;overflow:hidden}
 .catrow.on .cbar{background:var(--surface)}
@@ -336,31 +336,31 @@ html[lang="he"] .center .k,html[lang="ar"] .center .k{letter-spacing:0;font-size
 /* list */
 .listhead{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:6px}
 .search{flex:1 1 200px;min-width:0;height:38px;border:1px solid var(--line);background:var(--sunk);border-radius:999px;padding:0 14px}
-.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 10px;font-size:12.5px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 10px;font-size:calc(12.5px*var(--fs,1))}
 .day{margin-top:14px}
-.dayh{display:flex;justify-content:space-between;padding:0 4px 6px;border-bottom:1px solid var(--line);font-size:13px;color:var(--muted)}
+.dayh{display:flex;justify-content:space-between;padding:0 4px 6px;border-bottom:1px solid var(--line);font-size:calc(13px*var(--fs,1));color:var(--muted)}
 .dayh b{color:var(--ink);font-weight:600}
 .item{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:12px;align-items:center;width:100%;text-align:start;background:none;border:0;border-bottom:1px dashed var(--line);padding:10px 4px}
 .item:hover{background:var(--sunk)}
 .badge{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:#fff}
 .badge svg{width:18px;height:18px}
 .item .t{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.item .m{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item .m{font-size:calc(12.5px*var(--fs,1));color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .item .a{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-weight:500}
-.tag{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.04em;padding:1px 6px;border-radius:4px;background:var(--sunk);color:var(--muted);margin-inline-start:4px;vertical-align:1px}
+.tag{display:inline-block;font-size:calc(10.5px*var(--fs,1));font-weight:600;letter-spacing:.04em;padding:1px 6px;border-radius:4px;background:var(--sunk);color:var(--muted);margin-inline-start:4px;vertical-align:1px}
 .item:hover .tag{background:var(--surface)}
 .empty{padding:28px 8px;text-align:center;color:var(--muted)}
-.empty h3{color:var(--ink);font-size:18px;margin-bottom:6px}
+.empty h3{color:var(--ink);font-size:calc(18px*var(--fs,1));margin-bottom:6px}
 
 /* recurring */
 .rec{display:flex;flex-direction:column;margin-top:8px}
 .recrow{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 4px;border-bottom:1px dashed var(--line)}
 .recrow:last-child{border-bottom:0}
 .recrow .t{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.recrow .m{font-size:12.5px;color:var(--muted)}
+.recrow .m{font-size:calc(12.5px*var(--fs,1));color:var(--muted)}
 .recedit{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;background:var(--sunk);padding:10px;border-radius:10px}
 .recedit .field{flex:1 1 110px}
-.small{height:36px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-size:13px;font-weight:500}
+.small{height:36px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-size:calc(13px*var(--fs,1));font-weight:500}
 .small.go{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 
 /* sheet */
@@ -376,71 +376,71 @@ html[lang="he"] .center .k,html[lang="ar"] .center .k{letter-spacing:0;font-size
   .sheet.open{opacity:1;transform:translate(-50%,-50%);pointer-events:auto}
 }
 .sheethead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}
-.closebtn{border:0;background:var(--sunk);border-radius:999px;height:34px;padding:0 14px;font-size:13px;font-weight:500}
+.closebtn{border:0;background:var(--sunk);border-radius:999px;height:34px;padding:0 14px;font-size:calc(13px*var(--fs,1));font-weight:500}
 .amtfield{display:flex;align-items:center;gap:8px;background:var(--sunk);border-radius:12px;padding:6px 14px;border:1px solid transparent}
 .amtfield:focus-within{border-color:var(--accent)}
-.amtfield .cur{font-family:var(--f-mono);color:var(--muted);font-size:20px}
-.amtfield input{border:0;background:transparent;font-family:var(--f-display);font-size:34px;font-weight:700;width:100%;min-width:0;padding:4px 0;outline:none;font-variant-numeric:tabular-nums;direction:ltr;text-align:start}
+.amtfield .cur{font-family:var(--f-mono);color:var(--muted);font-size:calc(20px*var(--fs,1))}
+.amtfield input{border:0;background:transparent;font-family:var(--f-display);font-size:calc(34px*var(--fs,1));font-weight:700;width:100%;min-width:0;padding:4px 0;outline:none;font-variant-numeric:tabular-nums;direction:ltr;text-align:start}
 html[dir="rtl"] .amtfield input{text-align:right}
 .catpick{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:12px 0}
-.catpick button{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 6px;font-size:12.5px;display:flex;align-items:center;gap:6px;min-width:0}
+.catpick button{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 6px;font-size:calc(12.5px*var(--fs,1));display:flex;align-items:center;gap:6px;min-width:0}
 .catpick button span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .catpick button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);font-weight:600}
 .fields{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .fields .full{grid-column:1/-1}
 .field{display:flex;flex-direction:column;gap:4px;min-width:0}
 .field input,.field select{height:40px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:0 10px;min-width:0;width:100%}
-.check{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:14px}
+.check{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:calc(14px*var(--fs,1))}
 .check input{width:18px;height:18px;accent-color:var(--accent);flex:none}
 .actions{display:flex;gap:8px;margin-top:14px}
-.primary{flex:1;height:46px;border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:15px}
+.primary{flex:1;height:46px;border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:calc(15px*var(--fs,1))}
 .primary:disabled{opacity:.5;cursor:not-allowed}
 .ghost{height:46px;padding:0 14px;border:1px solid var(--line);background:var(--surface);border-radius:12px;font-weight:500}
 .danger{color:var(--bad)}
 .danger.armed{background:var(--bad);color:var(--surface);border-color:var(--bad)}
-.err{color:var(--bad);font-size:13px;margin-top:8px}
+.err{color:var(--bad);font-size:calc(13px*var(--fs,1));margin-top:8px}
 .rbtns{display:flex;gap:8px;margin-bottom:12px}
-.rbtn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;height:42px;border:1px dashed var(--accent);color:var(--accent);background:var(--accent-soft);border-radius:12px;font-weight:600;font-size:14px}
+.rbtn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;height:42px;border:1px dashed var(--accent);color:var(--accent);background:var(--accent-soft);border-radius:12px;font-weight:600;font-size:calc(14px*var(--fs,1))}
 .rbtn svg{width:18px;height:18px}
 .rbtn.alt{background:transparent}
 .rprev{display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px;align-items:center;background:var(--sunk);border-radius:12px;padding:8px;margin-bottom:12px}
-.thumb{width:64px;height:64px;border-radius:8px;background:var(--surface);display:grid;place-items:center;font-family:var(--f-mono);font-size:12px;color:var(--muted);overflow:hidden}
+.thumb{width:64px;height:64px;border-radius:8px;background:var(--surface);display:grid;place-items:center;font-family:var(--f-mono);font-size:calc(12px*var(--fs,1));color:var(--muted);overflow:hidden}
 .thumb img{width:100%;height:100%;object-fit:cover}
-.rstatus{font-size:13px;font-weight:500}
+.rstatus{font-size:calc(13px*var(--fs,1));font-weight:500}
 .rstatus.busy::after{content:"";display:inline-block;width:10px;height:10px;margin-inline-start:8px;border:2px solid var(--muted);border-top-color:transparent;border-radius:50%;animation:spin .8s linear infinite;vertical-align:-1px}
 .rstatus.ok{color:var(--good)} .rstatus.bad{color:var(--bad)}
-.rlinks{display:flex;gap:14px;margin-top:4px;font-size:13px}
+.rlinks{display:flex;gap:14px;margin-top:4px;font-size:calc(13px*var(--fs,1))}
 .rlinks a{color:var(--accent);font-weight:600;text-decoration:none}
 @keyframes spin{to{transform:rotate(360deg)}}
 .only-touch{display:none!important}
 @media (pointer:coarse){.only-touch{display:flex!important}.only-fine{display:none!important}}
 
 .fab{position:fixed;z-index:20;inset-inline-end:calc(18px + env(safe-area-inset-right, 0px));bottom:calc(18px + env(safe-area-inset-bottom, 0px));
-  width:58px;height:58px;border:0;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-size:28px;line-height:1;box-shadow:0 8px 24px rgba(20,30,70,.28);display:none}
+  width:58px;height:58px;border:0;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-size:calc(28px*var(--fs,1));line-height:1;box-shadow:0 8px 24px rgba(20,30,70,.28);display:none}
 @media (max-width:899px){.fab.show{display:block}}
 
 /* settings */
 .settings{display:grid;gap:14px;margin-bottom:16px}
 .srow{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
 .cbgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
-.cbgrid .field label{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500}
+.cbgrid .field label{display:flex;align-items:center;gap:6px;font-size:calc(13px*var(--fs,1));font-weight:500}
 .seg{display:flex;background:var(--sunk);border-radius:10px;padding:3px;height:40px}
-.seg button{flex:1;border:0;background:none;border-radius:8px;font-size:13.5px;font-weight:500}
+.seg button{flex:1;border:0;background:none;border-radius:8px;font-size:calc(13.5px*var(--fs,1));font-weight:500}
 .seg button[aria-pressed="true"]{background:var(--surface);box-shadow:0 1px 3px rgba(0,0,0,.12);font-weight:600}
-.banner{background:var(--accent-soft);border-radius:var(--r);padding:12px 14px;font-size:13.5px;margin-bottom:16px}
+.banner{background:var(--accent-soft);border-radius:var(--r);padding:12px 14px;font-size:calc(13.5px*var(--fs,1));margin-bottom:16px}
 .fab{display:none!important}
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:22;background:var(--surface);border-top:1px solid var(--line);display:flex;align-items:flex-end;
   padding:4px max(6px, env(safe-area-inset-right, 0px)) calc(4px + env(safe-area-inset-bottom, 0px)) max(6px, env(safe-area-inset-left, 0px))}
 @media (min-width:900px){.tabbar{left:50%;right:auto;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom, 0px));width:540px;border:1px solid var(--line);border-radius:22px;padding:4px 10px;box-shadow:0 12px 32px rgba(10,15,30,.16)}}
-.tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:0;background:none;height:56px;font-size:11px;font-weight:500;color:var(--muted);border-radius:12px;min-width:0}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:0;background:none;height:56px;font-size:calc(11px*var(--fs,1));font-weight:500;color:var(--muted);border-radius:12px;min-width:0}
 .tab span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .tab svg{width:23px;height:23px}
 .tab:hover{color:var(--ink)}
 .tab[aria-current="page"]{color:var(--accent);font-weight:600}
 .tab.add{justify-content:flex-start}
-.tab.add .plus{width:58px;height:58px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-size:32px;font-weight:400;line-height:1;margin-top:-24px;border:4px solid var(--bg);box-shadow:0 8px 20px rgba(20,30,70,.25);max-width:none}
+.tab.add .plus{width:58px;height:58px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-size:calc(32px*var(--fs,1));font-weight:400;line-height:1;margin-top:-24px;border:4px solid var(--bg);box-shadow:0 8px 20px rgba(20,30,70,.25);max-width:none}
 .tab.add:hover .plus{filter:brightness(1.08)}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(96px + env(safe-area-inset-bottom, 0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:13.5px;z-index:40;opacity:0;transition:opacity .2s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(96px + env(safe-area-inset-bottom, 0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:calc(13.5px*var(--fs,1));z-index:40;opacity:0;transition:opacity .2s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
 .toast.show{opacity:1}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -479,6 +479,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
       <div style="min-width:0"><h1 id="greet">Spend Ledger</h1><div class="sub"><span id="todayLine"></span> · <span id="syncState"></span></div></div>
     </div>
     <div class="topbtns">
+      <button class="hbell" id="bellBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 19a2 2 0 0 0 4 0"/></svg><span class="dot" id="bellDot" hidden></span></button>
       <button class="pill lbtn" id="langBtn" type="button"></button>
     </div>
   </header>
@@ -509,6 +510,14 @@ html[dir="rtl"] .amtfield input{text-align:right}
       <div class="field"><span class="label" data-t="appearance">Appearance</span>
         <div class="seg" role="group"><button type="button" id="mAuto" data-t="mAuto">Auto</button><button type="button" id="mLight" data-t="mLight">Light</button><button type="button" id="mDark" data-t="mDark">Dark</button></div></div>
     </div>
+    <div class="srow">
+      <div class="field"><span class="label" id="tsLabel">Text size</span>
+        <div class="seg tsseg" role="group"><button type="button" id="tsN" style="font-size:14px"></button><button type="button" id="tsL" style="font-size:16px"></button><button type="button" id="tsX" style="font-size:18px"></button></div></div>
+    </div>
+    <div>
+      <div class="label" style="margin-bottom:6px" id="remSetLabel">Reminders</div>
+      <div class="remctl" id="remSettings"></div>
+    </div>
     <div>
       <div class="label" style="margin-bottom:6px" data-t="ratesTitle">Exchange rates</div>
       <div class="rates" id="ratesGrid"></div>
@@ -537,7 +546,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
           <div class="field"><label class="label" for="ntStart" data-t="from">From</label><input id="ntStart" type="date"></div>
           <div class="field"><label class="label" for="ntEnd" data-t="to">To</label><input id="ntEnd" type="date"></div>
           <div class="field"><label class="label" for="ntBudget" data-t="tripBudget">Trip budget (optional)</label><input id="ntBudget" type="number" inputmode="decimal" min="0" step="1"></div>
-          <div class="field"><label class="label" for="ntCur" data-t="tripCurrency">Local currency</label><select id="ntCur"></select></div>
+          <div class="field"><label class="label" for="ntCur" data-t="tripCurrency">Local currency</label><select id="ntCur"></select><div class="cphint" id="ntCurHint" hidden></div></div>
         </div>
         <button type="submit" class="primary" data-t="createTrip">Create trip</button>
         <div class="err" id="ntErr" hidden></div>
@@ -560,7 +569,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
         <div class="field"><label class="label" for="teStart" data-t="from">From</label><input id="teStart" type="date"></div>
         <div class="field"><label class="label" for="teEnd" data-t="to">To</label><input id="teEnd" type="date"></div>
         <div class="field"><label class="label" for="teBudget" data-t="tripBudget">Trip budget (optional)</label><input id="teBudget" type="number" inputmode="decimal" min="0" step="1"></div>
-        <div class="field"><label class="label" for="teCur" data-t="tripCurrency">Local currency</label><select id="teCur"></select></div>
+        <div class="field"><label class="label" for="teCur" data-t="tripCurrency">Local currency</label><select id="teCur"></select><div class="cphint" id="teCurHint" hidden></div></div>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
         <button type="submit" class="primary" style="flex:0 0 auto;padding:0 18px" data-t="save">Save</button>
@@ -603,7 +612,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
         <div class="actions2" id="tvActions">
           <label class="bigbtn go only-touch" for="fCamera"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span data-t="scan">Scan receipt</span></label>
           <label class="bigbtn go only-fine" for="fFile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"/></svg><span data-t="upload">Upload receipt</span></label>
-          <button class="bigbtn alt" id="tvAdd"><span aria-hidden="true" style="font-size:20px;line-height:1">+</span><span data-t="addManual">Add expense</span></button>
+          <button class="bigbtn alt" id="tvAdd"><span aria-hidden="true" style="font-size:calc(20px*var(--fs,1));line-height:1">+</span><span data-t="addManual">Add expense</span></button>
         </div>
       </div>
       <div class="col">
@@ -620,11 +629,31 @@ html[dir="rtl"] .amtfield input{text-align:right}
     </div>
   </section>
 
+  <section id="expView" hidden>
+      <section class="panel" aria-label="Expenses" id="expPanel">
+        <div class="listhead">
+          <h2 data-t="expenses">Expenses</h2>
+          <input class="search" id="search" type="search">
+          <button class="pill" id="rcptBtn" type="button"></button>
+        </div>
+        <div id="filterChip"></div>
+        <div id="list"><div class="empty"><h3>…</h3></div></div>
+      </section>
+  </section>
+  <section id="splitView" class="spview" hidden>
+    <div class="tbar">
+      <button class="back" id="splitBack"></button>
+      <h2 style="flex:1" id="splitTitle">Shared expenses</h2>
+      <button class="pill homebtn" id="splitAddBtn" type="button"><span aria-hidden="true" style="font-size:calc(18px*var(--fs,1));line-height:1">+</span><span id="splitAddL"></span></button>
+    </div>
+    <div class="stat2"><div><small id="spInLab"></small><b class="sp-in" id="spInTotal"></b></div><div><small id="spOutLab"></small><b class="sp-out" id="spOutTotal"></b></div></div>
+    <div id="splitList"></div>
+  </section>
   <section id="billsView" hidden>
     <div class="tbar">
       <button class="back" id="billsBack"></button>
       <h2 style="flex:1" data-t="billsTitle">Fixed bills</h2>
-      <button class="pill homebtn" id="billAddBtn" type="button"><span aria-hidden="true" style="font-size:18px;line-height:1">+</span><span data-t="addBill">Add bill</span></button>
+      <button class="pill homebtn" id="billAddBtn" type="button"><span aria-hidden="true" style="font-size:calc(18px*var(--fs,1));line-height:1">+</span><span data-t="addBill">Add bill</span></button>
     </div>
     <form class="panel billform" id="billForm" hidden autocomplete="off">
       <h2 id="billFormTitle"></h2>
@@ -723,12 +752,31 @@ html[dir="rtl"] .amtfield input{text-align:right}
 
   <div class="grid" id="homeView">
     <div class="col hubcol">
+      <section class="wallet" aria-label="Month">
+        <div class="wtop"><button type="button" id="wPrev"></button><span id="wMonth"></span><button type="button" id="wNext"></button></div>
+        <div class="wtotal" id="wTotal">—</div>
+        <div class="wdelta" id="wDelta"></div>
+        <div class="wbar" id="wBarWrap"><i id="wBar" style="width:0"></i></div>
+        <div class="wrow"><span id="wLeft"></span><span id="wBudgetL"></span></div>
+        <div class="wnote" id="wNote" hidden></div>
+      </section>
+      <div class="quick" role="group">
+        <label class="only-touch" for="fCamera"><span class="qi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span id="qScan"></span></label>
+        <label class="only-fine" for="fFile"><span class="qi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span id="qScan2"></span></label>
+        <button type="button" id="qAdd"><span class="qi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><span id="qAddL"></span></button>
+        <button type="button" id="qSplit"><span class="qi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 2.5-5 5-5s5 2 5 5M14 18.5c0-2.3 1.4-4 3-4s3.5 1.7 3.5 4"/></svg></span><span id="qSplitL"></span></button>
+        <button type="button" id="qTrip"><span class="qi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 13.5L4 11l1.5-1.5 7 .5 4-4a1.8 1.8 0 0 1 2.5 2.5l-4 4 .5 7L14 21l-2.5-6.5"/></svg></span><span id="qTripL"></span></button>
+        <button type="button" id="qBills"><span class="qi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span><span id="qBillsL"></span></button>
+        <button type="button" id="qReport"><span class="qi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M7 16v-5M12 16V6M17 16v-8"/></svg></span><span id="qReportL"></span></button>
+      </div>
+      <button type="button" class="remline" id="remLine" hidden><span id="remLineTx"></span><b aria-hidden="true">›</b></button>
       <button class="tripchip" id="activeTrip" hidden></button>
-      <div class="heads" id="heads" role="status" hidden>
+      <div class="remstrips legacy" id="remStrips" role="status"></div>
+      <div class="heads legacy" id="heads" role="status" hidden>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg>
         <span id="headsText"></span>
       </div>
-      <section class="hub" aria-label="Month">
+      <section class="hub legacy" aria-label="Month">
         <div class="month">
           <button id="prevM"></button>
           <strong id="monthLabel">—</strong>
@@ -747,11 +795,11 @@ html[dir="rtl"] .amtfield input{text-align:right}
         <div class="actions2" id="hubActions">
           <label class="bigbtn go only-touch" for="fCamera"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span data-t="scan">Scan receipt</span></label>
           <label class="bigbtn go only-fine" for="fFile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"/></svg><span data-t="upload">Upload receipt</span></label>
-          <button class="bigbtn alt" id="addBtn"><span aria-hidden="true" style="font-size:20px;line-height:1">+</span><span data-t="addManual">Add expense</span></button>
+          <button class="bigbtn alt" id="addBtn"><span aria-hidden="true" style="font-size:calc(20px*var(--fs,1));line-height:1">+</span><span data-t="addManual">Add expense</span></button>
         </div>
       </section>
 
-      <section class="panel" aria-label="Budget">
+      <section class="panel legacy" aria-label="Budget">
         <div class="budget" id="budget">
           <div class="row"><span id="budgetLeft"></span><button class="linkbtn" id="setBudgetLink"></button></div>
           <div class="track"><div class="fill" id="budgetFill" style="width:0"></div></div>
@@ -764,24 +812,34 @@ html[dir="rtl"] .amtfield input{text-align:right}
         </div>
       </section>
 
-      <button class="billscard" id="billsCard" type="button">
+      <button class="billscard legacy" id="billsCard" type="button">
         <span class="bc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/><path d="M9 15l2 2 4-4"/></svg></span>
         <span class="bc-body"><b data-t="billsTitle">Fixed bills</b><span class="bc-line" id="billsLine"></span><span class="bc-next" id="billsNext"></span></span>
         <span class="bc-go" aria-hidden="true">›</span>
       </button>
+      <button class="billscard legacy" id="splitCard" type="button">
+        <span class="bc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 2.5-5 5-5s5 2 5 5M14 18.5c0-2.3 1.4-4 3-4s3.5 1.7 3.5 4"/></svg></span>
+        <span class="bc-body"><b id="splitCardTitle">Shared expenses</b><span class="bc-line" id="splitCardLine"></span></span>
+        <span class="bc-go" aria-hidden="true">›</span>
+      </button>
+      <button class="billscard legacy" id="remCard" type="button">
+        <span class="bc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 19a2 2 0 0 0 4 0"/></svg></span>
+        <span class="bc-body"><b id="remCardTitle">Reminders</b><span class="bc-line" id="remCardLine"></span></span>
+        <span class="bc-go" aria-hidden="true">›</span>
+      </button>
     </div>
-
-    <div class="col">
-      <section class="panel" aria-label="Expenses" id="expPanel">
-        <div class="listhead">
-          <h2 data-t="expenses">Expenses</h2>
-          <input class="search" id="search" type="search">
-          <button class="pill" id="rcptBtn" type="button"></button>
-        </div>
-        <div id="filterChip"></div>
-        <div id="list"><div class="empty"><h3>…</h3></div></div>
+    <div class="col col2">
+      <section class="panel colpanel" aria-labelledby="whereTitle">
+        <div class="chead"><h2 id="whereTitle"></h2>
+          <button type="button" class="nofix" id="noFixBtn"><span id="noFixLab"></span><span class="rsw" role="switch" id="noFixSw" aria-checked="false"></span></button></div>
+        <div class="hcols" id="hCols"></div><div class="hx" id="hX"></div>
+      </section>
+      <section class="panel recent" aria-labelledby="recentTitle">
+        <div class="rhead"><h2 id="recentTitle"></h2><button type="button" id="seeAllBtn"></button></div>
+        <div id="recentList"></div>
       </section>
     </div>
+
   </div>
 </div>
 
@@ -814,6 +872,19 @@ html[dir="rtl"] .amtfield input{text-align:right}
     <div class="field"><label class="label" for="fDate" data-t="date">Date</label><input id="fDate" type="date"></div>
     <div class="field"><label class="label" for="fMethod" data-t="paidWith">Paid with</label><select id="fMethod"></select></div>
   </div>
+  <div class="splitbox" id="splitBox" data-on="false">
+    <label class="check"><input type="checkbox" id="fSplit"> <span id="spToggleLab">Split with others</span></label>
+    <div class="splitbody" id="splitBody" hidden>
+      <div class="seg" role="group"><button type="button" id="spIPaid" aria-pressed="true"></button><button type="button" id="spOtherPaid" aria-pressed="false"></button></div>
+      <div class="lab" id="spWhoLab"></div>
+      <div class="spchips" id="spPeople"></div>
+      <div class="spadd"><input id="spNewName" type="text" maxlength="30"><button type="button" id="spAddName"></button></div>
+      <div id="spPayerWrap" hidden><div class="lab" id="spPayerLab" style="margin-bottom:6px"></div><div class="spchips" id="spPayer"></div></div>
+      <div class="seg" role="group"><button type="button" id="spEqual" aria-pressed="true"></button><button type="button" id="spCustom" aria-pressed="false"></button></div>
+      <div class="spcustom" id="spCustomBox" hidden></div>
+      <div class="spsum" id="spSum"></div>
+    </div>
+  </div>
   <label class="check" id="repeatWrap"><input type="checkbox" id="fRepeat"> <span data-t="repeats">Repeats every month</span></label>
   <div class="actions">
     <button type="submit" class="primary" id="saveBtn">Save expense</button>
@@ -829,9 +900,9 @@ html[dir="rtl"] .amtfield input{text-align:right}
 <div class="undobar" id="undoBar" role="status" hidden><span id="undoText"></span><button type="button" id="undoBtn" data-t="undo">Undo</button></div>
 <nav class="tabbar" id="tabbar" aria-label="Main">
   <button class="tab" type="button" data-v=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></svg><span data-t="home">Home</span></button>
-  <button class="tab" type="button" data-v="summary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M7 16v-5M12 16V6M17 16v-8"/></svg><span data-t="summaryTab">Summary</span></button>
+  <button class="tab" type="button" data-v="expenses"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg><span id="tabExpL">Expenses</span></button>
   <button class="tab add" type="button" id="tabAdd"><span class="plus" aria-hidden="true">+</span></button>
-  <button class="tab" type="button" data-v="trips"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 13.5L4 11l1.5-1.5 7 .5 4-4a1.8 1.8 0 0 1 2.5 2.5l-4 4 .5 7L14 21l-2.5-6.5"/></svg><span data-t="trips">Trips</span></button>
+  <button class="tab" type="button" data-v="summary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M7 16v-5M12 16V6M17 16v-8"/></svg><span data-t="summaryTab">Summary</span></button>
   <button class="tab" type="button" data-v="prefs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span data-t="settings">Settings</span></button>
 </nav>
 <div class="toast" id="toast" role="status"></div>
@@ -842,68 +913,219 @@ html[dir="rtl"] .amtfield input{text-align:right}
   padding:calc(40px + env(safe-area-inset-top,0px)) max(20px, env(safe-area-inset-right,0px)) 32px max(20px, env(safe-area-inset-left,0px))}
 .auth .card{width:100%;max-width:400px;display:flex;flex-direction:column;gap:16px}
 .auth .head{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
-.auth h1{font-family:var(--f-display);font-size:28px;margin:0;letter-spacing:-.02em}
+.auth h1{font-family:var(--f-display);font-size:calc(28px*var(--fs,1));margin:0;letter-spacing:-.02em}
 .auth p{margin:0;color:var(--muted)}
-.auth label{font-size:12.5px;font-weight:600;color:var(--muted)}
-.auth input{height:50px;border:1.5px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);padding:0 16px;font:500 16px var(--f-body);width:100%;box-sizing:border-box}
+.auth label{font-size:calc(12.5px*var(--fs,1));font-weight:600;color:var(--muted)}
+.auth input{height:50px;border:1.5px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);padding:0 16px;font:500 calc(16px*var(--fs,1)) var(--f-body);width:100%;box-sizing:border-box}
 .auth input:focus{border-color:var(--accent);outline:none}
-.auth .go{height:54px;border:0;border-radius:16px;background:var(--accent);color:var(--accent-ink);font:600 17px var(--f-body);cursor:pointer}
+.auth .go{height:54px;border:0;border-radius:16px;background:var(--accent);color:var(--accent-ink);font:600 calc(17px*var(--fs,1)) var(--f-body);cursor:pointer}
 .auth .go:disabled{opacity:.6}
-.auth .switch{border:0;background:none;color:var(--accent);font:600 14px var(--f-body);cursor:pointer;padding:8px}
-.auth .msg{font-size:13.5px;color:var(--bad);min-height:1em}
+.auth .switch{border:0;background:none;color:var(--accent);font:600 calc(14px*var(--fs,1)) var(--f-body);cursor:pointer;padding:8px}
+.auth .msg{font-size:calc(13.5px*var(--fs,1));color:var(--bad);min-height:1em}
 .auth .msg.ok{color:var(--good)}
 .inst{position:fixed;z-index:70;left:50%;transform:translateX(-50%);bottom:calc(88px + env(safe-area-inset-bottom,0px));width:min(420px,calc(100% - 24px));box-sizing:border-box;
   display:flex;align-items:center;gap:12px;padding:12px 12px 12px 14px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 30px rgba(10,20,40,.18);font-family:var(--f-body)}
 .inst .ic{flex:none;width:44px;height:44px;border-radius:12px}
 .inst .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
-.inst b{font-size:15px}
-.inst span{font-size:12.5px;color:var(--muted);line-height:1.35}
-.inst .ib{flex:none;height:42px;padding:0 16px;border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);font:600 15px var(--f-body);cursor:pointer}
-.inst .ix{flex:none;width:32px;height:32px;border:0;background:none;color:var(--muted);font-size:20px;cursor:pointer;border-radius:50%}
+.inst b{font-size:calc(15px*var(--fs,1))}
+.inst span{font-size:calc(12.5px*var(--fs,1));color:var(--muted);line-height:1.35}
+.inst .ib{flex:none;height:42px;padding:0 16px;border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);font:600 calc(15px*var(--fs,1)) var(--f-body);cursor:pointer}
+.inst .ix{flex:none;width:32px;height:32px;border:0;background:none;color:var(--muted);font-size:calc(20px*var(--fs,1));cursor:pointer;border-radius:50%}
 .lflag{display:inline-block;width:24px;height:17px;border-radius:3px;overflow:hidden;flex:none;box-shadow:0 0 0 1px rgba(0,0,0,.1)}
 .lflag svg{display:block;width:100%;height:100%}
 .lbtn{display:inline-flex;align-items:center;gap:8px}
-.lbtn .lcaret{font-size:11px;color:var(--muted)}
+.lbtn .lcaret{font-size:calc(11px*var(--fs,1));color:var(--muted)}
 .lmenu{position:fixed;z-index:90;min-width:200px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 32px rgba(10,20,40,.2);padding:6px;display:flex;flex-direction:column}
-.lmenu button{display:flex;align-items:center;gap:12px;height:44px;padding:0 12px;border:0;border-radius:10px;background:none;color:var(--ink);font:500 15px var(--f-body);cursor:pointer;text-align:start}
+.lmenu button{display:flex;align-items:center;gap:12px;height:44px;padding:0 12px;border:0;border-radius:10px;background:none;color:var(--ink);font:500 calc(15px*var(--fs,1)) var(--f-body);cursor:pointer;text-align:start}
 .lmenu button:hover,.lmenu button:focus-visible{background:var(--sunk);outline:none}
 .lmenu button.on{background:var(--accent-soft, var(--sunk));color:var(--accent);font-weight:600}
 .lgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}
-.lgrid button{display:flex;align-items:center;gap:10px;height:46px;padding:0 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font:500 15px var(--f-body);cursor:pointer;text-align:start}
+.lgrid button{display:flex;align-items:center;gap:10px;height:46px;padding:0 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font:500 calc(15px*var(--fs,1)) var(--f-body);cursor:pointer;text-align:start}
 .lgrid button[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);font-weight:600}
 .lgrid button[aria-pressed="true"]::after{content:"✓";margin-inline-start:auto;color:var(--accent);font-weight:700}
 .field.wide{grid-column:1/-1}
+.legacy,#heads,#alerts{display:none!important}
+.top{flex-wrap:nowrap}
+@media (max-width:560px){#langBtn .lname,#langBtn .lcaret{display:none}#langBtn{padding:0 10px}}
+#fab{display:none!important}
+.hbell{position:relative;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer;flex:none}
+.hbell svg{width:20px;height:20px}
+.hbell .dot{position:absolute;top:7px;inset-inline-end:8px;width:9px;height:9px;border-radius:50%;background:#E5484D;box-shadow:0 0 0 2px var(--surface)}
+.wallet{border-radius:22px;padding:16px 18px 18px;color:#fff;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 82%,#000),color-mix(in srgb,var(--accent) 58%,#4a1fb8));box-shadow:0 10px 24px color-mix(in srgb,var(--accent) 30%,transparent)}
+.wallet .wtop{display:flex;align-items:center;gap:8px}
+.wallet .wtop span{flex:1;font-size:calc(13px*var(--fs,1));opacity:.85}
+.wallet .wtop button{width:32px;height:32px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;font-size:16px;cursor:pointer}
+.wallet .wtotal{font:700 calc(36px*var(--fs,1))/1.1 var(--f-mono,monospace);margin:6px 0 4px;letter-spacing:-.02em}
+.wallet .wdelta{font-size:calc(12.5px*var(--fs,1));opacity:.85;min-height:1em}
+.wallet .wbar{height:8px;border-radius:4px;background:rgba(255,255,255,.25);margin-top:14px;overflow:hidden}
+.wallet .wbar i{display:block;height:100%;border-radius:4px;background:#fff}
+.wallet .wbar i.over{background:#FFB4A9}
+.wallet .wrow{display:flex;justify-content:space-between;gap:10px;font-size:calc(12.5px*var(--fs,1));margin-top:8px;opacity:.92}
+.wallet .wnote{margin-top:10px;font-size:calc(13px*var(--fs,1));background:rgba(255,255,255,.14);border-radius:12px;padding:8px 10px}
+.wallet .wset{background:none;border:0;color:#fff;text-decoration:underline;font:inherit;cursor:pointer;padding:0}
+.quick{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.quick > *{display:flex;flex-direction:column;align-items:center;gap:6px;border:0;background:none;padding:0;color:var(--ink);font:500 calc(11.5px*var(--fs,1)) var(--f-body);cursor:pointer;text-align:center;line-height:1.2}
+.quick .qi{width:100%;max-width:56px;aspect-ratio:1;border-radius:18px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;color:var(--accent)}
+.quick .qi svg{width:24px;height:24px}
+.quick > *:hover .qi{border-color:var(--accent)}
+.remline{display:flex;align-items:center;gap:8px;border:0;width:100%;text-align:start;background:var(--warn-soft,#FFF4D6);color:var(--ink);border-radius:999px;padding:9px 14px;font:600 calc(13px*var(--fs,1)) var(--f-body);cursor:pointer}
+.remline span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.colpanel .chead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.colpanel .chead h2{margin:0}
+.nofix{display:inline-flex;align-items:center;gap:8px;font-size:calc(12.5px*var(--fs,1));color:var(--muted);cursor:pointer;border:0;background:none;padding:0}
+.nofix .rsw{width:38px;height:22px}
+.nofix .rsw::after{width:16px;height:16px}
+.nofix .rsw[aria-checked="true"]::after{inset-inline-start:19px}
+.hcols{display:flex;align-items:flex-end;gap:6px;height:170px;margin-top:12px;padding-top:18px;border-bottom:1.5px solid var(--line)}
+.hcol{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px;border:0;background:none;padding:0;cursor:pointer;color:var(--ink)}
+.hcol .v{font:600 calc(10.5px*var(--fs,1)) var(--f-mono,monospace);white-space:nowrap}
+.hcol .b{width:100%;max-width:34px;border-radius:8px 8px 0 0;min-height:4px}
+.hcol:hover .b{filter:brightness(1.08)}
+.hx{display:flex;gap:6px;margin-top:6px}
+.hx span{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:calc(10.5px*var(--fs,1));color:var(--muted);text-align:center;line-height:1.15;overflow-wrap:break-word;hyphens:auto;-webkit-hyphens:auto}
+.hx i{width:26px;height:26px;border-radius:9px;display:grid;place-items:center;color:#fff;font-style:normal}
+.hx i svg{width:15px;height:15px}
+.hempty{padding:28px 0;text-align:center;color:var(--muted)}
+.recent .rhead{display:flex;align-items:baseline;justify-content:space-between}
+.recent .rhead h2{margin:0}
+.recent .rhead button{border:0;background:none;color:var(--accent);font:600 calc(13.5px*var(--fs,1)) var(--f-body);cursor:pointer}
+.recent .ritem{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line);cursor:pointer}
+.recent .ritem:last-child{border-bottom:0}
+.recent .ritem .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:#fff;flex:none}
+.recent .ritem .ic svg{width:18px;height:18px}
+.recent .ritem .n{flex:1;min-width:0;display:flex;flex-direction:column}
+.recent .ritem .n b{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.recent .ritem .n span{font-size:calc(12px*var(--fs,1));color:var(--muted)}
+.recent .ritem .a{font:600 calc(14.5px*var(--fs,1)) var(--f-mono,monospace)}
+#homeView .hubcol,#homeView .col2{display:flex;flex-direction:column;gap:14px}
+#remSheetStrips{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+#remSheetStrips:empty{display:none}
+.remctl{display:flex;flex-direction:column;gap:14px}
+.remrow{border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:10px;background:var(--surface)}
+.remrow[data-on="true"]{border-color:var(--accent)}
+.remtop{display:flex;align-items:center;gap:12px}
+.remtop .ic{font-size:calc(20px*var(--fs,1));flex:none}
+.remtop .tx{flex:1;min-width:0;display:flex;flex-direction:column}
+.remtop .tx b{font-size:calc(15px*var(--fs,1))}
+.remtop .tx span{font-size:calc(12.5px*var(--fs,1));color:var(--muted)}
+.rsw{position:relative;width:48px;height:28px;flex:none;border-radius:999px;border:0;background:var(--line);cursor:pointer;transition:background .15s}
+.rsw::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:inset-inline-start .15s}
+.rsw[aria-checked="true"]{background:var(--accent)}
+.rsw[aria-checked="true"]::after{inset-inline-start:23px}
+.remopt{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.remopt input[type=time]{height:40px;border:1px solid var(--line);border-radius:10px;padding:0 10px;background:var(--bg);color:var(--ink);font:600 calc(16px*var(--fs,1)) var(--f-mono,monospace)}
+.remopt button{height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:500 calc(13.5px*var(--fs,1)) var(--f-body);cursor:pointer}
+.remopt button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.remnote{font-size:calc(12.5px*var(--fs,1));color:var(--muted);margin:0}
+.remstrips{display:flex;flex-direction:column;gap:8px}
+.remstrip{display:flex;align-items:center;gap:10px;border-radius:var(--r);padding:10px 12px;background:var(--warn-soft, #FFF4D6);color:var(--ink);font-size:calc(14px*var(--fs,1))}
+.remstrip .ic{font-size:calc(18px*var(--fs,1));flex:none}
+.remstrip .tx{flex:1;min-width:0}
+.remstrip .go{height:34px;padding:0 12px;border-radius:10px;border:0;background:var(--accent);color:var(--accent-ink);font:600 calc(13px*var(--fs,1)) var(--f-body);cursor:pointer;flex:none}
+.remstrip .x{width:30px;height:30px;border:0;border-radius:50%;background:none;color:var(--muted);font-size:18px;cursor:pointer;flex:none}
+.rmmodal{position:fixed;inset:0;z-index:95;background:rgba(10,15,30,.45);display:flex;align-items:flex-end;justify-content:center}
+.rmpanel{width:min(460px,100%);max-height:88vh;overflow:auto;background:var(--bg);color:var(--ink);border-radius:20px 20px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));box-shadow:0 -10px 40px rgba(0,0,0,.25)}
+@media (min-width:700px){.rmmodal{align-items:center}.rmpanel{border-radius:20px}}
+.rmpanel .hd{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.rmpanel .hd h2{flex:1;margin:0;font-size:calc(19px*var(--fs,1))}
+.rmpanel .hd button{width:36px;height:36px;border-radius:50%;border:0;background:var(--sunk);color:var(--ink);font-size:20px;cursor:pointer}
+.cpbtn{display:flex;align-items:center;gap:8px;width:100%;height:44px;padding:0 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:500 calc(15px*var(--fs,1)) var(--f-body);cursor:pointer;text-align:start}
+.cpbtn .sym{font-family:var(--f-mono,monospace);min-width:26px;color:var(--muted)}
+.cpbtn .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cpbtn .cv{color:var(--muted);font-size:calc(11px*var(--fs,1))}
+.cphint{font-size:calc(12.5px*var(--fs,1));color:var(--accent);margin-top:4px}
+.curpick.js select{display:none}
+.cpmodal{position:fixed;inset:0;z-index:95;background:rgba(10,15,30,.45);display:flex;align-items:flex-end;justify-content:center}
+.cppanel{width:min(460px,100%);height:min(82vh,720px);background:var(--surface);color:var(--ink);border-radius:20px 20px 0 0;display:flex;flex-direction:column;box-shadow:0 -10px 40px rgba(0,0,0,.25);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (min-width:700px){.cpmodal{align-items:center}.cppanel{border-radius:20px}}
+.cphead{display:flex;align-items:center;gap:10px;padding:16px 16px 8px}
+.cphead h2{flex:1;margin:0;font-size:calc(18px*var(--fs,1))}
+.cphead button{width:36px;height:36px;border-radius:50%;border:0;background:var(--sunk);color:var(--ink);font-size:20px;cursor:pointer}
+.cpsearch{margin:0 16px;position:relative}
+.cpsearch input{width:100%;box-sizing:border-box;height:46px;border:1.5px solid var(--line);border-radius:12px;padding:0 14px 0 40px;background:var(--bg);color:var(--ink);font:500 calc(16px*var(--fs,1)) var(--f-body)}
+html[dir="rtl"] .cpsearch input{padding:0 40px 0 14px}
+.cpsearch input:focus{outline:none;border-color:var(--accent)}
+.cpsearch svg{position:absolute;inset-inline-start:13px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--muted)}
+.cpchips{display:flex;flex-wrap:wrap;gap:6px;padding:10px 16px 4px}
+.cpchips button{height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 calc(13px*var(--fs,1)) var(--f-body);cursor:pointer}
+.cplist{overflow-y:auto;padding:4px 8px 12px;flex:1}
+.cplist h3{position:sticky;top:0;background:var(--surface);margin:0;padding:8px 10px 4px;font-size:calc(12px*var(--fs,1));color:var(--muted);letter-spacing:.06em}
+.cplist button{display:flex;align-items:center;gap:12px;width:100%;padding:10px;border:0;border-radius:10px;background:none;color:var(--ink);text-align:start;cursor:pointer;font:500 calc(15px*var(--fs,1)) var(--f-body)}
+.cplist button:hover,.cplist button:focus-visible{background:var(--sunk);outline:none}
+.cplist button.on{background:var(--accent-soft,var(--sunk))}
+.cplist .sym{width:38px;height:38px;border-radius:10px;background:var(--sunk);display:grid;place-items:center;font-family:var(--f-mono,monospace);font-size:calc(14px*var(--fs,1));flex:none}
+.cplist .tx{flex:1;min-width:0;display:flex;flex-direction:column}
+.cplist .tx small{color:var(--muted);font-size:calc(12px*var(--fs,1));overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cplist .code{font-family:var(--f-mono,monospace);color:var(--muted);font-size:calc(13px*var(--fs,1))}
+.cpnone{padding:30px 16px;text-align:center;color:var(--muted)}
+.splitbox{margin-top:12px;border:1px solid var(--line);border-radius:14px;padding:4px 12px}
+.splitbox[data-on="true"]{border-color:var(--accent);padding-bottom:12px}
+.splitbox .check{margin:8px 0}
+.splitbody{display:flex;flex-direction:column;gap:10px}
+.splitbody .lab{font-size:calc(12.5px*var(--fs,1));font-weight:600;color:var(--muted);margin-bottom:-4px}
+.spchips{display:flex;flex-wrap:wrap;gap:6px}
+.spchips button{height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:500 calc(14px*var(--fs,1)) var(--f-body);cursor:pointer}
+.spchips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.spadd{display:flex;gap:6px}
+.spadd input{flex:1;min-width:0;height:38px;border:1px solid var(--line);border-radius:10px;padding:0 10px;background:var(--surface);color:var(--ink);font:500 calc(14px*var(--fs,1)) var(--f-body)}
+.spadd button{height:38px;padding:0 14px;border-radius:10px;border:1px solid var(--line);background:var(--sunk);color:var(--ink);font:600 calc(14px*var(--fs,1)) var(--f-body);cursor:pointer}
+.spcustom{display:flex;flex-direction:column;gap:6px}
+.spcustom label{display:flex;align-items:center;gap:8px;font-size:calc(14px*var(--fs,1))}
+.spcustom label span{flex:1}
+.spcustom input{width:96px;height:36px;border:1px solid var(--line);border-radius:10px;padding:0 10px;background:var(--surface);color:var(--ink);font:500 calc(14px*var(--fs,1)) var(--f-mono,monospace);text-align:end}
+.spsum{background:var(--accent-soft, var(--sunk));border-radius:12px;padding:10px 12px;font-size:calc(13.5px*var(--fs,1));display:flex;flex-direction:column;gap:2px}
+.spsum b{font-size:calc(16px*var(--fs,1))}
+.spsum span{color:var(--muted)}
+.spview .stat2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.spview .stat2 div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+.spview .stat2 small{display:block;color:var(--muted);font-size:calc(12.5px*var(--fs,1));font-weight:600}
+.spview .stat2 b{font:700 calc(24px*var(--fs,1)) var(--f-mono,monospace)}
+.sp-in{color:var(--good, #1F7A4A)}.sp-out{color:var(--bad, #B3261E)}
+.spperson{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:12px}
+.spperson .ph{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.spperson .av{width:38px;height:38px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:700;flex:none}
+.spperson .nm{flex:1;min-width:120px;display:flex;flex-direction:column}
+.spperson .nm b{font-size:calc(16px*var(--fs,1))}
+.spperson .nm span{font-size:calc(13px*var(--fs,1))}
+.spperson .row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px dashed var(--line);font-size:calc(14px*var(--fs,1))}
+.spperson .row span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.spperson .row small{color:var(--muted)}
+.spperson .acts{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.spperson .acts a,.spperson .acts button{flex:1;min-width:130px;height:42px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;gap:6px;font:600 calc(14px*var(--fs,1)) var(--f-body);text-decoration:none;cursor:pointer}
+.spperson .wa{background:#1FA855;color:#fff;border:0}
+.spperson .ok{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.spempty{text-align:center;color:var(--muted);padding:40px 16px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--r)}
 .sumtabs{max-width:360px;margin:0 0 16px}
 .rpfilters h2{margin:0 0 6px}
-.rplab{font-size:12.5px;font-weight:600;color:var(--muted);margin:14px 0 8px}
+.rplab{font-size:calc(12.5px*var(--fs,1));font-weight:600;color:var(--muted);margin:14px 0 8px}
 .rpchips{display:flex;flex-wrap:wrap;gap:6px}
-.rpchips button{height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:500 14px var(--f-body);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.rpchips button{height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:500 calc(14px*var(--fs,1)) var(--f-body);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
 .rpchips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .rpchips button .dot{width:9px;height:9px;border-radius:50%;flex:none}
 .rpchips button[aria-pressed="true"] .dot{box-shadow:0 0 0 2px #fff}
 .rpdates{display:flex;gap:8px;margin-top:10px}
-.rpdates label{flex:1;display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);min-width:0}
-.rpdates input{height:42px;border:1px solid var(--line);border-radius:10px;padding:0 10px;background:var(--surface);color:var(--ink);font:500 14px var(--f-body);min-width:0}
+.rpdates label{flex:1;display:flex;flex-direction:column;gap:4px;font-size:calc(12px*var(--fs,1));color:var(--muted);min-width:0}
+.rpdates input{height:42px;border:1px solid var(--line);border-radius:10px;padding:0 10px;background:var(--surface);color:var(--ink);font:500 calc(14px*var(--fs,1)) var(--f-body);min-width:0}
 .rphead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.rphead span{font-size:13px;color:var(--muted)}
-.rphead strong{font:700 26px var(--f-mono,monospace)}
+.rphead span{font-size:calc(13px*var(--fs,1));color:var(--muted)}
+.rphead strong{font:700 calc(26px*var(--fs,1)) var(--f-mono,monospace)}
 .rpchart{display:flex;align-items:flex-end;gap:8px;height:220px;margin-top:14px;padding-top:22px;border-bottom:1.5px solid var(--line)}
 .rpcol{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px;border:0;background:none;padding:0;cursor:pointer;color:var(--ink)}
-.rpcol .v{font:600 11.5px var(--f-mono,monospace);white-space:nowrap}
+.rpcol .v{font:600 calc(11.5px*var(--fs,1)) var(--f-mono,monospace);white-space:nowrap}
 .rpcol .b{width:100%;max-width:46px;border-radius:7px 7px 0 0;min-height:3px;transition:opacity .15s}
 .rpchart.picked .rpcol:not([aria-pressed="true"]) .b{opacity:.3}
 .rpx{display:flex;gap:8px;margin-top:6px}
-.rpx span{flex:1;min-width:0;text-align:center;font-size:11px;color:var(--muted);line-height:1.25;word-break:keep-all;overflow-wrap:normal}
-.rpnote{font-size:12.5px;color:var(--muted);margin-top:10px}
+.rpx span{flex:1;min-width:0;text-align:center;font-size:calc(11px*var(--fs,1));color:var(--muted);line-height:1.25;word-break:keep-all;overflow-wrap:normal}
+.rpnote{font-size:calc(12.5px*var(--fs,1));color:var(--muted);margin-top:10px}
 .rpempty{padding:40px 0;text-align:center;color:var(--muted)}
 #rpList .rpit{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line)}
 #rpList .rpit .n{flex:1;min-width:0;display:flex;flex-direction:column}
 #rpList .rpit .n b{font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#rpList .rpit .n span{font-size:12px;color:var(--muted)}
+#rpList .rpit .n span{font-size:calc(12px*var(--fs,1));color:var(--muted)}
 #rpList .rpit .a{font-family:var(--f-mono,monospace)}
-#rpList h3{font-size:15px;margin:16px 0 4px}
+#rpList h3{font-size:calc(15px*var(--fs,1));margin:16px 0 4px}
 .rpbtns{display:flex;gap:8px;margin-top:12px}
-.rpbtn{flex:1;height:48px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 15px var(--f-body);cursor:pointer}
+.rpbtn{flex:1;height:48px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 calc(15px*var(--fs,1)) var(--f-body);cursor:pointer}
 .rpbtn.pri{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 #printReport{display:none}
 @media print{
@@ -922,7 +1144,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
   #printReport th,#printReport td{border-bottom:.5pt solid #bbb;padding:4pt 6pt;text-align:start}
   #printReport td.num,#printReport th.num{text-align:end;white-space:nowrap}
 }
-.auth .lang{align-self:flex-end;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;height:36px;padding:0 14px;font:500 13px var(--f-body);cursor:pointer}
+.auth .lang{align-self:flex-end;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;height:36px;padding:0 14px;font:500 calc(13px*var(--fs,1)) var(--f-body);cursor:pointer}
 </style>
 <div class="auth" id="authView" hidden>
   <form class="card" id="authForm" novalidate>
@@ -956,6 +1178,13 @@ html[dir="rtl"] .amtfield input{text-align:right}
   const SUPABASE_KEY = "sb_publishable_T8rMH6-1CcydnPhoiaECpQ_syRV6BBw"; // publishable key: safe to be public, data is protected by row-level security
   const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: true, autoRefreshToken: true } });
 
+
+  // ---------- text size: saved per device, bigger by default on computer screens ----------
+  const TS = { normal: 1, large: 1.15, xl: 1.3 };
+  function textSizeKey() { let v = null; try { v = localStorage.getItem("textSize"); } catch {} return TS[v] ? v : (innerWidth >= 900 ? "large" : "normal"); }
+  function applyTextSize(k) { document.documentElement.style.setProperty("--fs", String(TS[k] || 1)); }
+  applyTextSize(textSizeKey());
+  window.__slText = { TS, textSizeKey, applyTextSize };
 
   // ---------- languages: list, flags and the picker (used by the sign-in screen and the app) ----------
   const SL_FLAGS = {
@@ -1238,7 +1467,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
 
   // ---------- the same interface the app already uses ----------
   loaded = userReady.then(async user => { uid = user.id; try { await loadAll(); } catch (e) { console.error("Spend Ledger: loading data failed:", e); throw e; } listen(); });
-  window.claude = {
+  window.__slClaude = {
     use: async name => {
       await loaded;
       if (name === "db") return db;
@@ -1348,17 +1577,186 @@ html[dir="rtl"] .amtfield input{text-align:right}
     if (c === main) return 1;
     const user = state.settings.rates || {};
     if (state.settings.ratesMain === main && +user[c] > 0) return +user[c];
+    return autoRate(c);
+  }
+  // today's rate without your own changes: the daily online rate if we have it, else the built-in table
+  function autoRate(c) {
+    const main = state.settings.currency || "ILS";
+    if (c === main) return 1;
+    const live = liveRates();
+    if (live && live.main === main && +live.rates[c] > 0) return +live.rates[c];
     const a = DEF_RATES[c], b = DEF_RATES[main];
     return a && b ? Math.round(a / b * 1e6) / 1e6 : null;
+  }
+  // ---------- daily exchange rates for ~160 currencies (free, no account) ----------
+  let liveCache;
+  function liveRates() {
+    if (liveCache !== undefined) return liveCache;
+    try { liveCache = JSON.parse(localStorage.getItem("liveRates") || "null"); } catch { liveCache = null; }
+    return liveCache;
+  }
+  const sig = x => +x.toPrecision(6);
+  async function fetchLiveRates(force) {
+    const main = state.settings.currency || "ILS", old = liveRates();
+    if (!force && old && old.main === main && Date.now() - old.at < 12 * 3600e3) return false;
+    let rates = null, source = "";
+    try {   // ExchangeRate-API open access: rates[X] = units of X for 1 unit of the main currency
+      const r = await fetch(`https://open.er-api.com/v6/latest/${main}`, {cache: "no-store"});
+      const j = await r.json();
+      if (j && j.result === "success" && j.rates) { rates = {}; Object.entries(j.rates).forEach(([k, v]) => { if (v > 0 && k !== main) rates[k] = sig(1 / v); }); source = "er"; }
+    } catch {}
+    if (!rates || Object.keys(rates).length < 20) return false;
+    liveCache = { main, at: Date.now(), rates, source };
+    try { localStorage.setItem("liveRates", JSON.stringify(liveCache)); } catch {}
+    return true;
   }
   function fillCurSelect(sel, value) {
     const cur = value || sel.value;
     sel.innerHTML = "";
-    ALL_CUR.forEach((c, i) => {
-      if (i === COMMON_CUR.length) { const sep = document.createElement("option"); sep.disabled = true; sep.textContent = "──────"; sel.appendChild(sep); }
+    const list = LIVE_CUR();
+    [...new Set([...list, ...(cur ? [cur] : [])])].sort((a, b) => curName(a).localeCompare(curName(b), state.lang)).forEach(c => {
       const o = document.createElement("option"); o.value = c; o.textContent = `${c} · ${curName(c)}`; sel.appendChild(o);
     });
     if (cur) sel.value = cur;
+    if (sel.id !== "fCur") curPickerButton(sel);
+  }
+
+  // ---------- countries & cities -> currency (used to pick a trip's currency from its name, and to search currencies by country) ----------
+  const CC = {};
+  ("AT BE BG HR CY EE FI FR DE GR IE IT LV LT LU MT NL PT SK SI ES AD MC SM VA ME XK".split(" ")).forEach(c => CC[c] = "EUR");
+  Object.assign(CC, { IL:"ILS", PS:"ILS", US:"USD", EC:"USD", SV:"USD", PA:"USD", PR:"USD", GB:"GBP", CH:"CHF", LI:"CHF", JP:"JPY", CA:"CAD", AU:"AUD", NZ:"NZD",
+    TH:"THB", TR:"TRY", CZ:"CZK", HU:"HUF", PL:"PLN", CN:"CNY", IN:"INR", AE:"AED", JO:"JOD", GE:"GEL", EG:"EGP", MA:"MAD", TN:"TND", DZ:"DZD",
+    RO:"RON", RS:"RSD", AL:"ALL", MK:"MKD", BA:"BAM", MD:"MDL", UA:"UAH", RU:"RUB", BY:"BYN", AM:"AMD", AZ:"AZN", KZ:"KZT", UZ:"UZS",
+    NO:"NOK", SE:"SEK", DK:"DKK", IS:"ISK", FO:"DKK", GL:"DKK", MX:"MXN", BR:"BRL", AR:"ARS", CL:"CLP", CO:"COP", PE:"PEN", UY:"UYU", BO:"BOB", PY:"PYG",
+    CR:"CRC", GT:"GTQ", DO:"DOP", CU:"CUP", JM:"JMD", BS:"BSD", BB:"BBD", TT:"TTD", HN:"HNL", NI:"NIO",
+    ZA:"ZAR", KE:"KES", TZ:"TZS", UG:"UGX", ET:"ETB", NG:"NGN", GH:"GHS", RW:"RWF", NA:"NAD", BW:"BWP", ZM:"ZMW", MU:"MUR", SC:"SCR", MG:"MGA",
+    SN:"XOF", CI:"XOF", ML:"XOF", BF:"XOF", CM:"XAF", GA:"XAF", CV:"CVE",
+    SA:"SAR", QA:"QAR", BH:"BHD", KW:"KWD", OM:"OMR", LB:"LBP", IQ:"IQD", IR:"IRR", PK:"PKR", BD:"BDT", LK:"LKR", NP:"NPR", MV:"MVR",
+    KR:"KRW", TW:"TWD", HK:"HKD", MO:"MOP", SG:"SGD", MY:"MYR", ID:"IDR", PH:"PHP", VN:"VND", KH:"KHR", LA:"LAK", MM:"MMK", MN:"MNT",
+    FJ:"FJD", PF:"XPF", NC:"XPF" });
+  // places people write as a trip name that are not country names (English + Hebrew)
+  const PLACE_CC = {
+    paris:"FR", "פריז":"FR", nice:"FR", "ניס":"FR", london:"GB", "לונדון":"GB", rome:"IT", "רומא":"IT", milan:"IT", "מילאנו":"IT", venice:"IT", "ונציה":"IT", florence:"IT", "פירנצה":"IT",
+    barcelona:"ES", "ברצלונה":"ES", madrid:"ES", "מדריד":"ES", lisbon:"PT", "ליסבון":"PT", porto:"PT", "פורטו":"PT", amsterdam:"NL", "אמסטרדם":"NL", berlin:"DE", "ברלין":"DE", munich:"DE", "מינכן":"DE",
+    vienna:"AT", "וינה":"AT", athens:"GR", "אתונה":"GR", crete:"GR", "כרתים":"GR", rhodes:"GR", "רודוס":"GR", santorini:"GR", "סנטוריני":"GR",
+    larnaca:"CY", "לרנקה":"CY", limassol:"CY", "לימסול":"CY", paphos:"CY", "פאפוס":"CY", "ayia napa":"CY", "איה נאפה":"CY", "אייה נאפה":"CY",
+    prague:"CZ", "פראג":"CZ", budapest:"HU", "בודפשט":"HU", warsaw:"PL", "ורשה":"PL", krakow:"PL", "קרקוב":"PL", bucharest:"RO", "בוקרשט":"RO", sofia:"BG", "סופיה":"BG",
+    batumi:"GE", "באטומי":"GE", tbilisi:"GE", "טביליסי":"GE", istanbul:"TR", "איסטנבול":"TR", antalya:"TR", "אנטליה":"TR",
+    marrakech:"MA", marrakesh:"MA", "מרקש":"MA", casablanca:"MA", "קזבלנקה":"MA", sinai:"EG", "סיני":"EG", cairo:"EG", "קהיר":"EG", "שארם":"EG",
+    dubai:"AE", "דובאי":"AE", "abu dhabi":"AE", "אבו דאבי":"AE", petra:"JO", "פטרה":"JO", amman:"JO", "עמאן":"JO",
+    "new york":"US", nyc:"US", "ניו יורק":"US", miami:"US", "מיאמי":"US", "los angeles":"US", "לוס אנג'לס":"US", "las vegas":"US", "לאס וגאס":"US", "ארה\"ב":"US", "ארהב":"US",
+    bangkok:"TH", "בנגקוק":"TH", phuket:"TH", "פוקט":"TH", "קוסמוי":"TH", "koh samui":"TH", tokyo:"JP", "טוקיו":"JP", kyoto:"JP", "קיוטו":"JP",
+    bali:"ID", "באלי":"ID", "goa":"IN", "גואה":"IN", delhi:"IN", "דלהי":"IN", zurich:"CH", "ציריך":"CH", geneva:"CH", "ז'נבה":"CH",
+    reykjavik:"IS", "רייקיאוויק":"IS", "cancun":"MX", "קנקון":"MX", "rio":"BR", "ריו":"BR", "cape town":"ZA", "קייפטאון":"ZA", "אנגליה":"GB", "england":"GB", "scotland":"GB", "סקוטלנד":"GB", "הולנד":"NL", "holland":"NL"
+  };
+  const norm = x => (x || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[״"']/g, "").trim();
+  let regionNamesCache = null;
+  function regionNames() {
+    if (regionNamesCache && regionNamesCache.lang === state.lang) return regionNamesCache.list;
+    const langs = [...new Set(["en", "he", state.lang])], list = [];
+    Object.keys(CC).forEach(code => langs.forEach(l => { try { const n = new Intl.DisplayNames([l], {type:"region"}).of(code); if (n && n !== code) list.push([norm(n), code]); } catch {} }));
+    Object.entries(PLACE_CC).forEach(([n, code]) => list.push([norm(n), code]));
+    list.sort((a, b) => b[0].length - a[0].length);   // longest names first, so "Dominican Republic" wins over shorter matches
+    regionNamesCache = { lang: state.lang, list };
+    return list;
+  }
+  // "Cyprus 2026", "טיול לקפריסין" -> {code:"CY", cur:"EUR"}
+  function placeFromName(name) {
+    const n = " " + norm(name).replace(/[^\p{L}\p{N} ]+/gu, " ").replace(/\s+/g, " ") + " ";
+    if (n.trim().length < 3) return null;
+    for (const [nm, code] of regionNames()) {
+      if (nm.length < 3) continue;
+      // Hebrew often glues a small word to the name: לקפריסין, בפריז, והולנד
+      for (const pre of ["", "ל", "ב", "ה", "ו", "מ"]) if (n.includes(" " + pre + nm + " ")) return { code, cur: CC[code] };
+    }
+    return null;
+  }
+  const regionName = code => { try { return new Intl.DisplayNames([state.lang], {type:"region"}).of(code) || code; } catch { return code; } };
+
+  // ---------- currency picker: search + A to Z ----------
+  const CPT = {
+    en:{title:"Choose currency", ph:"Search currency or country…", pop:"Popular", none:"No currency found", auto:(c,p)=>`Set to ${c} for ${p}`},
+    he:{title:"בחירת מטבע", ph:"חיפוש מטבע או מדינה…", pop:"פופולריים", none:"לא נמצא מטבע", auto:(c,p)=>`נבחר ${c} בשביל ⁨${p}⁩`},
+    de:{title:"Währung wählen", ph:"Währung oder Land suchen…", pop:"Beliebt", none:"Keine Währung gefunden", auto:(c,p)=>`${c} für ${p} gewählt`},
+    fr:{title:"Choisir la devise", ph:"Chercher une devise ou un pays…", pop:"Populaires", none:"Aucune devise trouvée", auto:(c,p)=>`${c} choisi pour ${p}`},
+    ru:{title:"Выбор валюты", ph:"Поиск валюты или страны…", pop:"Популярные", none:"Валюта не найдена", auto:(c,p)=>`Выбрано: ${c} для ${p}`},
+    ar:{title:"اختيار العملة", ph:"ابحث عن عملة أو دولة…", pop:"الأكثر استخدامًا", none:"لم يتم العثور على عملة", auto:(c,p)=>`تم اختيار ${c} لـ⁨${p}⁩`},
+    it:{title:"Scegli la valuta", ph:"Cerca valuta o paese…", pop:"Più usate", none:"Nessuna valuta trovata", auto:(c,p)=>`Scelto ${c} per ${p}`},
+    es:{title:"Elegir moneda", ph:"Buscar moneda o país…", pop:"Populares", none:"No se encontró la moneda", auto:(c,p)=>`Elegido ${c} para ${p}`}
+  };
+  const cpt = (k, ...a) => { const d = CPT[state.lang] || CPT.en; const v = d[k] ?? CPT.en[k]; return typeof v === "function" ? v(...a) : v; };
+  const POP_CUR = ["ILS","USD","EUR","GBP","THB","AED"];
+  function LIVE_CUR() { return [...new Set([...COMMON_CUR, ...Object.values(CC)])]; }
+  const curCountries = c => Object.keys(CC).filter(k => CC[k] === c);
+  function openCurPicker(sel, onDone) {
+    const old = document.querySelector(".cpmodal"); if (old) old.remove();
+    const m = document.createElement("div"); m.className = "cpmodal"; m.setAttribute("role", "dialog"); m.setAttribute("aria-modal", "true");
+    m.innerHTML = `<div class="cppanel"><div class="cphead"><h2></h2><button type="button" aria-label="Close">×</button></div>
+      <div class="cpsearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input type="search" autocomplete="off"></div>
+      <div class="cpchips"></div><div class="cplist" role="listbox"></div></div>`;
+    m.querySelector("h2").textContent = cpt("title"); m.setAttribute("aria-label", cpt("title"));
+    const inp = m.querySelector("input"); inp.placeholder = cpt("ph");
+    const close = () => { m.remove(); document.removeEventListener("keydown", esc); };
+    const esc = e => { if (e.key === "Escape") close(); };
+    document.addEventListener("keydown", esc);
+    m.querySelector(".cphead button").onclick = close;
+    m.addEventListener("click", e => { if (e.target === m) close(); });
+    const pick = c => { sel.value = c; sel.dispatchEvent(new Event("change", {bubbles: true})); close(); if (onDone) onDone(c); };
+    const chips = m.querySelector(".cpchips");
+    POP_CUR.forEach(c => { const b = document.createElement("button"); b.type = "button"; b.textContent = `${curSym(c)} ${c}`; b.onclick = () => pick(c); chips.appendChild(b); });
+    const all = LIVE_CUR().map(c => {
+      const name = curName(c), countries = curCountries(c).map(regionName);
+      return { c, name, countries, hay: norm([c, name, (() => { try { return new Intl.DisplayNames(["en"], {type:"currency"}).of(c); } catch { return ""; } })(), curSym(c), ...countries, ...curCountries(c).map(k => { try { return new Intl.DisplayNames(["en"], {type:"region"}).of(k); } catch { return ""; } })].join(" ")) };
+    }).sort((a, b) => a.name.localeCompare(b.name, state.lang));
+    const list = m.querySelector(".cplist");
+    function draw() {
+      const q = norm(inp.value); list.innerHTML = "";
+      chips.hidden = !!q;
+      const rows = q ? all.filter(r => r.hay.includes(q)) : all;
+      if (!rows.length) { const d = document.createElement("div"); d.className = "cpnone"; d.textContent = cpt("none"); list.appendChild(d); return; }
+      let letter = "";
+      rows.forEach(r => {
+        const L = (r.name[0] || "").toLocaleUpperCase(state.lang);
+        if (!q && L !== letter) { letter = L; const h = document.createElement("h3"); h.textContent = L; list.appendChild(h); }
+        const b = document.createElement("button"); b.type = "button"; b.setAttribute("role", "option");
+        if (r.c === sel.value) { b.className = "on"; b.setAttribute("aria-selected", "true"); }
+        b.innerHTML = `<span class="sym"></span><span class="tx"><span></span><small></small></span><span class="code"></span>`;
+        b.querySelector(".sym").textContent = curSym(r.c);
+        b.querySelector(".tx span").textContent = r.name;
+        b.querySelector(".tx small").textContent = r.countries.slice(0, 4).join(", ") + (r.countries.length > 4 ? "…" : "");
+        b.querySelector(".code").textContent = r.c;
+        b.onclick = () => pick(r.c);
+        list.appendChild(b);
+      });
+    }
+    inp.addEventListener("input", draw);
+    document.body.appendChild(m); draw();
+    setTimeout(() => { inp.focus(); const on = list.querySelector(".on"); if (on) on.scrollIntoView({block: "center"}); }, 30);
+  }
+  // swaps a <select> for a button that opens the picker; the <select> stays (hidden) and keeps the value
+  function curPickerButton(sel) {
+    if (sel._cpbtn) return sel._cpbtn.paint();
+    const b = document.createElement("button"); b.type = "button"; b.className = "cpbtn";
+    b.innerHTML = `<span class="sym"></span><span class="nm"></span><span class="cv" aria-hidden="true">▾</span>`;
+    b.paint = () => { const c = sel.value || "ILS"; b.querySelector(".sym").textContent = curSym(c); b.querySelector(".nm").textContent = `${curName(c)} · ${c}`; b.setAttribute("aria-label", `${t("currencyAria")}: ${curName(c)}`); };
+    b.onclick = () => openCurPicker(sel, () => { sel._userPicked = true; b.paint(); });
+    sel.hidden = true; sel.after(b); sel._cpbtn = b;
+    sel.addEventListener("change", () => b.paint());
+    const lab = document.querySelector(`label[for="${sel.id}"]`); if (lab) lab.addEventListener("click", ev => { ev.preventDefault(); b.click(); });
+    b.paint();
+  }
+  // the trip name decides the currency until the person picks one themselves
+  function autoTripCurrency(nameEl, sel, hintEl) {
+    const p = placeFromName(nameEl.value);
+    if (sel._userPicked) return;
+    if (!p) {
+      // the name no longer points to a country: undo our own guess
+      if (sel._auto) { sel._auto = false; sel.value = state.settings.currency || "ILS"; sel.dispatchEvent(new Event("change", {bubbles: true})); }
+      hintEl.hidden = true; return;
+    }
+    if (sel.value !== p.cur) { sel.value = p.cur; sel.dispatchEvent(new Event("change", {bubbles: true})); }
+    sel._auto = true;
+    hintEl.textContent = cpt("auto", curName(p.cur), regionName(p.code)); hintEl.hidden = false;
   }
 
   // ---------- colour themes ----------
@@ -2217,7 +2615,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
     slLangGrid($("setLangs"), state.lang, code => setLang(code));
     slLangGrid($("wLangs"), state.lang, code => setLang(code, false));
     $("wCur").textContent = curSymbol(); $("loading").textContent = t("loading");
-    $("tripsBack").textContent = he ? "›" : "‹"; $("tripBack").textContent = he ? "›" : "‹"; $("rcptBack").textContent = he ? "›" : "‹"; $("billsBack").textContent = he ? "›" : "‹"; $("billsBack").setAttribute("aria-label", t("back")); $("billAddBtn").setAttribute("aria-label", t("addBill"));
+    $("tripsBack").textContent = he ? "›" : "‹"; $("tripBack").textContent = he ? "›" : "‹"; $("rcptBack").textContent = he ? "›" : "‹"; $("billsBack").textContent = he ? "›" : "‹"; $("splitBack").textContent = he ? "›" : "‹"; $("billsBack").setAttribute("aria-label", t("back")); $("billAddBtn").setAttribute("aria-label", t("addBill"));
     if (!$("billForm").hidden) { fillBillSelects(); $("billFormTitle").textContent = t(billEditing ? "editBill" : "addBill"); if (!billEditing) renderPresets(null); }
     $("rcptBack").setAttribute("aria-label", t("back")); $("rcptSearch").placeholder = t("rcptSearch"); $("rcptSearch").setAttribute("aria-label", t("rcptSearch"));
     $("tripsBack").setAttribute("aria-label", t("back")); $("tripBack").setAttribute("aria-label", t("back"));
@@ -2232,6 +2630,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
     fillCurSelect($("fCur")); fillCurSelect($("ntCur")); fillCurSelect($("teCur"));
     $("fCur").setAttribute("aria-label", t("currencyAria"));
     if (!$("ntCur").value || $("ntCur").value === "ILS") $("ntCur").value = state.settings.currency || "ILS";
+    $("ntCur")._cpbtn.paint();
     updateConv();
     const mSel = $("fMethod"), cur = mSel.value;
     mSel.innerHTML = ""; METHODS.forEach(m => { const o = document.createElement("option"); o.value = m.id; o.textContent = cname(m); mSel.appendChild(o); });
@@ -2292,7 +2691,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
       const b = document.createElement("button");
       b.type = "button"; b.className = "catbtn";
       b.style.left = x + "%"; b.style.top = y + "%";
-      if (isRtl()) { b.style.left = "auto"; b.style.right = (100 - x) + "%"; b.style.transform = "translate(50%,-23px)"; }
+      if (isRtl()) { b.style.left = "auto"; b.style.right = (100 - x) + "%"; b.style.transform = "translate(50%,-6.76cqw)"; }
       b.innerHTML = `<span class="ic" style="background:${cssVar(it.v)}">${icon(it.ic)}</span><span class="nm"></span><span class="am"></span>`;
       b.querySelector(".nm").textContent = it.label;
       b.querySelector(".am").textContent = it.amt ? money(it.amt, {short:true}) : "";
@@ -2334,6 +2733,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
   }
 
   function render() {
+    renderSplitCard(); renderReminders(); renderHome2(); if (!$("splitView").hidden) renderSplitView();
     const {y,m} = state.month;
     const mk = monthKey(y,m);
     $("monthLabel").textContent = monthName(y,m);
@@ -2475,7 +2875,8 @@ html[dir="rtl"] .amtfield input{text-align:right}
         it.querySelector(".t").textContent = e.note || cname(c);
         const mEl = it.querySelector(".m"); mEl.textContent = `${cname(c)} · ${methodName(e.method)}`;
         if (e.tripId) { const tr = state.trips.find(x => x.id === e.tripId); if (tr) { const tg = document.createElement("span"); tg.className = "tag"; tg.textContent = tr.name; mEl.appendChild(tg); } }
-        if (e.recurringId) mEl.insertAdjacentHTML("beforeend", `<span class="tag">${t("tagMonthly")}</span>`);        if (e.receipt) mEl.insertAdjacentHTML("beforeend", `<span class="tag">${t("tagReceipt")}</span>`);
+        if (e.recurringId) mEl.insertAdjacentHTML("beforeend", `<span class="tag">${t("tagMonthly")}</span>`);
+        if (e.split) { const sg = document.createElement("span"); sg.className = "tag"; sg.textContent = st("tagOf", money(e.split.total)); mEl.appendChild(sg); }        if (e.receipt) mEl.insertAdjacentHTML("beforeend", `<span class="tag">${t("tagReceipt")}</span>`);
         it.querySelector(".a").textContent = money(+e.amount);
         if (e.origCurrency) { const o = document.createElement("span"); o.className = "orig"; o.textContent = fmtCur(+e.origAmount, e.origCurrency); it.querySelector(".a").appendChild(o); }
         it.onclick = () => startEdit(e);
@@ -2663,6 +3064,19 @@ html[dir="rtl"] .amtfield input{text-align:right}
       box.appendChild(b);
     });
     [["mAuto","auto"],["mLight","light"],["mDark","dark"]].forEach(([id, m]) => { $(id).setAttribute("aria-pressed", String((th.mode||"auto") === m)); $(id).onclick = () => setTheme({...themeSetting(), mode: m}); });
+    paintTextSize();
+  }
+  const TSL = {
+    en:["Text size","Normal","Large","Extra large"], he:["גודל טקסט","רגיל","גדול","גדול מאוד"], de:["Textgröße","Normal","Groß","Sehr groß"],
+    fr:["Taille du texte","Normale","Grande","Très grande"], ru:["Размер текста","Обычный","Крупный","Очень крупный"], ar:["حجم النص","عادي","كبير","كبير جدًا"],
+    it:["Dimensione testo","Normale","Grande","Molto grande"], es:["Tamaño del texto","Normal","Grande","Muy grande"] };
+  function paintTextSize() {
+    const L = TSL[state.lang] || TSL.en, cur = window.__slText.textSizeKey();
+    $("tsLabel").textContent = L[0];
+    [["tsN","normal",1],["tsL","large",2],["tsX","xl",3]].forEach(([id, k, i]) => {
+      $(id).textContent = L[i]; $(id).setAttribute("aria-pressed", String(cur === k));
+      $(id).onclick = () => { try { localStorage.setItem("textSize", k); } catch {} window.__slText.applyTextSize(k); paintTextSize(); if (typeof render === "function") render(); };
+    });
   }
   async function setTheme(th) {
     state.settings.theme = th;
@@ -2682,10 +3096,22 @@ html[dir="rtl"] .amtfield input{text-align:right}
       const f = document.createElement("div"); f.className = "field";
       f.innerHTML = `<label for="rt-${c}"></label><input id="rt-${c}" type="text" inputmode="decimal" data-cur="${c}">`;
       f.querySelector("label").textContent = `${t("rateLbl", c)} ${curSym(main)}`;
-      const r = rateOf(c); f.querySelector("input").value = r ? String(r) : "";
+      const r = rateOf(c), inp = f.querySelector("input"); inp.value = r ? String(r) : "";
+      const a = autoRate(c); inp.dataset.auto = a ? String(a) : "";
+      const mine = state.settings.ratesMain === main && +(state.settings.rates || {})[c] > 0;
+      inp.dataset.mine = mine ? "1" : "";
+      if (mine) { const rs = document.createElement("button"); rs.type = "button"; rs.className = "linkbtn"; rs.style.fontSize = "calc(12px*var(--fs,1))"; rs.textContent = lr("useLive");
+        rs.onclick = async () => { const nr = {...(state.settings.rates || {})}; delete nr[c]; state.settings = {...state.settings, rates: nr, ratesMain: main}; if (settingsRef) { try { await settingsRef.set(state.settings); } catch {} } renderRatesGrid(); };
+        f.appendChild(rs); }
       g.appendChild(f);
     });
-    $("ratesNote").textContent = t("ratesNote", new Date(RATES_DATE + "T12:00").toLocaleDateString(locale(), {day:"numeric", month:"long", year:"numeric"}));
+    const live = liveRates();
+    if (live && live.main === main) {
+      const when = new Date(live.at);
+      $("ratesNote").textContent = lr("note", when.toLocaleDateString(locale(), {day:"numeric", month:"short"}) + " " + when.toLocaleTimeString(locale(), {hour:"2-digit", minute:"2-digit"}), live.source === "fa" ? "Currency API (fawazahmed0)" : "ExchangeRate-API");
+    } else {
+      $("ratesNote").textContent = t("ratesNote", new Date(RATES_DATE + "T12:00").toLocaleDateString(locale(), {day:"numeric", month:"long", year:"numeric"}));
+    }
   }
   async function saveRate(c, r) {
     const main = state.settings.currency || "ILS";
@@ -2710,7 +3136,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
   }
 
   // ---------- views & trips ----------
-  const validView = v => v === "" || v === "summary" || v === "trips" || v === "receipts" || v === "prefs" || v === "bills" || /^trip-[A-Za-z0-9-]{1,80}$/.test(v);
+  const validView = v => v === "" || v === "summary" || v === "trips" || v === "receipts" || v === "prefs" || v === "bills" || v === "split" || v === "expenses" || /^trip-[A-Za-z0-9-]{1,80}$/.test(v);
   function go(v) {
     state.view = v; closePad(); $("tvDelSlot").innerHTML = "";
     try { if (validView(v) && location.hash.slice(1) !== v) location.hash = v; } catch {}
@@ -2741,13 +3167,16 @@ html[dir="rtl"] .amtfield input{text-align:right}
   function renderTripViews() {
     const v = state.view, tid = currentTripId();
     const trip = tid ? state.trips.find(x => x.id === tid) : null;
-    const show = v === "" ? "home" : v === "summary" ? "summary" : v === "receipts" ? "receipts" : v === "prefs" ? "prefs" : v === "bills" ? "bills" : trip ? "trip" : "trips";
+    const show = v === "" ? "home" : v === "summary" ? "summary" : v === "receipts" ? "receipts" : v === "prefs" ? "prefs" : v === "bills" ? "bills" : v === "split" ? "split" : v === "expenses" ? "expenses" : trip ? "trip" : "trips";
     const wasSum = !$("sumView").hidden;
     $("sumView").hidden = show !== "summary";
     if (show === "summary" && !wasSum) renderSummary();
     const wasBills = !$("billsView").hidden;
     $("billsView").hidden = show !== "bills";
     if (show === "bills") { if (!wasBills) closeBillForm(); renderRecurring(); }
+    $("expView").hidden = show !== "expenses";
+    $("splitView").hidden = show !== "split";
+    if (show === "split") renderSplitView();
     $("rcptView").hidden = show !== "receipts";
     if (show === "receipts") renderReceipts();
     $("homeView").hidden = show !== "home";
@@ -2758,10 +3187,11 @@ html[dir="rtl"] .amtfield input{text-align:right}
     if (show === "prefs" && !wasPrefs) fillPrefs();
     if (show === "trips") renderTripsList();
     if (show === "trip") { renderTrip(trip); renderTripFind(trip); }
-    const tab = show === "trip" ? "trips" : show === "bills" ? "home" : show;
+    const tab = (show === "trip" || show === "trips" || show === "bills" || show === "split") ? "home" : show;
     document.querySelectorAll("#tabbar .tab[data-v]").forEach(b => { if ((b.dataset.v || "home") === tab) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
   }
   function fillPrefs() {
+    drawRemControls($("remSettings"));
     $("setName").value = state.settings.name || ""; $("setCur").value = state.settings.currency || "ILS"; $("setBudget").value = state.settings.budget || "";
     renderBudgetInputs(); renderThemeControls(); renderRatesGrid();
   }
@@ -2928,7 +3358,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
       const ref = tripsCol.doc();
       const tcur = $("ntCur").value || state.settings.currency || "ILS";
       await ref.set({name, start: s || null, end: e || null, budget: b > 0 ? b : 0, currency: tcur, createdAt: Date.now()});
-      $("newTrip").reset(); $("ntCur").value = state.settings.currency || "ILS"; toast(t("tripCreated", name));
+      $("newTrip").reset(); $("ntCur").value = state.settings.currency || "ILS"; $("ntCur")._userPicked = false; $("ntCur")._auto = false; $("ntCurHint").hidden = true; $("ntCur")._cpbtn.paint(); toast(t("tripCreated", name));
       if (!state.trips.some(x => x.id === ref.id)) state.trips.push({id: ref.id, name, start: s||null, end: e||null, budget: b>0?b:0, currency: tcur});
       go("trip-" + ref.id);
     } catch { err(t("errSave")); }
@@ -2936,7 +3366,11 @@ html[dir="rtl"] .amtfield input{text-align:right}
   $("tvEditBtn").onclick = () => {
     const tr = state.trips.find(x => x.id === currentTripId()); if (!tr) return;
     const box = $("tvEdit"); box.hidden = !box.hidden;
-    if (!box.hidden) { $("teName").value = tr.name; $("teStart").value = tr.start || ""; $("teEnd").value = tr.end || ""; $("teBudget").value = tr.budget || ""; $("teCur").value = tr.currency || state.settings.currency || "ILS"; }
+    if (!box.hidden) { $("teName").value = tr.name; $("teStart").value = tr.start || ""; $("teEnd").value = tr.end || ""; $("teBudget").value = tr.budget || ""; $("teCur").value = tr.currency || state.settings.currency || "ILS";
+      // a trip still on the home currency gets its country's currency suggested from its name
+      const home = state.settings.currency || "ILS";
+      $("teCur")._userPicked = !!tr.currency && tr.currency !== home; $("teCurHint").hidden = true; $("teCur")._cpbtn.paint();
+      autoTripCurrency($("teName"), $("teCur"), $("teCurHint")); }
   };
   $("tvEdit").addEventListener("submit", async ev => {
     ev.preventDefault();
@@ -3157,6 +3591,522 @@ html[dir="rtl"] .amtfield input{text-align:right}
     btns.appendChild(yes); btns.appendChild(no); box.appendChild(btns);
   }
 
+
+  // ---------- splitting an expense with friends: only your share counts in your budget ----------
+  const SPT = {
+    en:{toggle:"Split with others", iPaid:"I paid", otherPaid:"Someone else paid", who:"Split with", addPh:"Add a name", add:"Add",
+        payer:"Who paid?", equal:"Equally", custom:"Custom amounts", me:"Me", yourShare:x=>`Your share: ${x}`, onlyShare:"Only your share counts in your budget.",
+        owesYou:(n,x)=>`${n} owes you ${x}`, youOwe:(n,x)=>`You owe ${n} ${x}`, needPeople:"Choose at least one person to split with.", needPayer:"Choose who paid.",
+        tooMuch:"The other shares add up to more than the total.", tag:"Split", tagOf:x=>`Split · total ${x}`,
+        title:"Shared expenses", cardIn:x=>`Owed to you ${x}`, cardOut:x=>`You owe ${x}`, cardNone:"Split a bill with friends and see who owes what", cardSettled:"All settled",
+        inLab:"Owed to you", outLab:"You owe", remind:"Remind on WhatsApp", paidMe:"Paid me ✓", iPaidBack:"I paid ✓",
+        settledT:n=>`Marked ${n} as paid`, allSettled:"All settled 🎉 Nobody owes anything.",
+        msg:(n,items,x)=>`Hi ${n} 😊 just a reminder about ${items}. Your share comes to ${x}. You can send it on Bit 🙏`, theirOf:x=>`of ${x}`},
+    he:{toggle:"חלוקה עם אחרים", iPaid:"אני שילמתי", otherPaid:"מישהו אחר שילם", who:"עם מי", addPh:"הוספת שם", add:"הוספה",
+        payer:"מי שילם?", equal:"שווה בשווה", custom:"סכומים שונים", me:"אני", yourShare:x=>`החלק שלך: ${x}`, onlyShare:"רק החלק שלך נספר בתקציב.",
+        owesYou:(n,x)=>`⁨${n}⁩ חייב/ת לך ${x}`, youOwe:(n,x)=>`את/ה חייב/ת ל-⁨${n}⁩ ${x}`, needPeople:"בחרו לפחות אדם אחד לחלוקה.", needPayer:"בחרו מי שילם.",
+        tooMuch:"החלקים של האחרים גדולים מהסכום הכולל.", tag:"חלוקה", tagOf:x=>`חלוקה · סה״כ ${x}`,
+        title:"הוצאות משותפות", cardIn:x=>`חייבים לך ${x}`, cardOut:x=>`את/ה חייב/ת ${x}`, cardNone:"חלקו חשבון עם חברים ותראו מי חייב מה", cardSettled:"הכול סגור",
+        inLab:"חייבים לך", outLab:"את/ה חייב/ת", remind:"תזכורת בוואטסאפ", paidMe:"שילם/ה לי ✓", iPaidBack:"שילמתי ✓",
+        settledT:n=>`⁨${n}⁩ סומן/ה כשולם`, allSettled:"הכול סגור 🎉 אף אחד לא חייב כלום.",
+        msg:(n,items,x)=>`היי ${n} 😊 רק תזכורת לגבי ${items}. החלק שלך יוצא ${x}. אפשר להעביר בביט 🙏`, theirOf:x=>`מתוך ${x}`},
+    de:{toggle:"Mit anderen teilen", iPaid:"Ich habe bezahlt", otherPaid:"Jemand anderes", who:"Teilen mit", addPh:"Name hinzufügen", add:"Hinzufügen",
+        payer:"Wer hat bezahlt?", equal:"Gleich", custom:"Eigene Beträge", me:"Ich", yourShare:x=>`Dein Anteil: ${x}`, onlyShare:"Nur dein Anteil zählt für dein Budget.",
+        owesYou:(n,x)=>`${n} schuldet dir ${x}`, youOwe:(n,x)=>`Du schuldest ${n} ${x}`, needPeople:"Wähle mindestens eine Person zum Teilen.", needPayer:"Wähle, wer bezahlt hat.",
+        tooMuch:"Die anderen Anteile sind größer als der Gesamtbetrag.", tag:"Geteilt", tagOf:x=>`Geteilt · gesamt ${x}`,
+        title:"Geteilte Ausgaben", cardIn:x=>`Man schuldet dir ${x}`, cardOut:x=>`Du schuldest ${x}`, cardNone:"Teile eine Rechnung mit Freunden und sieh, wer was schuldet", cardSettled:"Alles beglichen",
+        inLab:"Man schuldet dir", outLab:"Du schuldest", remind:"Per WhatsApp erinnern", paidMe:"Hat bezahlt ✓", iPaidBack:"Ich habe bezahlt ✓",
+        settledT:n=>`${n} als bezahlt markiert`, allSettled:"Alles beglichen 🎉 Niemand schuldet etwas.",
+        msg:(n,items,x)=>`Hallo ${n} 😊 kurze Erinnerung an ${items}. Dein Anteil beträgt ${x}. Danke 🙏`, theirOf:x=>`von ${x}`},
+    fr:{toggle:"Partager avec d'autres", iPaid:"J'ai payé", otherPaid:"Quelqu'un d'autre", who:"Partager avec", addPh:"Ajouter un nom", add:"Ajouter",
+        payer:"Qui a payé ?", equal:"À parts égales", custom:"Montants libres", me:"Moi", yourShare:x=>`Votre part : ${x}`, onlyShare:"Seule votre part compte dans votre budget.",
+        owesYou:(n,x)=>`${n} vous doit ${x}`, youOwe:(n,x)=>`Vous devez ${x} à ${n}`, needPeople:"Choisissez au moins une personne.", needPayer:"Choisissez qui a payé.",
+        tooMuch:"Les parts des autres dépassent le total.", tag:"Partagé", tagOf:x=>`Partagé · total ${x}`,
+        title:"Dépenses partagées", cardIn:x=>`On vous doit ${x}`, cardOut:x=>`Vous devez ${x}`, cardNone:"Partagez une note avec des amis et voyez qui doit quoi", cardSettled:"Tout est réglé",
+        inLab:"On vous doit", outLab:"Vous devez", remind:"Rappel WhatsApp", paidMe:"M'a payé ✓", iPaidBack:"J'ai payé ✓",
+        settledT:n=>`${n} marqué comme payé`, allSettled:"Tout est réglé 🎉 Personne ne doit rien.",
+        msg:(n,items,x)=>`Salut ${n} 😊 petit rappel pour ${items}. Ta part est de ${x}. Merci 🙏`, theirOf:x=>`sur ${x}`},
+    ru:{toggle:"Разделить с другими", iPaid:"Платил я", otherPaid:"Платил другой", who:"С кем делим", addPh:"Добавить имя", add:"Добавить",
+        payer:"Кто платил?", equal:"Поровну", custom:"Свои суммы", me:"Я", yourShare:x=>`Ваша доля: ${x}`, onlyShare:"В бюджет идёт только ваша доля.",
+        owesYou:(n,x)=>`${n} должен вам ${x}`, youOwe:(n,x)=>`Вы должны ${n} ${x}`, needPeople:"Выберите хотя бы одного человека.", needPayer:"Выберите, кто платил.",
+        tooMuch:"Доли других больше общей суммы.", tag:"Пополам", tagOf:x=>`Разделено · всего ${x}`,
+        title:"Общие расходы", cardIn:x=>`Вам должны ${x}`, cardOut:x=>`Вы должны ${x}`, cardNone:"Разделите счёт с друзьями и смотрите, кто сколько должен", cardSettled:"Все рассчитались",
+        inLab:"Вам должны", outLab:"Вы должны", remind:"Напомнить в WhatsApp", paidMe:"Вернул(а) ✓", iPaidBack:"Я вернул(а) ✓",
+        settledT:n=>`${n}: отмечено как оплачено`, allSettled:"Все рассчитались 🎉 Никто никому не должен.",
+        msg:(n,items,x)=>`Привет, ${n} 😊 напоминаю про ${items}. Твоя доля — ${x}. Спасибо 🙏`, theirOf:x=>`из ${x}`},
+    ar:{toggle:"التقسيم مع آخرين", iPaid:"أنا دفعت", otherPaid:"شخص آخر دفع", who:"التقسيم مع", addPh:"أضف اسمًا", add:"إضافة",
+        payer:"من دفع؟", equal:"بالتساوي", custom:"مبالغ مختلفة", me:"أنا", yourShare:x=>`حصتك: ${x}`, onlyShare:"حصتك فقط تُحسب في ميزانيتك.",
+        owesYou:(n,x)=>`⁨${n}⁩ مدين لك بـ ${x}`, youOwe:(n,x)=>`أنت مدين لـ⁨${n}⁩ بـ ${x}`, needPeople:"اختر شخصًا واحدًا على الأقل.", needPayer:"اختر من دفع.",
+        tooMuch:"حصص الآخرين أكبر من المبلغ الكلي.", tag:"مقسّم", tagOf:x=>`مقسّم · الإجمالي ${x}`,
+        title:"المصروفات المشتركة", cardIn:x=>`لك عند الآخرين ${x}`, cardOut:x=>`عليك ${x}`, cardNone:"قسّم الفاتورة مع أصدقائك واعرف من يدين بماذا", cardSettled:"تمت التسوية",
+        inLab:"لك عند الآخرين", outLab:"عليك", remind:"تذكير عبر واتساب", paidMe:"دفع لي ✓", iPaidBack:"دفعتُ ✓",
+        settledT:n=>`تم تعليم ⁨${n}⁩ كمدفوع`, allSettled:"تمت التسوية 🎉 لا أحد مدين بشيء.",
+        msg:(n,items,x)=>`مرحبًا ${n} 😊 تذكير بخصوص ${items}. حصتك ${x}. شكرًا 🙏`, theirOf:x=>`من ${x}`},
+    it:{toggle:"Dividi con altri", iPaid:"Ho pagato io", otherPaid:"Ha pagato un altro", who:"Dividi con", addPh:"Aggiungi un nome", add:"Aggiungi",
+        payer:"Chi ha pagato?", equal:"In parti uguali", custom:"Importi diversi", me:"Io", yourShare:x=>`La tua parte: ${x}`, onlyShare:"Nel budget conta solo la tua parte.",
+        owesYou:(n,x)=>`${n} ti deve ${x}`, youOwe:(n,x)=>`Devi ${x} a ${n}`, needPeople:"Scegli almeno una persona.", needPayer:"Scegli chi ha pagato.",
+        tooMuch:"Le parti degli altri superano il totale.", tag:"Divisa", tagOf:x=>`Divisa · totale ${x}`,
+        title:"Spese condivise", cardIn:x=>`Ti devono ${x}`, cardOut:x=>`Devi ${x}`, cardNone:"Dividi un conto con gli amici e vedi chi deve cosa", cardSettled:"Tutto saldato",
+        inLab:"Ti devono", outLab:"Devi", remind:"Ricorda su WhatsApp", paidMe:"Mi ha pagato ✓", iPaidBack:"Ho pagato ✓",
+        settledT:n=>`${n} segnato come pagato`, allSettled:"Tutto saldato 🎉 Nessuno deve niente.",
+        msg:(n,items,x)=>`Ciao ${n} 😊 ti ricordo ${items}. La tua parte è ${x}. Grazie 🙏`, theirOf:x=>`su ${x}`},
+    es:{toggle:"Dividir con otros", iPaid:"Pagué yo", otherPaid:"Pagó otra persona", who:"Dividir con", addPh:"Añadir un nombre", add:"Añadir",
+        payer:"¿Quién pagó?", equal:"A partes iguales", custom:"Importes distintos", me:"Yo", yourShare:x=>`Tu parte: ${x}`, onlyShare:"Solo tu parte cuenta en tu presupuesto.",
+        owesYou:(n,x)=>`${n} te debe ${x}`, youOwe:(n,x)=>`Le debes ${x} a ${n}`, needPeople:"Elige al menos una persona.", needPayer:"Elige quién pagó.",
+        tooMuch:"Las partes de los demás superan el total.", tag:"Dividido", tagOf:x=>`Dividido · total ${x}`,
+        title:"Gastos compartidos", cardIn:x=>`Te deben ${x}`, cardOut:x=>`Debes ${x}`, cardNone:"Divide una cuenta con amigos y mira quién debe qué", cardSettled:"Todo saldado",
+        inLab:"Te deben", outLab:"Debes", remind:"Recordar por WhatsApp", paidMe:"Me pagó ✓", iPaidBack:"Ya pagué ✓",
+        settledT:n=>`${n} marcado como pagado`, allSettled:"Todo saldado 🎉 Nadie debe nada.",
+        msg:(n,items,x)=>`Hola ${n} 😊 te recuerdo ${items}. Tu parte es ${x}. Gracias 🙏`, theirOf:x=>`de ${x}`}
+  };
+  const st = (k, ...a) => { const d = SPT[state.lang] || SPT.en; const v = d[k] !== undefined ? d[k] : SPT.en[k]; return typeof v === "function" ? v(...a) : v; };
+  const sp = { on: false, paidBy: "me", people: [], payer: null, mode: "equal", custom: {} };
+  const round2 = x => Math.round(x * 100) / 100;
+  const knownPeople = () => { const set = new Set(state.settings.people || []); state.expenses.forEach(e => e.split && (e.split.people || []).forEach(p => set.add(p.name))); return [...set].sort((a,b) => a.localeCompare(b)); };
+  // shares in the currency typed in the form; my share is whatever is left, so rounding never loses an agora
+  function spShares(total) {
+    const others = sp.paidBy === "me" ? sp.people : [...new Set([sp.payer, ...sp.people].filter(Boolean))];
+    const n = others.length + 1, out = {};
+    if (sp.mode === "equal") others.forEach(name => { out[name] = round2(total / n); });
+    else others.forEach(name => { out[name] = round2(parseAmt(sp.custom[name] || "") || 0); });
+    const mine = round2(total - others.reduce((s, name) => s + out[name], 0));
+    return { others, out, mine };
+  }
+  function renderSplitUI() {
+    $("spToggleLab").textContent = st("toggle");
+    $("fSplit").checked = sp.on; $("splitBox").dataset.on = String(sp.on); $("splitBody").hidden = !sp.on;
+    $("repeatWrap").hidden = sp.on || !!state.editing || !!state.padTrip;
+    if (!sp.on) return;
+    $("spIPaid").textContent = st("iPaid"); $("spOtherPaid").textContent = st("otherPaid");
+    $("spIPaid").setAttribute("aria-pressed", String(sp.paidBy === "me")); $("spOtherPaid").setAttribute("aria-pressed", String(sp.paidBy !== "me"));
+    $("spWhoLab").textContent = st("who"); $("spNewName").placeholder = st("addPh"); $("spAddName").textContent = st("add");
+    $("spEqual").textContent = st("equal"); $("spCustom").textContent = st("custom");
+    $("spEqual").setAttribute("aria-pressed", String(sp.mode === "equal")); $("spCustom").setAttribute("aria-pressed", String(sp.mode === "custom"));
+    const names = [...new Set([...knownPeople(), ...sp.people, ...(sp.payer ? [sp.payer] : [])])];
+    const chips = (box, isOn, onTap) => { box.innerHTML = ""; names.forEach(n => { const b = document.createElement("button"); b.type = "button"; b.textContent = n; b.setAttribute("aria-pressed", String(isOn(n))); b.onclick = () => { onTap(n); renderSplitUI(); }; box.appendChild(b); }); };
+    chips($("spPeople"), n => sp.people.includes(n), n => { sp.people = sp.people.includes(n) ? sp.people.filter(x => x !== n) : [...sp.people, n]; });
+    $("spPayerWrap").hidden = sp.paidBy === "me"; $("spPayerLab").textContent = st("payer");
+    if (sp.paidBy !== "me") chips($("spPayer"), n => sp.payer === n, n => { sp.payer = sp.payer === n ? null : n; });
+    const typed = parseAmt($("fAmount").value) || 0, sh = spShares(typed), sym = curSym($("fCur").value || state.settings.currency || "ILS");
+    const fmt = x => `${sym}${(Math.round(x * 100) / 100).toLocaleString(locale(), {maximumFractionDigits: 2})}`;
+    const cb = $("spCustomBox"); cb.hidden = sp.mode !== "custom";
+    if (sp.mode === "custom") {
+      const keep = document.activeElement && cb.contains(document.activeElement) ? document.activeElement.dataset.name : null;
+      cb.innerHTML = "";
+      sh.others.forEach(n => {
+        const l = document.createElement("label"); l.innerHTML = `<span></span><input type="text" inputmode="decimal">`;
+        l.querySelector("span").textContent = n; const inp = l.querySelector("input"); inp.dataset.name = n; inp.value = sp.custom[n] || "";
+        inp.oninput = () => { sp.custom[n] = inp.value; paintSum(); };
+        cb.appendChild(l); if (keep === n) setTimeout(() => inp.focus(), 0);
+      });
+    }
+    paintSum();
+    function paintSum() {
+      const s2 = spShares(parseAmt($("fAmount").value) || 0), box = $("spSum");
+      box.innerHTML = `<b></b><span></span><span></span>`;
+      box.children[0].textContent = st("yourShare", fmt(s2.mine));
+      box.children[1].textContent = sp.paidBy === "me" ? s2.others.map(n => `${n} ${fmt(s2.out[n])}`).join(" · ") : (sp.payer ? st("youOwe", sp.payer, fmt(s2.mine)) : "");
+      box.children[2].textContent = st("onlyShare");
+    }
+  }
+  function spReset() { Object.assign(sp, { on: false, paidBy: "me", people: [], payer: null, mode: "equal", custom: {} }); renderSplitUI(); }
+  function spLoad(e) {
+    const x = e.split; if (!x) return spReset();
+    sp.on = true; sp.mode = x.mode || "equal"; sp.custom = {};
+    if (x.paidBy === "me") { sp.paidBy = "me"; sp.payer = null; sp.people = (x.people || []).map(p => p.name); }
+    else { sp.paidBy = "other"; sp.payer = x.paidBy; sp.people = (x.with || []).filter(n => n !== x.paidBy); }
+    (x.people || []).forEach(p => { if (p.typed != null) sp.custom[p.name] = String(p.typed); });
+    (x.with || []).forEach(n => { if (x.typedShares && x.typedShares[n] != null) sp.custom[n] = String(x.typedShares[n]); });
+    renderSplitUI();
+  }
+  $("fSplit").onchange = () => { sp.on = $("fSplit").checked; if (sp.on) $("fRepeat").checked = false; renderSplitUI(); };
+  $("spIPaid").onclick = () => { sp.paidBy = "me"; renderSplitUI(); };
+  $("spOtherPaid").onclick = () => { sp.paidBy = "other"; renderSplitUI(); };
+  $("spEqual").onclick = () => { sp.mode = "equal"; renderSplitUI(); };
+  $("spCustom").onclick = () => { sp.mode = "custom"; renderSplitUI(); };
+  const addName = () => { const n = $("spNewName").value.trim().slice(0, 30); if (!n) return; if (!sp.people.includes(n)) sp.people.push(n); $("spNewName").value = ""; renderSplitUI(); $("spNewName").focus(); };
+  $("spAddName").onclick = addName;
+  $("spNewName").addEventListener("keydown", ev => { if (ev.key === "Enter") { ev.preventDefault(); addName(); } });
+  $("fAmount").addEventListener("input", () => { if (sp.on) renderSplitUI(); });
+  // turns the form's split choices into what is saved; returns an error text, or the new amount and split record
+  function spBuild(typed, rate) {
+    if (!sp.on) return { amount: null, split: null };
+    const sh = spShares(typed);
+    if (sp.paidBy !== "me" && !sp.payer) return { err: st("needPayer") };
+    if (sp.paidBy === "me" && !sh.others.length) return { err: st("needPeople") };
+    if (sh.mine < 0) return { err: st("tooMuch") };
+    const conv = x => round2(x * (rate || 1));
+    const prev = state.editing ? (state.expenses.find(x => x.id === state.editing) || {}).split : null;
+    const wasSettled = n => !!(prev && (prev.people || []).find(p => p.name === n && p.settled));
+    const split = { total: conv(typed), typedTotal: typed, mode: sp.mode, myShare: conv(sh.mine) };
+    if (sp.paidBy === "me") {
+      split.paidBy = "me";
+      split.people = sh.others.map(n => ({ name: n, share: conv(sh.out[n]), typed: sh.out[n], settled: wasSettled(n) }));
+    } else {
+      split.paidBy = sp.payer; split.with = sh.others; split.typedShares = sh.out;
+      split.people = [{ name: sp.payer, share: conv(sh.mine), typed: sh.mine, settled: wasSettled(sp.payer) }];
+    }
+    return { amount: conv(sh.mine), typedMine: sh.mine, split };
+  }
+  async function rememberPeople(split) {
+    const names = [...new Set([...(split.people || []).map(p => p.name), ...(split.with || [])])];
+    const cur = state.settings.people || [], add = names.filter(n => !cur.includes(n));
+    if (!add.length || !settingsRef) return;
+    state.settings = { ...state.settings, people: [...cur, ...add] };
+    try { await settingsRef.set(state.settings); } catch {}
+  }
+  // who owes what, from every split expense that is not settled yet
+  function spLedger() {
+    const inn = {}, out = {};
+    state.expenses.forEach(e => {
+      const x = e.split; if (!x) return;
+      (x.people || []).forEach(p => {
+        if (p.settled) return;
+        const bucket = x.paidBy === "me" ? inn : out;
+        (bucket[p.name] = bucket[p.name] || []).push({ e, share: +p.share || 0 });
+      });
+    });
+    const sum = b => Object.values(b).reduce((s, arr) => s + arr.reduce((a, it) => a + it.share, 0), 0);
+    return { inn, out, inTotal: sum(inn), outTotal: sum(out) };
+  }
+  function renderSplitCard() {
+    const L = spLedger(), any = state.expenses.some(e => e.split);
+    $("splitCardTitle").textContent = st("title");
+    const parts = [];
+    if (L.inTotal > 0) parts.push(st("cardIn", money(L.inTotal)));
+    if (L.outTotal > 0) parts.push(st("cardOut", money(L.outTotal)));
+    $("splitCardLine").textContent = parts.length ? parts.join(" · ") : (any ? st("cardSettled") + " 🎉" : st("cardNone"));
+  }
+  async function settlePerson(name, dir) {
+    const L = spLedger(), items = (dir === "in" ? L.inn : L.out)[name] || [];
+    const before = items.map(it => ({ id: it.e.id, split: JSON.parse(JSON.stringify(it.e.split)) }));
+    try {
+      for (const it of items) {
+        const x = JSON.parse(JSON.stringify(it.e.split));
+        x.people.forEach(p => { if (p.name === name) { p.settled = true; p.settledAt = todayStr(); } });
+        await col.doc(it.e.id).update({ split: x });
+      }
+    } catch { return toast(t("errSave")); }
+    showUndo(st("settledT", name), async () => { for (const b of before) await col.doc(b.id).update({ split: b.split }); });
+  }
+  function renderSplitView() {
+    $("splitTitle").textContent = st("title"); $("splitBack").setAttribute("aria-label", t("back"));
+    const L = spLedger();
+    $("spInLab").textContent = st("inLab"); $("spOutLab").textContent = st("outLab");
+    $("spInTotal").textContent = money(L.inTotal); $("spOutTotal").textContent = money(L.outTotal);
+    const list = $("splitList"); list.innerHTML = "";
+    const people = [...Object.keys(L.inn).map(n => [n, "in"]), ...Object.keys(L.out).map(n => [n, "out"])];
+    if (!people.length) { const d = document.createElement("div"); d.className = "spempty"; d.textContent = state.expenses.some(e => e.split) ? st("allSettled") : st("cardNone"); list.appendChild(d); return; }
+    people.forEach(([name, dir]) => {
+      const items = (dir === "in" ? L.inn : L.out)[name], total = items.reduce((s, it) => s + it.share, 0);
+      const card = document.createElement("div"); card.className = "spperson";
+      card.innerHTML = `<div class="ph"><span class="av"></span><span class="nm"><b></b><span></span></span></div>`;
+      card.querySelector(".av").textContent = name.charAt(0).toUpperCase();
+      card.querySelector(".nm b").textContent = name;
+      const line = card.querySelector(".nm span"); line.className = dir === "in" ? "sp-in" : "sp-out";
+      line.textContent = `${dir === "in" ? st("inLab") : st("outLab")} ${money(total)}`;
+      items.sort((a, b) => b.e.date.localeCompare(a.e.date)).forEach(it => {
+        const r = document.createElement("div"); r.className = "row";
+        r.innerHTML = `<span><span></span> <small></small></span><b></b>`;
+        r.querySelector("span span").textContent = it.e.note || cname(catOf(it.e.cat));
+        r.querySelector("small").textContent = `${dayLabel(it.e.date)} · ${st("theirOf", money(it.e.split.total))}`;
+        r.querySelector("b").textContent = money(it.share);
+        card.appendChild(r);
+      });
+      const acts = document.createElement("div"); acts.className = "acts";
+      if (dir === "in") {
+        const what = items.map(it => `${it.e.note || cname(catOf(it.e.cat))} (${dayLabel(it.e.date)})`).join(", ");
+        const a = document.createElement("a"); a.className = "wa"; a.target = "_blank"; a.rel = "noopener";
+        a.href = "https://wa.me/?text=" + encodeURIComponent(st("msg", name, what, money(total)));
+        a.textContent = st("remind"); acts.appendChild(a);
+      }
+      const ok = document.createElement("button"); ok.type = "button"; ok.className = "ok";
+      ok.textContent = dir === "in" ? st("paidMe") : st("iPaidBack"); ok.onclick = () => settlePerson(name, dir);
+      acts.appendChild(ok); card.appendChild(acts);
+      list.appendChild(card);
+    });
+  }
+  $("splitCard").onclick = () => go("split");
+  $("splitBack").onclick = () => go("");
+
+
+  // ---------- reminders: settings (in Settings and from a card on the home screen) + strips at the top of the home screen ----------
+  const RMT = {
+    en:{title:"Reminders", daily:"Remind me to log expenses", dailySub:"Every day at the time you choose", bills:"Remind me about bills", billsSub:"Before a fixed bill is due",
+        day0:"On the day", day1:"1 day before", dayN:n=>`${n} days before`, week:"A week before", at:"At",
+        note:"Reminders appear at the top of the home screen. Phone notifications are coming next.",
+        cardOff:"Off · tap to set", cardDaily:x=>`Every day at ${x}`, cardBills:n=> n===0 ? "Bills on the day" : n===1 ? "Bills 1 day before" : `Bills ${n} days before`,
+        logToday:"You haven't logged anything today. Spent anything?", add:"Add", billToday:(n,x)=>`${n} ${x} is due today`, billIn:(n,x,d)=> d===1 ? `${n} ${x} is due tomorrow` : `${n} ${x} is due in ${d} days`, hide:"Hide for today", saved:"Reminders saved"},
+    he:{title:"תזכורות", daily:"תזכורת לרשום הוצאות", dailySub:"כל יום בשעה שתבחרו", bills:"תזכורת לחשבונות", billsSub:"לפני שחשבון קבוע מגיע",
+        day0:"ביום עצמו", day1:"יום לפני", dayN:n=>`${n} ימים לפני`, week:"שבוע לפני", at:"בשעה",
+        note:"התזכורות מופיעות בראש מסך הבית. התראות לטלפון יגיעו בשלב הבא.",
+        cardOff:"כבויות · לחצו להגדרה", cardDaily:x=>`כל יום ב-${x}`, cardBills:n=> n===0 ? "חשבונות ביום עצמו" : n===1 ? "חשבונות יום לפני" : `חשבונות ${n} ימים לפני`,
+        logToday:"עוד לא רשמת כלום היום. הוצאת משהו?", add:"הוספה", billToday:(n,x)=>`⁨${n}⁩ ${x} לתשלום היום`, billIn:(n,x,d)=> d===1 ? `⁨${n}⁩ ${x} לתשלום מחר` : `⁨${n}⁩ ${x} לתשלום בעוד ${d} ימים`, hide:"הסתרה להיום", saved:"התזכורות נשמרו"},
+    de:{title:"Erinnerungen", daily:"An Ausgaben erinnern", dailySub:"Jeden Tag zur gewählten Uhrzeit", bills:"An Rechnungen erinnern", billsSub:"Bevor eine Fixkosten-Rechnung fällig ist",
+        day0:"Am Tag selbst", day1:"1 Tag vorher", dayN:n=>`${n} Tage vorher`, week:"Eine Woche vorher", at:"Um",
+        note:"Erinnerungen erscheinen oben auf dem Startbildschirm. Handy-Benachrichtigungen kommen als Nächstes.",
+        cardOff:"Aus · tippen zum Einstellen", cardDaily:x=>`Täglich um ${x}`, cardBills:n=> n===0 ? "Rechnungen am Tag" : n===1 ? "Rechnungen 1 Tag vorher" : `Rechnungen ${n} Tage vorher`,
+        logToday:"Heute noch nichts eingetragen. Etwas ausgegeben?", add:"Hinzufügen", billToday:(n,x)=>`${n} ${x} ist heute fällig`, billIn:(n,x,d)=> d===1 ? `${n} ${x} ist morgen fällig` : `${n} ${x} ist in ${d} Tagen fällig`, hide:"Für heute ausblenden", saved:"Erinnerungen gespeichert"},
+    fr:{title:"Rappels", daily:"Me rappeler de noter mes dépenses", dailySub:"Chaque jour à l'heure choisie", bills:"Me rappeler les factures", billsSub:"Avant l'échéance d'une facture fixe",
+        day0:"Le jour même", day1:"1 jour avant", dayN:n=>`${n} jours avant`, week:"Une semaine avant", at:"À",
+        note:"Les rappels s'affichent en haut de l'écran d'accueil. Les notifications sur le téléphone arrivent ensuite.",
+        cardOff:"Désactivés · touchez pour régler", cardDaily:x=>`Chaque jour à ${x}`, cardBills:n=> n===0 ? "Factures le jour même" : n===1 ? "Factures 1 jour avant" : `Factures ${n} jours avant`,
+        logToday:"Rien de noté aujourd'hui. Vous avez dépensé quelque chose ?", add:"Ajouter", billToday:(n,x)=>`${n} ${x} à payer aujourd'hui`, billIn:(n,x,d)=> d===1 ? `${n} ${x} à payer demain` : `${n} ${x} à payer dans ${d} jours`, hide:"Masquer pour aujourd'hui", saved:"Rappels enregistrés"},
+    ru:{title:"Напоминания", daily:"Напоминать записать расходы", dailySub:"Каждый день в выбранное время", bills:"Напоминать о счетах", billsSub:"Перед оплатой постоянного счёта",
+        day0:"В тот же день", day1:"За 1 день", dayN:n=>`За ${n} дн.`, week:"За неделю", at:"В",
+        note:"Напоминания появляются вверху главного экрана. Уведомления на телефон — следующий шаг.",
+        cardOff:"Выключены · нажмите, чтобы настроить", cardDaily:x=>`Каждый день в ${x}`, cardBills:n=> n===0 ? "Счета — в тот же день" : `Счета — за ${n} дн.`,
+        logToday:"Сегодня ещё ничего не записано. Были расходы?", add:"Добавить", billToday:(n,x)=>`${n} ${x} — оплатить сегодня`, billIn:(n,x,d)=> d===1 ? `${n} ${x} — оплатить завтра` : `${n} ${x} — оплатить через ${d} дн.`, hide:"Скрыть на сегодня", saved:"Напоминания сохранены"},
+    ar:{title:"التذكيرات", daily:"ذكّرني بتسجيل المصروفات", dailySub:"كل يوم في الوقت الذي تختاره", bills:"ذكّرني بالفواتير", billsSub:"قبل موعد الفاتورة الثابتة",
+        day0:"في اليوم نفسه", day1:"قبل يوم", dayN:n=>`قبل ${n} أيام`, week:"قبل أسبوع", at:"الساعة",
+        note:"تظهر التذكيرات أعلى الشاشة الرئيسية. إشعارات الهاتف ستأتي في الخطوة التالية.",
+        cardOff:"متوقفة · اضغط للضبط", cardDaily:x=>`كل يوم الساعة ${x}`, cardBills:n=> n===0 ? "الفواتير في يومها" : n===1 ? "الفواتير قبل يوم" : `الفواتير قبل ${n} أيام`,
+        logToday:"لم تسجّل شيئًا اليوم. هل أنفقت شيئًا؟", add:"إضافة", billToday:(n,x)=>`⁨${n}⁩ ${x} مستحقة اليوم`, billIn:(n,x,d)=> d===1 ? `⁨${n}⁩ ${x} مستحقة غدًا` : `⁨${n}⁩ ${x} مستحقة بعد ${d} أيام`, hide:"إخفاء لليوم", saved:"تم حفظ التذكيرات"},
+    it:{title:"Promemoria", daily:"Ricordami di segnare le spese", dailySub:"Ogni giorno all'ora che scegli", bills:"Ricordami le bollette", billsSub:"Prima della scadenza di una bolletta fissa",
+        day0:"Il giorno stesso", day1:"1 giorno prima", dayN:n=>`${n} giorni prima`, week:"Una settimana prima", at:"Alle",
+        note:"I promemoria appaiono in cima alla schermata principale. Le notifiche sul telefono arrivano dopo.",
+        cardOff:"Spenti · tocca per impostare", cardDaily:x=>`Ogni giorno alle ${x}`, cardBills:n=> n===0 ? "Bollette il giorno stesso" : n===1 ? "Bollette 1 giorno prima" : `Bollette ${n} giorni prima`,
+        logToday:"Oggi non hai segnato niente. Hai speso qualcosa?", add:"Aggiungi", billToday:(n,x)=>`${n} ${x} scade oggi`, billIn:(n,x,d)=> d===1 ? `${n} ${x} scade domani` : `${n} ${x} scade tra ${d} giorni`, hide:"Nascondi per oggi", saved:"Promemoria salvati"},
+    es:{title:"Recordatorios", daily:"Recordarme anotar gastos", dailySub:"Cada día a la hora que elijas", bills:"Recordarme las facturas", billsSub:"Antes de que venza una factura fija",
+        day0:"El mismo día", day1:"1 día antes", dayN:n=>`${n} días antes`, week:"Una semana antes", at:"A las",
+        note:"Los recordatorios aparecen arriba en la pantalla de inicio. Las notificaciones al móvil vienen después.",
+        cardOff:"Apagados · toca para configurar", cardDaily:x=>`Cada día a las ${x}`, cardBills:n=> n===0 ? "Facturas el mismo día" : n===1 ? "Facturas 1 día antes" : `Facturas ${n} días antes`,
+        logToday:"Hoy no has anotado nada. ¿Gastaste algo?", add:"Añadir", billToday:(n,x)=>`${n} ${x} vence hoy`, billIn:(n,x,d)=> d===1 ? `${n} ${x} vence mañana` : `${n} ${x} vence en ${d} días`, hide:"Ocultar por hoy", saved:"Recordatorios guardados"}
+  };
+  const rmt = (k, ...a) => { const d = RMT[state.lang] || RMT.en; const v = d[k] !== undefined ? d[k] : RMT.en[k]; return typeof v === "function" ? v(...a) : v; };
+  const remCfg = () => { const r = state.settings.reminders || {}; return { daily: { on: !!(r.daily && r.daily.on), time: (r.daily && r.daily.time) || "21:00" }, bills: { on: !!(r.bills && r.bills.on), days: r.bills && r.bills.days != null ? +r.bills.days : 2 } }; };
+  async function saveRem(next) {
+    state.settings = { ...state.settings, reminders: next };
+    renderReminders();
+    if (settingsRef) { try { await settingsRef.set(state.settings); } catch { toast(t("settingsFail")); } }
+  }
+  // the same controls are drawn in Settings and in the sheet opened from the home card
+  function drawRemControls(box) {
+    const c = remCfg(); box.innerHTML = "";
+    const row = (icon, title, sub, on, onToggle) => {
+      const r = document.createElement("div"); r.className = "remrow"; r.dataset.on = String(on);
+      r.innerHTML = `<div class="remtop"><span class="ic" aria-hidden="true"></span><span class="tx"><b></b><span></span></span><button type="button" class="rsw" role="switch"></button></div>`;
+      r.querySelector(".ic").textContent = icon; r.querySelector("b").textContent = title; r.querySelector(".tx span").textContent = sub;
+      const sw = r.querySelector(".rsw"); sw.setAttribute("aria-checked", String(on)); sw.setAttribute("aria-label", title); sw.onclick = onToggle;
+      box.appendChild(r); return r;
+    };
+    const d = row("📝", rmt("daily"), rmt("dailySub"), c.daily.on, () => saveRem({ ...c, daily: { ...c.daily, on: !c.daily.on } }));
+    if (c.daily.on) {
+      const o = document.createElement("div"); o.className = "remopt";
+      o.innerHTML = `<label style="display:flex;align-items:center;gap:8px"><span></span><input type="time" step="900"></label>`;
+      o.querySelector("span").textContent = rmt("at"); const tm = o.querySelector("input"); tm.value = c.daily.time;
+      tm.onchange = () => { if (tm.value) saveRem({ ...remCfg(), daily: { on: true, time: tm.value } }); };
+      d.appendChild(o);
+    }
+    const b = row("⚡", rmt("bills"), rmt("billsSub"), c.bills.on, () => saveRem({ ...c, bills: { ...c.bills, on: !c.bills.on } }));
+    if (c.bills.on) {
+      const o = document.createElement("div"); o.className = "remopt";
+      [[0, rmt("day0")], [1, rmt("day1")], [2, rmt("dayN", 2)], [3, rmt("dayN", 3)], [7, rmt("week")]].forEach(([n, lab]) => {
+        const btn = document.createElement("button"); btn.type = "button"; btn.textContent = lab; btn.setAttribute("aria-pressed", String(c.bills.days === n));
+        btn.onclick = () => saveRem({ ...remCfg(), bills: { on: true, days: n } }); o.appendChild(btn);
+      });
+      b.appendChild(o);
+    }
+    const n = document.createElement("p"); n.className = "remnote"; n.textContent = rmt("note"); box.appendChild(n);
+  }
+  function openRemSheet() {
+    const old = document.querySelector(".rmmodal"); if (old) old.remove();
+    const m = document.createElement("div"); m.className = "rmmodal"; m.setAttribute("role", "dialog"); m.setAttribute("aria-modal", "true"); m.setAttribute("aria-label", rmt("title"));
+    m.innerHTML = `<div class="rmpanel"><div class="hd"><h2></h2><button type="button" aria-label="Close">×</button></div><div id="remSheetStrips"></div><div class="remctl" id="remSheet"></div></div>`;
+    m.querySelector("h2").textContent = rmt("title");
+    const close = () => { m.remove(); document.removeEventListener("keydown", esc); };
+    const esc = e => { if (e.key === "Escape") close(); };
+    m.querySelector(".hd button").onclick = close; m.addEventListener("click", e => { if (e.target === m) close(); });
+    document.addEventListener("keydown", esc);
+    document.body.appendChild(m); drawRemControls(m.querySelector("#remSheet")); renderReminders();
+    m.querySelector(".rsw").focus();
+  }
+  const hiddenToday = () => { try { const v = JSON.parse(localStorage.getItem("remHidden") || "{}"); return v.day === todayStr() ? v.ids : []; } catch { return []; } };
+  const hideToday = id => { try { localStorage.setItem("remHidden", JSON.stringify({ day: todayStr(), ids: [...hiddenToday(), id] })); } catch {} renderReminders(); };
+  function renderReminders() {
+    const c = remCfg();
+    $("remSetLabel").textContent = rmt("title"); $("remCardTitle").textContent = rmt("title");
+    const parts = []; if (c.daily.on) parts.push(rmt("cardDaily", c.daily.time)); if (c.bills.on) parts.push(rmt("cardBills", c.bills.days));
+    $("remCardLine").textContent = parts.length ? parts.join(" · ") : rmt("cardOff");
+    if (!$("settings").hidden) drawRemControls($("remSettings"));
+    const sheet = document.querySelector("#remSheet"); if (sheet) drawRemControls(sheet);
+    // strips at the top of the home screen
+    const boxes = [$("remStrips"), document.querySelector("#remSheetStrips")].filter(Boolean);
+    boxes.forEach(b => { b.innerHTML = ""; });
+    const hidden = hiddenToday(), short = [];
+    const strip = (id, icon, text, onGo) => {
+      if (hidden.includes(id)) return;
+      short.push(`${icon} ${text}`);
+      boxes.forEach(box => {
+        const d = document.createElement("div"); d.className = "remstrip";
+        d.innerHTML = `<span class="ic" aria-hidden="true"></span><span class="tx"></span>`;
+        d.querySelector(".ic").textContent = icon; d.querySelector(".tx").textContent = text;
+        if (onGo) { const g = document.createElement("button"); g.type = "button"; g.className = "go"; g.textContent = rmt("add"); g.onclick = () => { const mm = document.querySelector(".rmmodal"); if (mm) mm.remove(); onGo(); }; d.appendChild(g); }
+        const x = document.createElement("button"); x.type = "button"; x.className = "x"; x.textContent = "×"; x.setAttribute("aria-label", rmt("hide")); x.title = rmt("hide"); x.onclick = () => hideToday(id);
+        d.appendChild(x); box.appendChild(d);
+      });
+    };
+    if (c.bills.on) {
+      state.rules.filter(r => +r.amount > 0).map(r => [r, billStatus(r)])
+        .filter(([, st]) => st.kind === "today" || (st.kind === "soon" && st.wait <= c.bills.days))
+        .sort((a, b) => (a[1].wait || 0) - (b[1].wait || 0))
+        .forEach(([r, st]) => strip("bill-" + r.id, "⚡", st.kind === "today" ? rmt("billToday", r.note || cname(catOf(r.cat)), money(+r.amount)) : rmt("billIn", r.note || cname(catOf(r.cat)), money(+r.amount), st.wait), null));
+    }
+    if (c.daily.on) {
+      const now = new Date(), [hh, mm] = c.daily.time.split(":").map(Number);
+      const due = now.getHours() * 60 + now.getMinutes() >= hh * 60 + mm;
+      const today = todayStr();
+      const loggedToday = state.expenses.some(e => !e.recurringId && (e.date === today || (e.createdAt && new Date(e.createdAt).toDateString() === now.toDateString())));
+      if (due && !loggedToday) strip("daily", "📝", rmt("logToday"), () => { newEntry(); openPad(); });
+    }
+    const owedIn = spLedger().inTotal;
+    const line = [...short]; if (owedIn > 0) line.push("👥 " + nh("owed", money(owedIn)));
+    if ($("remLine")) { $("remLine").hidden = !line.length; $("remLineTx").textContent = line.join(" · "); }
+    if ($("bellDot")) $("bellDot").hidden = !short.length;
+  }
+  $("remCard").onclick = openRemSheet;
+  setInterval(() => { if (state.ready) renderReminders(); }, 60000);
+
+
+  // ---------- new home: wallet card, quick actions, reminder line, columns, latest expenses ----------
+  const NHT = {
+    en:{spentIn:m=>`${m} · spent`, left:x=>`${x} left`, budget:x=>`Budget ${x}`, over:x=>`${x} over budget`, perDay:x=>`You can spend about ${x} a day until the month ends`,
+        noBudget:"No monthly budget yet", setB:"Set one", scan:"Scan", add:"Add", split:"Split", trips:"Trips", bills:"Bills", report:"Report",
+        noFix:"Without fixed bills", latest:"Latest", seeAll:"See all ›", expenses:"Expenses", nothing:"Nothing logged this month yet.", owed:x=>`Friends owe you ${x}`, newSplit:"New split", bell:"Reminders"},
+    he:{spentIn:m=>`${m} · הוצאת`, left:x=>`נשארו ${x}`, budget:x=>`תקציב ${x}`, over:x=>`חריגה של ${x}`, perDay:x=>`אפשר להוציא בערך ${x} ליום עד סוף החודש`,
+        noBudget:"עוד אין תקציב חודשי", setB:"להגדרה", scan:"סריקה", add:"הוספה", split:"חלוקה", trips:"טיולים", bills:"חשבונות", report:"דוח",
+        noFix:"בלי חשבונות קבועים", latest:"אחרונות", seeAll:"הכול ›", expenses:"הוצאות", nothing:"עוד לא נרשם כלום החודש.", owed:x=>`חייבים לך ${x}`, newSplit:"חלוקה חדשה", bell:"תזכורות"},
+    de:{spentIn:m=>`${m} · ausgegeben`, left:x=>`${x} übrig`, budget:x=>`Budget ${x}`, over:x=>`${x} über Budget`, perDay:x=>`Du kannst bis Monatsende etwa ${x} pro Tag ausgeben`,
+        noBudget:"Noch kein Monatsbudget", setB:"Festlegen", scan:"Scannen", add:"Neu", split:"Teilen", trips:"Reisen", bills:"Fixkosten", report:"Bericht",
+        noFix:"Ohne Fixkosten", latest:"Neueste", seeAll:"Alle ›", expenses:"Ausgaben", nothing:"Diesen Monat noch nichts eingetragen.", owed:x=>`Man schuldet dir ${x}`, newSplit:"Neu teilen", bell:"Erinnerungen"},
+    fr:{spentIn:m=>`${m} · dépensé`, left:x=>`${x} restants`, budget:x=>`Budget ${x}`, over:x=>`${x} au-dessus du budget`, perDay:x=>`Vous pouvez dépenser environ ${x} par jour jusqu'à la fin du mois`,
+        noBudget:"Pas encore de budget mensuel", setB:"Définir", scan:"Scanner", add:"Ajouter", split:"Partager", trips:"Voyages", bills:"Factures", report:"Rapport",
+        noFix:"Sans factures fixes", latest:"Récentes", seeAll:"Tout ›", expenses:"Dépenses", nothing:"Rien de noté ce mois-ci.", owed:x=>`On vous doit ${x}`, newSplit:"Nouveau partage", bell:"Rappels"},
+    ru:{spentIn:m=>`${m} · потрачено`, left:x=>`Осталось ${x}`, budget:x=>`Бюджет ${x}`, over:x=>`Сверх бюджета ${x}`, perDay:x=>`До конца месяца можно тратить около ${x} в день`,
+        noBudget:"Бюджет на месяц не задан", setB:"Задать", scan:"Скан", add:"Добавить", split:"Делить", trips:"Поездки", bills:"Счета", report:"Отчёт",
+        noFix:"Без постоянных счетов", latest:"Последние", seeAll:"Все ›", expenses:"Расходы", nothing:"В этом месяце пока ничего нет.", owed:x=>`Вам должны ${x}`, newSplit:"Разделить", bell:"Напоминания"},
+    ar:{spentIn:m=>`${m} · المصروف`, left:x=>`تبقّى ${x}`, budget:x=>`الميزانية ${x}`, over:x=>`تجاوز ${x}`, perDay:x=>`يمكنك إنفاق نحو ${x} يوميًا حتى نهاية الشهر`,
+        noBudget:"لا توجد ميزانية شهرية بعد", setB:"تحديد", scan:"مسح", add:"إضافة", split:"تقسيم", trips:"رحلات", bills:"فواتير", report:"تقرير",
+        noFix:"بدون الفواتير الثابتة", latest:"الأحدث", seeAll:"الكل ›", expenses:"المصروفات", nothing:"لا شيء مسجّل هذا الشهر بعد.", owed:x=>`لك عند الآخرين ${x}`, newSplit:"تقسيم جديد", bell:"التذكيرات"},
+    it:{spentIn:m=>`${m} · speso`, left:x=>`Rimasti ${x}`, budget:x=>`Budget ${x}`, over:x=>`${x} oltre il budget`, perDay:x=>`Puoi spendere circa ${x} al giorno fino a fine mese`,
+        noBudget:"Nessun budget mensile", setB:"Imposta", scan:"Scansiona", add:"Aggiungi", split:"Dividi", trips:"Viaggi", bills:"Bollette", report:"Report",
+        noFix:"Senza bollette fisse", latest:"Recenti", seeAll:"Tutte ›", expenses:"Spese", nothing:"Ancora niente questo mese.", owed:x=>`Ti devono ${x}`, newSplit:"Nuova divisione", bell:"Promemoria"},
+    es:{spentIn:m=>`${m} · gastado`, left:x=>`Quedan ${x}`, budget:x=>`Presupuesto ${x}`, over:x=>`${x} por encima`, perDay:x=>`Puedes gastar unos ${x} al día hasta fin de mes`,
+        noBudget:"Aún no hay presupuesto mensual", setB:"Fijar", scan:"Escanear", add:"Añadir", split:"Dividir", trips:"Viajes", bills:"Facturas", report:"Informe",
+        noFix:"Sin facturas fijas", latest:"Recientes", seeAll:"Todos ›", expenses:"Gastos", nothing:"Nada anotado este mes todavía.", owed:x=>`Te deben ${x}`, newSplit:"Nueva división", bell:"Recordatorios"}
+  };
+  const nh = (k, ...a) => { const d = NHT[state.lang] || NHT.en; const v = d[k] !== undefined ? d[k] : NHT.en[k]; return typeof v === "function" ? v(...a) : v; };
+  let noFixed = false; try { noFixed = localStorage.getItem("noFixed") === "1"; } catch {}
+  const catIconSvg = c => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[c.id] || ICONS.other || ""}</svg>`;
+  function renderHome2() {
+    if (!$("wTotal")) return;
+    const rtl = isRtl(), {y, m} = state.month, mk = monthKey(y, m);
+    $("wPrev").textContent = rtl ? "›" : "‹"; $("wNext").textContent = rtl ? "‹" : "›";
+    $("wPrev").setAttribute("aria-label", t("prevMonth")); $("wNext").setAttribute("aria-label", t("nextMonth"));
+    $("wMonth").textContent = nh("spentIn", monthName(y, m));
+    const inMonth = state.expenses.filter(e => (e.date || "").startsWith(mk));
+    const total = inMonth.reduce((s, e) => s + (+e.amount || 0), 0);
+    $("wTotal").textContent = (() => { try { return new Intl.NumberFormat(locale(), {style:"currency", currency: state.settings.currency || "ILS", maximumFractionDigits: Math.round(total) === total ? 0 : 2}).format(total); } catch { return money(total); } })();
+    const pm = m === 0 ? {y: y-1, m: 11} : {y, m: m-1};
+    const prev = state.expenses.filter(e => (e.date || "").startsWith(monthKey(pm.y, pm.m))).reduce((s, e) => s + (+e.amount || 0), 0);
+    $("wDelta").textContent = prev > 0 ? t("vsPrev", (total >= prev ? "+" : "−") + Math.abs(Math.round((total - prev) / prev * 100)), monthName(pm.y, pm.m).split(" ")[0]) : "";
+    const b = +state.settings.budget || 0;
+    $("wBarWrap").hidden = !b;
+    const note = $("wNote"); note.hidden = true; note.innerHTML = "";
+    if (b) {
+      const pct = Math.min(100, total / b * 100); $("wBar").style.width = pct + "%"; $("wBar").classList.toggle("over", total > b);
+      $("wLeft").textContent = total > b ? nh("over", money(total - b)) : nh("left", money(b - total));
+      $("wBudgetL").textContent = nh("budget", money(b));
+      const now = new Date();
+      if (now.getFullYear() === y && now.getMonth() === m && total < b) {
+        const daysLeft = daysIn(y, m) - now.getDate() + 1;
+        note.textContent = nh("perDay", money((b - total) / daysLeft, {short: true})); note.hidden = false;
+      }
+    } else {
+      $("wLeft").textContent = nh("noBudget"); $("wBudgetL").innerHTML = "";
+      const sb = document.createElement("button"); sb.type = "button"; sb.className = "wset"; sb.textContent = nh("setB"); sb.onclick = () => go("prefs"); $("wBudgetL").appendChild(sb);
+    }
+    // quick actions
+    $("qScan").textContent = nh("scan"); $("qScan2").textContent = nh("scan"); $("qAddL").textContent = nh("add"); $("qSplitL").textContent = nh("split");
+    $("qTripL").textContent = nh("trips"); $("qBillsL").textContent = nh("bills"); $("qReportL").textContent = nh("report");
+    // columns: where the money went
+    $("whereTitle").textContent = t("whereWent"); $("noFixLab").textContent = nh("noFix"); $("noFixSw").setAttribute("aria-checked", String(noFixed));
+    const by = {}; inMonth.filter(e => !(noFixed && e.recurringId)).forEach(e => { by[e.cat] = (by[e.cat] || 0) + (+e.amount || 0); });
+    const cols = Object.entries(by).filter(([, v]) => v > 0).map(([id, v]) => ({c: catOf(id), v})).sort((a, b2) => b2.v - a.v);
+    const hc = $("hCols"), hx = $("hX"); hc.innerHTML = ""; hx.innerHTML = "";
+    if (!cols.length) { hc.innerHTML = `<div class="hempty"></div>`; hc.firstChild.textContent = nh("nothing"); hc.style.borderBottom = "0"; }
+    else {
+      hc.style.borderBottom = ""; const max = cols[0].v;
+      cols.forEach(({c, v}) => {
+        const btn = document.createElement("button"); btn.type = "button"; btn.className = "hcol";
+        btn.innerHTML = `<span class="v"></span><span class="b" style="height:${Math.max(3, v / max * 84)}%;background:${cssVar(c.v)}"></span>`;
+        btn.querySelector(".v").textContent = money(v, {short: true}); btn.setAttribute("aria-label", `${cname(c)}: ${money(v)}`);
+        btn.onclick = () => showCategoryOnHome(c.id);
+        hc.appendChild(btn);
+        const l = document.createElement("span"); l.innerHTML = `<i style="background:${cssVar(c.v)}">${catIconSvg(c)}</i><span></span>`; l.lastChild.textContent = cname(c); hx.appendChild(l);
+      });
+    }
+    // latest
+    $("recentTitle").textContent = nh("latest"); $("seeAllBtn").textContent = nh("seeAll");
+    const rl = $("recentList"); rl.innerHTML = "";
+    const latest = [...inMonth].sort((a, b2) => (b2.date || "").localeCompare(a.date || "") || (b2.createdAt || 0) - (a.createdAt || 0)).slice(0, 3);
+    if (!latest.length) { const d = document.createElement("div"); d.className = "hempty"; d.textContent = nh("nothing"); rl.appendChild(d); }
+    latest.forEach(e => {
+      const c = catOf(e.cat), r = document.createElement("div"); r.className = "ritem"; r.tabIndex = 0; r.setAttribute("role", "button");
+      r.innerHTML = `<span class="ic" style="background:${cssVar(c.v)}">${catIconSvg(c)}</span><span class="n"><b></b><span></span></span><span class="a"></span>`;
+      r.querySelector(".n b").textContent = e.note || cname(c);
+      r.querySelector(".n span").textContent = `${cname(c)} · ${dayLabel(e.date)}`;
+      r.querySelector(".a").textContent = money(+e.amount);
+      r.onclick = () => startEdit(e); r.onkeydown = ev => { if (ev.key === "Enter") startEdit(e); };
+      rl.appendChild(r);
+    });
+    $("tabExpL").textContent = nh("expenses"); $("splitAddL").textContent = nh("newSplit");
+    $("bellBtn").setAttribute("aria-label", nh("bell"));
+  }
+  $("wPrev").onclick = () => $("prevM").click();
+  $("wNext").onclick = () => $("nextM").click();
+  $("noFixBtn").onclick = () => { noFixed = !noFixed; try { localStorage.setItem("noFixed", noFixed ? "1" : "0"); } catch {} renderHome2(); };
+  $("seeAllBtn").onclick = () => { state.filterCat = null; go("expenses"); render(); };
+  $("qAdd").onclick = () => { newEntry(); openPad(); };
+  $("qSplit").onclick = () => go("split");
+  $("qTrip").onclick = () => go("trips");
+  $("qBills").onclick = () => go("bills");
+  $("qReport").onclick = () => { go("summary"); setSumTab("report"); };
+  $("splitAddBtn").onclick = () => { newEntry(); openPad(); sp.on = true; renderSplitUI(); };
+  $("bellBtn").onclick = () => openRemSheet();
+  $("remLine").onclick = () => openRemSheet();
+
+
+  const LRT = {
+    en:{note:(d,src)=>`Rates update by themselves every day (last update: ${d}, source: ${src}). A rate you type yourself is kept until you tap "Use today's rate".`, useLive:"Use today's rate"},
+    he:{note:(d,src)=>`השערים מתעדכנים לבד כל יום (עדכון אחרון: ${d}, מקור: ${src}). שער שתקלידו בעצמכם נשמר עד שתלחצו "שער של היום".`, useLive:"שער של היום"},
+    de:{note:(d,src)=>`Die Kurse aktualisieren sich täglich von selbst (zuletzt: ${d}, Quelle: ${src}). Einen selbst eingegebenen Kurs behalten wir, bis du „Heutiger Kurs“ tippst.`, useLive:"Heutiger Kurs"},
+    fr:{note:(d,src)=>`Les taux se mettent à jour chaque jour (dernière mise à jour : ${d}, source : ${src}). Un taux saisi par vous est gardé jusqu'à « Taux du jour ».`, useLive:"Taux du jour"},
+    ru:{note:(d,src)=>`Курсы обновляются сами каждый день (последнее обновление: ${d}, источник: ${src}). Курс, введённый вами, сохраняется, пока вы не нажмёте «Курс на сегодня».`, useLive:"Курс на сегодня"},
+    ar:{note:(d,src)=>`تتحدّث الأسعار تلقائيًا كل يوم (آخر تحديث: ${d}، المصدر: ${src}). السعر الذي تكتبه بنفسك يبقى حتى تضغط «سعر اليوم».`, useLive:"سعر اليوم"},
+    it:{note:(d,src)=>`I tassi si aggiornano da soli ogni giorno (ultimo aggiornamento: ${d}, fonte: ${src}). Un tasso inserito da te resta finché non tocchi «Tasso di oggi».`, useLive:"Tasso di oggi"},
+    es:{note:(d,src)=>`Los tipos se actualizan solos cada día (última actualización: ${d}, fuente: ${src}). Un tipo que escribas tú se mantiene hasta que toques «Tipo de hoy».`, useLive:"Tipo de hoy"}
+  };
+  const lr = (k, ...a) => { const d = LRT[state.lang] || LRT.en; const v = d[k] !== undefined ? d[k] : LRT.en[k]; return typeof v === "function" ? v(...a) : v; };
+  async function refreshRates(force) {
+    if (await fetchLiveRates(force)) { if (!$("settings").hidden) renderRatesGrid(); if ($("pad").classList.contains("open") && !state.editing) setPadCurrency($("fCur").value); render(); }
+  }
+  setTimeout(() => refreshRates(false), 1500);
+  setInterval(() => refreshRates(false), 3 * 3600e3);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshRates(false); });
+
+  // ---------- currency picker wiring (runs once the page helpers exist) ----------
+  $("ntName").addEventListener("input", () => autoTripCurrency($("ntName"), $("ntCur"), $("ntCurHint")));
+  $("teName").addEventListener("input", () => autoTripCurrency($("teName"), $("teCur"), $("teCurHint")));
+  // the amount field's small currency symbol opens the same picker
+  (function () {
+    const wrap = $("fCur").closest(".curpick"); wrap.classList.add("js");
+    wrap.setAttribute("role", "button"); wrap.tabIndex = 0;
+    const open = () => openCurPicker($("fCur"));
+    wrap.addEventListener("click", open);
+    wrap.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+  })();
+
   // ---------- receipt gallery ----------
   $("rcptBtn").onclick = () => go("receipts");
   $("rcptBack").onclick = () => go("");
@@ -3210,7 +4160,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
   // from the summary screen, a category opens home with the list filtered to it
   function showCategoryOnHome(catId) {
     state.filterCat = catId;
-    if (state.view !== "") go("");
+    if (state.view !== "expenses") go("expenses");
     render();
     setTimeout(() => $("expPanel").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start"}), 60);
   }
@@ -3466,7 +4416,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
     const X = d => { const f = (d - 1) / Math.max(1, s.days - 1); const px = padS + f * (W - padS - padE); return rtl ? W - px : px; };
     const Y = v => padT + (1 - v / top) * (H - padT - padB);
     const path = arr => arr.map((v, d) => d === 0 ? "" : `${d === 1 ? "M" : "L"}${X(d).toFixed(1)},${Y(v).toFixed(1)}`).join("");
-    const txt = (x, y, str, anchor, extra="") => `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${anchor}" style="fill:var(--muted);font-size:11px;font-family:var(--f-mono)${extra}">${escapeHtml(str)}</text>`;
+    const txt = (x, y, str, anchor, extra="") => `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${anchor}" style="fill:var(--muted);font-size:calc(11px*var(--fs,1));font-family:var(--f-mono)${extra}">${escapeHtml(str)}</text>`;
     let svg = "";
     [0, top/2, top].forEach(v => {
       svg += `<line x1="${X(1)}" x2="${X(s.days)}" y1="${Y(v)}" y2="${Y(v)}" style="stroke:var(--line);stroke-width:1"/>`;
@@ -3483,7 +4433,7 @@ html[dir="rtl"] .amtfield input{text-align:right}
       const ex = X(s.upTo), ey = Y(curShown[s.upTo]);
       svg += `<circle cx="${ex}" cy="${ey}" r="5" style="fill:var(--accent);stroke:var(--surface);stroke-width:2"/>`;
       const lx = rtl ? ex - 9 : ex + 9;
-      svg += `<text x="${lx}" y="${ey + 4}" text-anchor="${rtl ? "end" : "start"}" style="fill:var(--ink);font-size:12px;font-weight:600;font-family:var(--f-mono)">${escapeHtml(money(curShown[s.upTo], {short:true}))}</text>`;
+      svg += `<text x="${lx}" y="${ey + 4}" text-anchor="${rtl ? "end" : "start"}" style="fill:var(--ink);font-size:calc(12px*var(--fs,1));font-weight:600;font-family:var(--f-mono)">${escapeHtml(money(curShown[s.upTo], {short:true}))}</text>`;
     }
     svg += `<line id="pcHair" x1="0" x2="0" y1="${padT}" y2="${H - padB}" style="stroke:var(--muted);stroke-width:1;opacity:0"/><circle id="pcDotA" r="4" style="fill:var(--accent);stroke:var(--surface);stroke-width:2;opacity:0"/><circle id="pcDotB" r="4" style="fill:var(--muted);stroke:var(--surface);stroke-width:2;opacity:0"/>`;
     svg += `<rect x="0" y="0" width="${W}" height="${H}" style="fill:transparent" id="pcHit"/>`;
@@ -3697,7 +4647,7 @@ If the image is not a receipt, reply {"amount": null}.`;
     disarmDelete(); $("padErr").hidden = true; clearReceiptUI();
     const ptr = state.padTrip ? state.trips.find(x => x.id === state.padTrip) : null;
     setPadCurrency((ptr && ptr.currency) || state.settings.currency || "ILS");
-    padTripUI(); buildCatPick();
+    padTripUI(); buildCatPick(); spReset();
   }
   function startEdit(e) {
     if (state.receipt && state.receipt.isNew) discardNewReceipt();
@@ -3709,6 +4659,8 @@ If the image is not a receipt, reply {"amount": null}.`;
     $("fNote").value = e.note || ""; $("fDate").value = e.date; $("fMethod").value = e.method || "Card";
     $("padTitle").textContent = t(e.recurringId ? "editRecTitle" : "editTitle"); $("saveBtn").textContent = t("saveChanges");
     $("delBtn").hidden = false; $("cancelEdit").hidden = false; padTripUI();
+    spLoad(e);
+    if (e.split && e.split.typedTotal) { $("fAmount").value = e.split.typedTotal; if (e.origCurrency) updateConv(); renderSplitUI(); }
     if (e.receipt) {
       state.receipt = {id: e.receipt, type: e.receiptType || "image/jpeg", isNew: false};
       state.origReceipt = e.receipt;
@@ -3746,13 +4698,17 @@ If the image is not a receipt, reply {"amount": null}.`;
       if (!(r > 0)) return showErr(t("rateErr"));
       amount = Math.round(typed * r * 100) / 100;
       fx = {origAmount: typed, origCurrency: fc, rate: r};
-      saveRate(fc, r);
+      if (Math.abs(r - (rateOf(fc) || 0)) > 1e-9) saveRate(fc, r);
     }
+    const spb = spBuild(typed, fx.rate);
+    if (spb.err) return showErr(spb.err);
+    if (spb.split) { amount = spb.amount; if (fx.origCurrency) fx.origAmount = spb.typedMine; }
     const btn = $("saveBtn"); btn.disabled = true; btn.textContent = state.uploading ? t("finishingUpload") : t("savingBtn");
     try {
       if (state.uploading) { try { await state.uploading; } catch { return; } }
       const body = { amount, cat: state.selCat, note: $("fNote").value.trim(), date: $("fDate").value, method: $("fMethod").value,
-        receipt: state.receipt ? state.receipt.id : null, receiptType: state.receipt ? state.receipt.type : null, ...fx };
+        receipt: state.receipt ? state.receipt.id : null, receiptType: state.receipt ? state.receipt.type : null, ...fx, split: spb.split || null };
+      if (spb.split) rememberPeople(spb.split);
       if (state.padTrip) { body.cat = "travel"; body.tripId = state.padTrip; body.tripCat = state.selTripCat; }
       if (state.editing) {
         const prev = state.expenses.find(x=>x.id===state.editing) || {};
@@ -3761,7 +4717,7 @@ If the image is not a receipt, reply {"amount": null}.`;
         await col.doc(state.editing).set(next);
         if (state.origReceipt && state.origReceipt !== body.receipt && assets) { try { await assets.delete(state.origReceipt); } catch {} }
         toast(t("savedChanges"));
-      } else if ($("fRepeat").checked && recCol && !state.padTrip) {
+      } else if ($("fRepeat").checked && recCol && !state.padTrip && !spb.split) {
         const ruleRef = recCol.doc(); const mk = body.date.slice(0,7);
         await ruleRef.set({amount, cat: body.cat, note: body.note, method: body.method, day: +body.date.slice(8,10), startMonth: mk, skip: [], createdAt: Date.now()});
         await col.doc(`r-${ruleRef.id}-${mk}`).set({...body, recurringId: ruleRef.id, createdAt: Date.now()});
@@ -3794,7 +4750,7 @@ If the image is not a receipt, reply {"amount": null}.`;
   $("addBtn").onclick = () => { newEntry(); openPad(); };
   $("fab").onclick = () => { newEntry(); openPad(); };
   // show the floating + once the ring has scrolled out of view (phone)
-  try { new IntersectionObserver(([en]) => $("fab").classList.toggle("show", !en.isIntersecting && !$("app").hidden && state.view !== "trips" && state.view !== "receipts" && state.view !== "bills" && state.view !== "summary")).observe($("hubActions")); } catch {}
+  try { new IntersectionObserver(([en]) => $("fab").classList.toggle("show", !en.isIntersecting && !$("app").hidden && state.view !== "trips" && state.view !== "receipts" && state.view !== "bills" && state.view !== "split" && state.view !== "summary")).observe($("hubActions")); } catch {}
 
   // ---------- controls ----------
   $("prevM").onclick = () => { let {y,m} = state.month; m--; if (m<0){m=11;y--;} state.month={y,m}; state.filterCat=null; render(); };
@@ -3808,11 +4764,12 @@ If the image is not a receipt, reply {"amount": null}.`;
     CATS.forEach(c => { const v = parseFloat($("cb-"+c.id).value); if (v > 0) catBudgets[c.id] = v; });
     const main = $("setCur").value;
     const rates = {};
-    document.querySelectorAll("#ratesGrid input").forEach(i => { const v = parseAmtRate(i.value); if (v > 0) rates[i.dataset.cur] = v; });
+    // keep a rate as "yours" only if you set it before, or typed a different number now
+    document.querySelectorAll("#ratesGrid input").forEach(i => { const v = parseAmtRate(i.value); if (v > 0 && (i.dataset.mine || Math.abs(v - (+i.dataset.auto || 0)) > 1e-9)) rates[i.dataset.cur] = v; });
     const next = { ...state.settings, name: $("setName").value.trim().slice(0,30), currency: main, budget: Math.max(0, parseFloat($("setBudget").value) || 0), catBudgets, lang: state.lang, onboarded: true,
       rates: main === (state.settings.currency || "ILS") ? rates : {}, ratesMain: main };
     if (!settingsRef) return toast(t("signinSettings"));
-    try { await settingsRef.set(next); state.settings = next; fmtCache = {}; render(); fillPrefs(); toast(t("settingsSaved")); }
+    try { await settingsRef.set(next); state.settings = next; fmtCache = {}; render(); fillPrefs(); toast(t("settingsSaved")); refreshRates(false); }
     catch { toast(t("settingsFail")); }
   };
   $("exportCsv").onclick = async () => {
@@ -3889,8 +4846,8 @@ If the image is not a receipt, reply {"amount": null}.`;
   async function boot() {
     try { const h = decodeURIComponent(location.hash.slice(1)); if (validView(h)) state.view = h; } catch {}
     applyTheme(); applyLang(); resetPad(); setSync("connecting");
-    if (!window.claude || !window.claude.use) { setSync("offline"); banner("bannerOffline"); state.ready = true; render(); return; }
-    const [db, user, dls, ast, smp] = await Promise.all(["db","user","downloads","assets","sample"].map(n => claude.use(n).catch(()=>null)));
+    if (!window.__slClaude || !window.__slClaude.use) { setSync("offline"); banner("bannerOffline"); state.ready = true; render(); return; }
+    const [db, user, dls, ast, smp] = await Promise.all(["db","user","downloads","assets","sample"].map(n => window.__slClaude.use(n).catch(()=>null)));
     downloads = dls; assets = ast; sample = smp;
     if (!dls) $("exportCsv").hidden = true;
     if (!ast) { $("rBtns").hidden = true; $("hubActions").querySelectorAll("label").forEach(l => l.hidden = true); $("hubActions").style.gridTemplateColumns = "1fr"; }
@@ -3916,7 +4873,8 @@ If the image is not a receipt, reply {"amount": null}.`;
       if (s.exists) {
         const d = s.data();
         state.settings = { currency: d.currency || "ILS", budget: +d.budget || 0, catBudgets: d.catBudgets || {}, lang: d.lang, name: d.name || "", onboarded: !!d.onboarded,
-          theme: d.theme || themeSetting(), rates: d.rates || {}, ratesMain: d.ratesMain || d.currency || "ILS" };
+          theme: d.theme || themeSetting(), rates: d.rates || {}, ratesMain: d.ratesMain || d.currency || "ILS",
+          people: Array.isArray(d.people) ? d.people : [], reminders: d.reminders || null };
         if (d.theme) { try { localStorage.setItem("theme", JSON.stringify(d.theme)); } catch {} }
         applyTheme();
         fmtCache = {};
